@@ -19,15 +19,21 @@ export default function ReactHierarchy({
   return (
     <div className="react-hierarchy">
       {showTitle && (
-        <Typography variant={titleType} gutterBottom>
+        <Typography className="hierarchy-title" variant={titleType}>
           {title}
         </Typography>
       )}
 
       <div className="content-wrapper">
-        <div className="layer-a">Layer-a</div>
-        <div className="layer-b">Layer-b</div>
-        <div className="layer-c">Layer-c</div>
+        <div className="layer-a">
+          <div className="layer-content">Layer-a-content</div>
+        </div>
+        <div className="layer-b">
+          <div className="layer-content">Layer-b-content</div>
+        </div>
+        <div className="layer-c">
+          <div className="layer-content">Layer-c-content</div>
+        </div>
         {/* Debug */}
         {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
       </div>
