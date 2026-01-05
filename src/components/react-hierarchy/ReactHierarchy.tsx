@@ -1,6 +1,7 @@
 import React from "react";
 import { Typography } from "@mui/material";
 import { useDataStore } from "../../store/dataStore";
+import "./ReactHierarchy.css";
 
 export type ReactHierarchyProps = {
   title?: string;
@@ -24,8 +25,11 @@ export default function ReactHierarchy({
       )}
 
       <div className="content-wrapper">
+        <div className="layer-a">Layer-a</div>
+        <div className="layer-b">Layer-b</div>
+        <div className="layer-c">Layer-c</div>
         {/* Debug */}
-        <pre>{JSON.stringify(data, null, 2)}</pre>
+        {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
       </div>
     </div>
   );

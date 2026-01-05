@@ -1,0 +1,15 @@
+.react-hierarchy {
+  background-color: aqua;
+
+  .layer-a {
+    background-color: brown;
+  }
+
+  .layer-b {
+    background-color: blue;
+  }
+
+  .layer-c {
+    background-color: green;
+  }
+}
