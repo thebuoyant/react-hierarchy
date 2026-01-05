@@ -289,7 +289,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
   content: {
     valueA: "Node-A-Value-A",
     valueB: "Node-A-Value-B",
-    projectOwnerAvatar: "https://i.pravatar.cc/300",
+    valueC: "Node-A-Value-C",
   },
   contentType: "person",
   avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
@@ -301,7 +301,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
       content: {
         valueA: "Node-AA-Value-A",
         valueB: "Node-AA-Value-B",
-        projectOwnerAvatar: "https://i.pravatar.cc/300",
+        valueC: "Node-AA-Value-C",
       },
       contentType: "person",
       avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
@@ -313,7 +313,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           content: {
             valueA: "Node-AAA-Value-A",
             valueB: "Node-AAA-Value-B",
-            projectOwnerAvatar: "https://i.pravatar.cc/300",
+            valueC: "Node-AAA-Value-C",
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
@@ -326,7 +326,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           content: {
             valueA: "Node-AAB-Value-A",
             valueB: "Node-AAB-Value-B",
-            projectOwnerAvatar: "https://i.pravatar.cc/300",
+            valueC: "Node-AAB-Value-C",
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
@@ -338,7 +338,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
               content: {
                 valueA: "Node-AABA-Value-A",
                 valueB: "Node-AABA-Value-B",
-                projectOwnerAvatar: "https://i.pravatar.cc/300",
+                valueC: "Node-AABA-Value-C",
               },
               contentType: "person",
               avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
@@ -351,7 +351,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
               content: {
                 valueA: "Node-AABB-Value-A",
                 valueB: "Node-AABB-Value-B",
-                projectOwnerAvatar: "https://i.pravatar.cc/300",
+                valueC: "Node-AABB-Value-C",
               },
               contentType: "person",
               avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
@@ -364,7 +364,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
               content: {
                 valueA: "Node-AABC-Value-A",
                 valueB: "Node-AABC-Value-B",
-                projectOwnerAvatar: "https://i.pravatar.cc/300",
+                valueC: "Node-AABC-Value-C",
               },
               contentType: "person",
               avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
@@ -379,7 +379,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           content: {
             valueA: "Node-AAC-Value-A",
             valueB: "Node-AAC-Value-B",
-            projectOwnerAvatar: "https://i.pravatar.cc/300",
+            valueC: "Node-AAC-Value-C",
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
@@ -392,7 +392,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           content: {
             valueA: "Node-AAD-Value-A",
             valueB: "Node-AAD-Value-B",
-            projectOwnerAvatar: "https://i.pravatar.cc/300",
+            valueC: "Node-AAD-Value-C",
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
@@ -404,7 +404,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
               content: {
                 valueA: "Node-AADA-Value-A",
                 valueB: "Node-AADA-Value-B",
-                projectOwnerAvatar: "https://i.pravatar.cc/300",
+                valueC: "Node-AADA-Value-C",
               },
               contentType: "person",
               avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
@@ -417,7 +417,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
               content: {
                 valueA: "Node-AADB-Value-A",
                 valueB: "Node-AADB-Value-B",
-                projectOwnerAvatar: "https://i.pravatar.cc/300",
+                valueC: "Node-AADB-Value-C",
               },
               contentType: "person",
               avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
@@ -434,7 +434,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
       content: {
         valueA: "Node-AB-Value-A",
         valueB: "Node-AB-Value-B",
-        projectOwnerAvatar: "https://i.pravatar.cc/300",
+        valueC: "Node-AB-Value-C",
       },
       contentType: "person",
       avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
@@ -446,7 +446,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           content: {
             valueA: "Node-ABA-Value-A",
             valueB: "Node-ABA-Value-B",
-            projectOwnerAvatar: "https://i.pravatar.cc/300",
+            valueC: "Node-ABA-Value-C",
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
@@ -459,7 +459,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           content: {
             valueA: "Node-ABB-Value-A",
             valueB: "Node-ABB-Value-B",
-            projectOwnerAvatar: "https://i.pravatar.cc/300",
+            valueC: "Node-ABB-Value-C",
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
@@ -474,7 +474,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
       content: {
         valueA: "Node-AC-Value-A",
         valueB: "Node-AC-Value-B",
-        projectOwnerAvatar: "https://i.pravatar.cc/300",
+        valueC: "Node-AC-Value-C",
       },
       contentType: "person",
       avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
@@ -486,7 +486,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           content: {
             valueA: "Node-ACA-Value-A",
             valueB: "Node-ACA-Value-B",
-            projectOwnerAvatar: "https://i.pravatar.cc/300",
+            valueC: "Node-ACA-Value-C",
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
@@ -501,7 +501,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
       content: {
         valueA: "Node-AD-Value-A",
         valueB: "Node-AD-Value-B",
-        projectOwnerAvatar: "https://i.pravatar.cc/300",
+        valueC: "Node-AD-Value-C",
       },
       contentType: "person",
       avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
@@ -513,7 +513,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           content: {
             valueA: "Node-ADA-Value-A",
             valueB: "Node-ADA-Value-B",
-            projectOwnerAvatar: "https://i.pravatar.cc/300",
+            valueC: "Node-ADA-Value-C",
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
@@ -526,7 +526,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           content: {
             valueA: "Node-ADB-Value-A",
             valueB: "Node-ADB-Value-B",
-            projectOwnerAvatar: "https://i.pravatar.cc/300",
+            valueC: "Node-ADB-Value-C",
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
@@ -539,7 +539,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           content: {
             valueA: "Node-ADC-Value-A",
             valueB: "Node-ADC-Value-B",
-            projectOwnerAvatar: "https://i.pravatar.cc/300",
+            valueC: "Node-ADC-Value-C",
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
@@ -552,7 +552,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           content: {
             valueA: "Node-ADD-Value-A",
             valueB: "Node-ADD-Value-B",
-            projectOwnerAvatar: "https://i.pravatar.cc/300",
+            valueC: "Node-ADD-Value-C",
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
@@ -565,7 +565,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           content: {
             valueA: "Node-ADE-Value-A",
             valueB: "Node-ADE-Value-B",
-            projectOwnerAvatar: "https://i.pravatar.cc/300",
+            valueC: "Node-ADE-Value-C",
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",

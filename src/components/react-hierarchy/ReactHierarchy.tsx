@@ -1,5 +1,6 @@
 import React from "react";
 import { Typography } from "@mui/material";
+import { useDataStore } from "../../store/dataStore";
 
 export type ReactHierarchyProps = {
   title?: string;
@@ -12,6 +13,8 @@ export default function ReactHierarchy({
   showTitle = true,
   titleType = "h3",
 }: ReactHierarchyProps) {
+  const data = useDataStore((s) => s.data);
+
   return (
     <div className="react-hierarchy">
       {showTitle && (
@@ -19,7 +22,11 @@ export default function ReactHierarchy({
           {title}
         </Typography>
       )}
-      <div className="content-wrapper"></div>
+
+      <div className="content-wrapper">
+        {/* Debug */}
+        <pre>{JSON.stringify(data, null, 2)}</pre>
+      </div>
     </div>
   );
 }
