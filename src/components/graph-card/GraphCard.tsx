@@ -3,6 +3,7 @@ import * as React from "react";
 import "./GraphCard.css";
 import { HierarchyNode } from "../../types/data.type";
 import { CARD_DEFAULT_DIMENSION } from "../../store/layoutStore";
+import { Avatar } from "@mui/material";
 
 export type GraphCardProps = {
   node?: HierarchyNode;
@@ -43,7 +44,7 @@ export default function GraphCard({
   onBadgeClick = () => {},
   branchGraphHeight,
   positionIndex,
-  content = null,
+  content = <div>Content</div>,
   showParent = true,
 }: GraphCardProps) {
   const totalWidth = 2 * cardSpace + cardWidth;
@@ -66,18 +67,27 @@ export default function GraphCard({
       <div
         className="space-left"
         style={{ width: cardSpace, overflow: "hidden" }}
+      ></div>
+      <div
+        className="card-content-wrapper"
+        style={{ width: cardWidth, overflow: "hidden" }}
       >
-        l
-      </div>
-      <div className="content" style={{ width: cardWidth, overflow: "hidden" }}>
-        c
+        <div className="content-header">
+          <div className="avatar-section">
+            <Avatar
+              className="avatar-image"
+              alt="avatar"
+              src={node.avatarUrl}
+            />
+          </div>
+          <div className="title-section">title</div>
+        </div>
+        <div className="content-main">{content}</div>
       </div>
       <div
         className="space-right"
         style={{ width: cardSpace, overflow: "hidden" }}
-      >
-        r
-      </div>
+      ></div>
     </div>
   );
 }

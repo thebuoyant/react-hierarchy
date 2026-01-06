@@ -4,7 +4,27 @@
   position: relative;
 
   .card-content-wrapper {
+    border-radius: 4px;
     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.14) !important;
+
+    .content-header {
+      padding: 0 8px;
+      height: 60px;
+      background-color: aliceblue;
+      display: flex;
+
+      .avatar-section {
+        height: 100%;
+        width: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .title-section {
+        padding: 8px;
+      }
+    }
   }
 
   /* .fui-Avatar__initials {

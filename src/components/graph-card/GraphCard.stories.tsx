@@ -25,7 +25,7 @@ const meta: Meta<typeof GraphCard> = {
     node: mockNode,
     isActive: false,
     cardWidth: CARD_DEFAULT_DIMENSION.cardWidth,
-    cardHeight: CARD_DEFAULT_DIMENSION.cardWidth,
+    cardHeight: CARD_DEFAULT_DIMENSION.cardHeight,
     cardSpace: CARD_DEFAULT_DIMENSION.cardSpace,
     branchGraphHeight: 120,
     showBadge: true,
