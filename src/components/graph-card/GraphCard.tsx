@@ -44,6 +44,9 @@ export default function GraphCard({
   const cardHeight = useLayoutStore((s) => s.cardHeight);
   const cardWidth = useLayoutStore((s) => s.cardWidth);
   const cardSpace = useLayoutStore((s) => s.cardSpace);
+  const cardHeaderBackgroundColor = useLayoutStore(
+    (s) => s.cardHeaderBackgroundColor
+  );
 
   const totalWidth = 2 * cardSpace + cardWidth;
   console.log("totalWidth", totalWidth);
@@ -70,7 +73,10 @@ export default function GraphCard({
         className="card-content-wrapper"
         style={{ width: cardWidth, overflow: "hidden" }}
       >
-        <div className="content-header">
+        <div
+          className="content-header"
+          style={{ backgroundColor: cardHeaderBackgroundColor }}
+        >
           <div className="avatar-section">
             <Avatar
               className="avatar-image"
