@@ -24,9 +24,6 @@ const meta: Meta<typeof GraphCard> = {
   args: {
     node: mockNode,
     isActive: false,
-    cardWidth: APP_CONFIG.layout.card.cardWidth,
-    cardHeight: APP_CONFIG.layout.card.cardHeight,
-    cardSpace: APP_CONFIG.layout.card.cardSpace,
     branchGraphHeight: 120,
     showBadge: true,
     showChildren: true,
@@ -56,18 +53,6 @@ const meta: Meta<typeof GraphCard> = {
     showParent: {
       control: "boolean",
       description: "Parent-Bezug anzeigen",
-    },
-    cardWidth: {
-      control: { type: "number", min: 100 },
-      description: "Breite der Card",
-    },
-    cardHeight: {
-      control: { type: "number", min: 80 },
-      description: "Höhe der Card",
-    },
-    cardSpace: {
-      control: { type: "number", min: 0 },
-      description: "Horizontaler Abstand links/rechts",
     },
     branchGraphHeight: {
       control: { type: "number", min: 0 },

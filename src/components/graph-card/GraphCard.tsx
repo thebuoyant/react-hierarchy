@@ -3,15 +3,12 @@ import * as React from "react";
 import "./GraphCard.css";
 import { HierarchyNode } from "../../types/data.type";
 import { Avatar, Typography } from "@mui/material";
-import { APP_CONFIG } from "../../app.config";
+import { useLayoutStore } from "../../store/layoutStore";
 
 export type GraphCardProps = {
   node?: HierarchyNode;
   onHeaderReferClick?: ({}: any) => void;
   isActive?: boolean;
-  cardWidth: number;
-  cardHeight: number;
-  cardSpace: number;
   branchGraphHeight: number;
   showBadge?: boolean;
   showChildren: boolean;
@@ -36,9 +33,6 @@ export default function GraphCard({
   },
   onHeaderReferClick = () => {},
   isActive = false,
-  cardHeight = APP_CONFIG.layout.card.cardHeight,
-  cardWidth = APP_CONFIG.layout.card.cardWidth,
-  cardSpace = APP_CONFIG.layout.card.cardSpace,
   showBadge = true,
   showChildren,
   onBadgeClick = () => {},
@@ -47,6 +41,10 @@ export default function GraphCard({
   content = <div>Content</div>,
   showParent = true,
 }: GraphCardProps) {
+  const cardHeight = useLayoutStore((s) => s.cardHeight);
+  const cardWidth = useLayoutStore((s) => s.cardWidth);
+  const cardSpace = useLayoutStore((s) => s.cardSpace);
+
   const totalWidth = 2 * cardSpace + cardWidth;
   console.log("totalWidth", totalWidth);
 
