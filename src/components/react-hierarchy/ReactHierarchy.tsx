@@ -3,17 +3,21 @@ import { Typography } from "@mui/material";
 import { useDataStore } from "../../store/dataStore";
 import "./ReactHierarchy.css";
 import { useLayoutStore } from "../../store/layoutStore";
+import { AppConfigType } from "../../types/app-config.types";
+import { APP_CONFIG } from "../../app.config";
 
 export type ReactHierarchyProps = {
   title?: string;
   showTitle?: boolean;
   titleType?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  appConfig: AppConfigType;
 };
 
 export default function ReactHierarchy({
   title = "React Hierarchy",
   showTitle = true,
   titleType = "h3",
+  appConfig = APP_CONFIG,
 }: ReactHierarchyProps) {
   const data = useDataStore((s) => s.data);
   const headerHeight = useLayoutStore((s) => s.headerHeight);
@@ -21,6 +25,8 @@ export default function ReactHierarchy({
   const branchBackgroundColor = useLayoutStore((s) => s.branchBackgroundColor);
   const headerBackgroundColor = useLayoutStore((s) => s.headerBackgroundColor);
   const cardHeight = useLayoutStore((s) => s.cardHeight);
+
+  console.log("APP-CONFIG", appConfig);
 
   return (
     <div className="react-hierarchy">
