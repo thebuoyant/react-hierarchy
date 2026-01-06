@@ -8,6 +8,7 @@ export const MOCK_DATA = {
   },
   contentType: "person",
   avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+  showAvatar: true,
   children: [
     {
       id: "NodeAA",
@@ -19,6 +20,7 @@ export const MOCK_DATA = {
       },
       contentType: "person",
       avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+      showAvatar: true,
       children: [
         {
           id: "NodeAAA",
@@ -30,6 +32,7 @@ export const MOCK_DATA = {
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+          showAvatar: true,
           children: [],
         },
         {
@@ -42,6 +45,7 @@ export const MOCK_DATA = {
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+          showAvatar: true,
           children: [
             {
               id: "NodeAABA",
@@ -53,6 +57,7 @@ export const MOCK_DATA = {
               },
               contentType: "person",
               avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+              showAvatar: true,
               children: [],
             },
             {
@@ -65,6 +70,7 @@ export const MOCK_DATA = {
               },
               contentType: "person",
               avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+              showAvatar: true,
               children: [],
             },
             {
@@ -77,6 +83,7 @@ export const MOCK_DATA = {
               },
               contentType: "person",
               avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+              showAvatar: true,
               children: [],
             },
           ],
@@ -91,6 +98,7 @@ export const MOCK_DATA = {
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+          showAvatar: true,
           children: [],
         },
         {
@@ -103,6 +111,7 @@ export const MOCK_DATA = {
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+          showAvatar: true,
           children: [
             {
               id: "NodeAADA",
@@ -114,6 +123,7 @@ export const MOCK_DATA = {
               },
               contentType: "person",
               avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+              showAvatar: true,
               children: [],
             },
             {
@@ -126,6 +136,7 @@ export const MOCK_DATA = {
               },
               contentType: "person",
               avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+              showAvatar: true,
               children: [],
             },
           ],
@@ -142,6 +153,7 @@ export const MOCK_DATA = {
       },
       contentType: "person",
       avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+      showAvatar: true,
       children: [
         {
           id: "NodeABA",
@@ -153,6 +165,7 @@ export const MOCK_DATA = {
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+          showAvatar: true,
           children: [],
         },
         {
@@ -165,6 +178,7 @@ export const MOCK_DATA = {
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+          showAvatar: true,
           children: [],
         },
       ],
@@ -179,6 +193,7 @@ export const MOCK_DATA = {
       },
       contentType: "person",
       avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+      showAvatar: true,
       children: [
         {
           id: "NodeACA",
@@ -190,6 +205,7 @@ export const MOCK_DATA = {
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+          showAvatar: true,
           children: [],
         },
       ],
@@ -204,6 +220,7 @@ export const MOCK_DATA = {
       },
       contentType: "person",
       avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+      showAvatar: true,
       children: [
         {
           id: "NodeADA",
@@ -215,6 +232,7 @@ export const MOCK_DATA = {
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+          showAvatar: true,
           children: [],
         },
         {
@@ -227,6 +245,7 @@ export const MOCK_DATA = {
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+          showAvatar: true,
           children: [],
         },
         {
@@ -239,6 +258,7 @@ export const MOCK_DATA = {
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+          showAvatar: true,
           children: [],
         },
         {
@@ -251,6 +271,7 @@ export const MOCK_DATA = {
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+          showAvatar: true,
           children: [],
         },
         {
@@ -263,6 +284,7 @@ export const MOCK_DATA = {
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+          showAvatar: true,
           children: [],
         },
       ],
@@ -277,6 +299,7 @@ export const MOCK_DATA = {
       },
       contentType: "person",
       avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+      showAvatar: true,
       children: [],
     },
   ],
@@ -293,6 +316,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
   },
   contentType: "person",
   avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+  showAvatar: true,
   children: [
     {
       id: "NodeAA",
@@ -305,6 +329,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
       },
       contentType: "person",
       avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+      showAvatar: true,
       children: [
         {
           id: "NodeAAA",
@@ -317,6 +342,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+          showAvatar: true,
           children: [],
         },
         {
@@ -330,6 +356,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+          showAvatar: true,
           children: [
             {
               id: "NodeAABA",
@@ -342,6 +369,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
               },
               contentType: "person",
               avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+              showAvatar: true,
               children: [],
             },
             {
@@ -355,6 +383,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
               },
               contentType: "person",
               avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+              showAvatar: true,
               children: [],
             },
             {
@@ -368,6 +397,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
               },
               contentType: "person",
               avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+              showAvatar: true,
               children: [],
             },
           ],
@@ -383,6 +413,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+          showAvatar: true,
           children: [],
         },
         {
@@ -396,6 +427,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+          showAvatar: true,
           children: [
             {
               id: "NodeAADA",
@@ -408,6 +440,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
               },
               contentType: "person",
               avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+              showAvatar: true,
               children: [],
             },
             {
@@ -421,6 +454,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
               },
               contentType: "person",
               avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+              showAvatar: true,
               children: [],
             },
           ],
@@ -438,6 +472,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
       },
       contentType: "person",
       avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+      showAvatar: true,
       children: [
         {
           id: "NodeABA",
@@ -450,6 +485,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+          showAvatar: true,
           children: [],
         },
         {
@@ -463,6 +499,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+          showAvatar: true,
           children: [],
         },
       ],
@@ -478,6 +515,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
       },
       contentType: "person",
       avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+      showAvatar: true,
       children: [
         {
           id: "NodeACA",
@@ -490,6 +528,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+          showAvatar: true,
           children: [],
         },
       ],
@@ -505,6 +544,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
       },
       contentType: "person",
       avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+      showAvatar: true,
       children: [
         {
           id: "NodeADA",
@@ -517,6 +557,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+          showAvatar: true,
           children: [],
         },
         {
@@ -530,6 +571,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+          showAvatar: true,
           children: [],
         },
         {
@@ -543,6 +585,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+          showAvatar: true,
           children: [],
         },
         {
@@ -556,6 +599,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+          showAvatar: true,
           children: [],
         },
         {
@@ -569,6 +613,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           },
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+          showAvatar: true,
           children: [],
         },
       ],
@@ -583,6 +628,7 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
       },
       contentType: "person",
       avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+      showAvatar: true,
       children: [],
     },
   ],

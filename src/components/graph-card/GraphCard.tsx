@@ -26,6 +26,7 @@ export default function GraphCard({
     },
     contentType: "person",
     avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+    showAvatar: true,
     children: [],
   },
   showBadge = true,
@@ -47,7 +48,7 @@ export default function GraphCard({
   );
 
   const totalWidth = 2 * cardSpace + cardWidth;
-  console.log("totalWidth", totalWidth);
+  const showAvatar = node.showAvatar;
 
   return (
     <div
@@ -69,13 +70,15 @@ export default function GraphCard({
           className="content-header"
           style={{ backgroundColor: cardHeaderBackgroundColor }}
         >
-          <div className="avatar-section">
-            <Avatar
-              className="avatar-image"
-              alt="avatar"
-              src={node.avatarUrl}
-            />
-          </div>
+          {showAvatar && (
+            <div className="avatar-section">
+              <Avatar
+                className="avatar-image"
+                alt="avatar"
+                src={node.avatarUrl}
+              />
+            </div>
+          )}
           <div className="title-section">
             <Typography
               className="header-title-typo"

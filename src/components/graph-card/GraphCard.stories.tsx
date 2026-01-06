@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 import GraphCard from "./GraphCard";
 import { HierarchyNode } from "../../types/data.type";
 import React from "react";
-import { APP_CONFIG } from "../../app.config";
 
 const mockNode: HierarchyNode = {
   id: "Node-AA",
@@ -15,6 +14,7 @@ const mockNode: HierarchyNode = {
   },
   contentType: "person",
   avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+  showAvatar: true,
   children: [],
 };
 

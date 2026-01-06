@@ -3,9 +3,10 @@ export type NodeContent = Record<string, string>;
 export type HierarchyNode = {
   id: string;
   headerTitle: string;
-  headerSubTitle?: string;
+  headerSubTitle: string;
   content: NodeContent;
   contentType: "person" | "team" | "org" | string;
-  avatarUrl?: string;
+  avatarUrl: string;
+  showAvatar: boolean;
   children: HierarchyNode[];
 };
