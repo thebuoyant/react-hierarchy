@@ -3,7 +3,7 @@ import * as React from "react";
 import "./GraphCard.css";
 import { HierarchyNode } from "../../types/data.type";
 import { CARD_DEFAULT_DIMENSION } from "../../store/layoutStore";
-import { Avatar } from "@mui/material";
+import { Avatar, Typography } from "@mui/material";
 
 export type GraphCardProps = {
   node?: HierarchyNode;
@@ -80,7 +80,18 @@ export default function GraphCard({
               src={node.avatarUrl}
             />
           </div>
-          <div className="title-section">title</div>
+          <div className="title-section">
+            <Typography
+              className="header-title-typo"
+              variant="body1"
+              gutterBottom
+            >
+              {node.headerTitle}
+            </Typography>
+            <Typography className="header-sub-title-typo" variant="subtitle2">
+              {node.headerSubTitle}
+            </Typography>
+          </div>
         </div>
         <div className="content-main">{content}</div>
       </div>

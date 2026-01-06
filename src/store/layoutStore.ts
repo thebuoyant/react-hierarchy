@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 export const CARD_DEFAULT_DIMENSION = {
   cardHeight: 170,
-  cardWidth: 270,
+  cardWidth: 300,
   cardSpace: 12,
 };
 

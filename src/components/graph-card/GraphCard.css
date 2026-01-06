@@ -23,6 +23,15 @@
 
       .title-section {
         padding: 8px;
+
+        .header-title-typo {
+          font-weight: 600;
+        }
+
+        .header-sub-title-typo {
+          position: relative;
+          top: -6px;
+        }
       }
     }
   }
