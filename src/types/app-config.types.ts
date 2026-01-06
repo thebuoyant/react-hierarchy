@@ -6,6 +6,7 @@ export type AppConfigType = {
       cardSpace: number;
       cardHeaderBackgroundColor: string;
       cardHeaderTitleColor: string;
+      cardHeaderSubTitleColor: string;
     };
   };
 };

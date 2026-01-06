@@ -48,6 +48,9 @@ export default function GraphCard({
     (s) => s.cardHeaderBackgroundColor
   );
   const cardHeaderTitleColor = useLayoutStore((s) => s.cardHeaderTitleColor);
+  const cardHeaderSubTitleColor = useLayoutStore(
+    (s) => s.cardHeaderSubTitleColor
+  );
 
   const totalWidth = 2 * cardSpace + cardWidth;
   console.log("totalWidth", totalWidth);
@@ -94,7 +97,11 @@ export default function GraphCard({
             >
               {node.headerTitle}
             </Typography>
-            <Typography className="header-sub-title-typo" variant="subtitle2">
+            <Typography
+              className="header-sub-title-typo"
+              variant="subtitle2"
+              style={{ color: cardHeaderSubTitleColor }}
+            >
               {node.headerSubTitle}
             </Typography>
           </div>
