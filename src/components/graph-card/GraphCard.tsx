@@ -7,9 +7,6 @@ import { useLayoutStore } from "../../store/layoutStore";
 
 export type GraphCardProps = {
   node?: HierarchyNode;
-  onHeaderReferClick?: ({}: any) => void;
-  isActive?: boolean;
-  branchGraphHeight: number;
   showBadge?: boolean;
   showChildren: boolean;
   onBadgeClick?: ({}: any) => void;
@@ -31,12 +28,9 @@ export default function GraphCard({
     avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
     children: [],
   },
-  onHeaderReferClick = () => {},
-  isActive = false,
   showBadge = true,
   showChildren,
   onBadgeClick = () => {},
-  branchGraphHeight,
   positionIndex,
   content = <div>Content</div>,
   showParent = true,
@@ -54,12 +48,6 @@ export default function GraphCard({
 
   const totalWidth = 2 * cardSpace + cardWidth;
   console.log("totalWidth", totalWidth);
-
-  const handleOnSelectClick = () => {
-    if (onHeaderReferClick) {
-      onHeaderReferClick({ node });
-    }
-  };
 
   return (
     <div

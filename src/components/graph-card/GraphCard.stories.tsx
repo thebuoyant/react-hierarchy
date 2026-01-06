@@ -23,8 +23,6 @@ const meta: Meta<typeof GraphCard> = {
   component: GraphCard,
   args: {
     node: mockNode,
-    isActive: false,
-    branchGraphHeight: 120,
     showBadge: true,
     showChildren: true,
     showParent: true,
@@ -38,10 +36,6 @@ const meta: Meta<typeof GraphCard> = {
     ),
   },
   argTypes: {
-    isActive: {
-      control: "boolean",
-      description: "Markiert die Card als aktiv",
-    },
     showBadge: {
       control: "boolean",
       description: "Badge anzeigen",
@@ -54,17 +48,9 @@ const meta: Meta<typeof GraphCard> = {
       control: "boolean",
       description: "Parent-Bezug anzeigen",
     },
-    branchGraphHeight: {
-      control: { type: "number", min: 0 },
-      description: "Höhe des Branch-Graphen",
-    },
     positionIndex: {
       control: { type: "number", min: 0 },
       description: "Index des Nodes im Parent",
-    },
-    onHeaderReferClick: {
-      action: "header-refer-clicked",
-      description: "Click auf Header/Referenz",
     },
     onBadgeClick: {
       action: "badge-clicked",
