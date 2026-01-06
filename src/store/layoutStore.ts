@@ -6,14 +6,15 @@ type LayoutState = {
   cardWidth: number;
   cardSpace: number;
   cardHeaderBackgroundColor: string;
+  cardHeaderTitleColor: string;
   branchHeight: number;
   headerHeight: number;
   branchBackgroundColor: string;
-  headerBackgroundColor: string;
   setCardHeight: (cardHeight: number) => void;
   setCardWidth: (cardWidth: number) => void;
   setCardSpace: (cardSpace: number) => void;
   setCardHeaderBackgroundColor: (cardHeaderBackgroundColor: string) => void;
+  setCardHeaderTitleColor: (cardHeaderTitleColor: string) => void;
   setBranchHeight: (branchHeight: number) => void;
   setHeaderHeight: (branchBackgroundColor: number) => void;
 };
@@ -23,6 +24,7 @@ export const useLayoutStore = create<LayoutState>((set) => ({
   cardWidth: APP_CONFIG.layout.card.cardWidth,
   cardSpace: APP_CONFIG.layout.card.cardSpace,
   cardHeaderBackgroundColor: APP_CONFIG.layout.card.cardHeaderBackgroundColor,
+  cardHeaderTitleColor: APP_CONFIG.layout.card.cardHeaderTitleColor,
   branchHeight: 48,
   headerHeight: 48,
   branchBackgroundColor: "#ffffff",
@@ -32,6 +34,8 @@ export const useLayoutStore = create<LayoutState>((set) => ({
   setCardSpace: (receivedValue) => set({ cardSpace: receivedValue }),
   setCardHeaderBackgroundColor: (receivedValue) =>
     set({ cardHeaderBackgroundColor: receivedValue }),
+  setCardHeaderTitleColor: (receivedValue) =>
+    set({ cardHeaderTitleColor: receivedValue }),
   setBranchHeight: (receivedValue) => set({ branchHeight: receivedValue }),
   setHeaderHeight: (receivedValue) => set({ headerHeight: receivedValue }),
 }));

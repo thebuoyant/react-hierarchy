@@ -47,6 +47,7 @@ export default function GraphCard({
   const cardHeaderBackgroundColor = useLayoutStore(
     (s) => s.cardHeaderBackgroundColor
   );
+  const cardHeaderTitleColor = useLayoutStore((s) => s.cardHeaderTitleColor);
 
   const totalWidth = 2 * cardSpace + cardWidth;
   console.log("totalWidth", totalWidth);
@@ -89,6 +90,7 @@ export default function GraphCard({
               className="header-title-typo"
               variant="body1"
               gutterBottom
+              style={{ color: cardHeaderTitleColor }}
             >
               {node.headerTitle}
             </Typography>

@@ -31,6 +31,9 @@ export default function ReactHierarchy({
   const setCardHeaderBackgroundColor = useLayoutStore(
     (s) => s.setCardHeaderBackgroundColor
   );
+  const setCardHeaderTitleColor = useLayoutStore(
+    (s) => s.setCardHeaderTitleColor
+  );
 
   useEffect(() => {
     console.log("APP-CONFIG", appConfig);
@@ -41,6 +44,7 @@ export default function ReactHierarchy({
     setCardHeaderBackgroundColor(
       appConfig.layout.card.cardHeaderBackgroundColor
     );
+    setCardHeaderTitleColor(appConfig.layout.card.cardHeaderTitleColor);
   }, [appConfig]);
 
   return (
