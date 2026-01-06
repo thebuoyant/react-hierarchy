@@ -1,5 +1,11 @@
 import { create } from "zustand";
 
+export const CARD_DEFAULT_DIMENSION = {
+  cardHeight: 170,
+  cardWidth: 270,
+  cardSpace: 12,
+};
+
 type LayoutState = {
   cardHeight: number;
   cardWidth: number;
@@ -16,9 +22,9 @@ type LayoutState = {
 };
 
 export const useLayoutStore = create<LayoutState>((set) => ({
-  cardHeight: 170,
-  cardWidth: 270,
-  cardSpace: 12,
+  cardHeight: CARD_DEFAULT_DIMENSION.cardHeight,
+  cardWidth: CARD_DEFAULT_DIMENSION.cardWidth,
+  cardSpace: CARD_DEFAULT_DIMENSION.cardSpace,
   branchHeight: 48,
   headerHeight: 48,
   branchBackgroundColor: "#ffffff",
