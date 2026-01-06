@@ -2,8 +2,8 @@
 import * as React from "react";
 import "./GraphCard.css";
 import { HierarchyNode } from "../../types/data.type";
-import { CARD_DEFAULT_DIMENSION } from "../../store/layoutStore";
 import { Avatar, Typography } from "@mui/material";
+import { APP_CONFIG } from "../../app.config";
 
 export type GraphCardProps = {
   node?: HierarchyNode;
@@ -36,9 +36,9 @@ export default function GraphCard({
   },
   onHeaderReferClick = () => {},
   isActive = false,
-  cardHeight = CARD_DEFAULT_DIMENSION.cardHeight,
-  cardWidth = CARD_DEFAULT_DIMENSION.cardWidth,
-  cardSpace = CARD_DEFAULT_DIMENSION.cardSpace,
+  cardHeight = APP_CONFIG.layout.card.cardHeight,
+  cardWidth = APP_CONFIG.layout.card.cardWidth,
+  cardSpace = APP_CONFIG.layout.card.cardSpace,
   showBadge = true,
   showChildren,
   onBadgeClick = () => {},

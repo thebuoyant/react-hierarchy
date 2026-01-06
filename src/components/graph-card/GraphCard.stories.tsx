@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import GraphCard from "./GraphCard";
 import { HierarchyNode } from "../../types/data.type";
 import React from "react";
-import { CARD_DEFAULT_DIMENSION } from "../../store/layoutStore";
+import { APP_CONFIG } from "../../app.config";
 
 const mockNode: HierarchyNode = {
   id: "Node-AA",
@@ -24,9 +24,9 @@ const meta: Meta<typeof GraphCard> = {
   args: {
     node: mockNode,
     isActive: false,
-    cardWidth: CARD_DEFAULT_DIMENSION.cardWidth,
-    cardHeight: CARD_DEFAULT_DIMENSION.cardHeight,
-    cardSpace: CARD_DEFAULT_DIMENSION.cardSpace,
+    cardWidth: APP_CONFIG.layout.card.cardWidth,
+    cardHeight: APP_CONFIG.layout.card.cardHeight,
+    cardSpace: APP_CONFIG.layout.card.cardSpace,
     branchGraphHeight: 120,
     showBadge: true,
     showChildren: true,
