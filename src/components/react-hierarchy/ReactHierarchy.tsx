@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Typography } from "@mui/material";
 import { useDataStore } from "../../store/dataStore";
 import "./ReactHierarchy.css";
@@ -25,8 +25,17 @@ export default function ReactHierarchy({
   const branchBackgroundColor = useLayoutStore((s) => s.branchBackgroundColor);
   const headerBackgroundColor = useLayoutStore((s) => s.headerBackgroundColor);
   const cardHeight = useLayoutStore((s) => s.cardHeight);
+  const setCardHeight = useLayoutStore((s) => s.setCardHeight);
+  const setCardWidth = useLayoutStore((s) => s.setCardWidth);
+  const setCardSpace = useLayoutStore((s) => s.setCardSpace);
 
-  console.log("APP-CONFIG", appConfig);
+  useEffect(() => {
+    console.log("APP-CONFIG", appConfig);
+    console.log("set layout store from app config");
+    setCardHeight(appConfig.layout.card.cardHeight);
+    setCardWidth(appConfig.layout.card.cardWidth);
+    setCardSpace(appConfig.layout.card.cardSpace);
+  }, [appConfig]);
 
   return (
     <div className="react-hierarchy">
