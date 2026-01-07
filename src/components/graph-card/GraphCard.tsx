@@ -27,6 +27,11 @@ export default function GraphCard({
     contentType: "person",
     avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
     showAvatar: true,
+    layout: {
+      headerBackgroundColor: "#123456",
+      headerTitleColor: "#ffffff",
+      headerSubtitleColor: "#cccccc",
+    },
     children: [],
   },
   showBadge = true,
@@ -39,13 +44,6 @@ export default function GraphCard({
   const cardHeight = useLayoutStore((s) => s.cardHeight);
   const cardWidth = useLayoutStore((s) => s.cardWidth);
   const cardSpace = useLayoutStore((s) => s.cardSpace);
-  const cardHeaderBackgroundColor = useLayoutStore(
-    (s) => s.cardHeaderBackgroundColor
-  );
-  const cardHeaderTitleColor = useLayoutStore((s) => s.cardHeaderTitleColor);
-  const cardHeaderSubTitleColor = useLayoutStore(
-    (s) => s.cardHeaderSubTitleColor
-  );
 
   const totalWidth = 2 * cardSpace + cardWidth;
   const showAvatar = node.showAvatar;
@@ -68,7 +66,7 @@ export default function GraphCard({
       >
         <div
           className="content-header"
-          style={{ backgroundColor: cardHeaderBackgroundColor }}
+          style={{ backgroundColor: node.layout.headerBackgroundColor }}
         >
           {showAvatar && (
             <div className="avatar-section">
@@ -84,14 +82,14 @@ export default function GraphCard({
               className="header-title-typo"
               variant="body1"
               gutterBottom
-              style={{ color: cardHeaderTitleColor }}
+              style={{ color: node.layout.headerTitleColor }}
             >
               {node.headerTitle}
             </Typography>
             <Typography
               className="header-sub-title-typo"
               variant="subtitle2"
-              style={{ color: cardHeaderSubTitleColor }}
+              style={{ color: node.layout.headerSubtitleColor }}
             >
               {node.headerSubTitle}
             </Typography>

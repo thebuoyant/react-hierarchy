@@ -27,15 +27,6 @@ export default function ReactHierarchy({
   const setCardHeight = useLayoutStore((s) => s.setCardHeight);
   const setCardWidth = useLayoutStore((s) => s.setCardWidth);
   const setCardSpace = useLayoutStore((s) => s.setCardSpace);
-  const setCardHeaderBackgroundColor = useLayoutStore(
-    (s) => s.setCardHeaderBackgroundColor
-  );
-  const setCardHeaderTitleColor = useLayoutStore(
-    (s) => s.setCardHeaderTitleColor
-  );
-  const setCardHeaderSubTitleColor = useLayoutStore(
-    (s) => s.setCardHeaderSubTitleColor
-  );
 
   useEffect(() => {
     console.log("APP-CONFIG", appConfig);
@@ -43,11 +34,6 @@ export default function ReactHierarchy({
     setCardHeight(appConfig.layout.card.cardHeight);
     setCardWidth(appConfig.layout.card.cardWidth);
     setCardSpace(appConfig.layout.card.cardSpace);
-    setCardHeaderBackgroundColor(
-      appConfig.layout.card.cardHeaderBackgroundColor
-    );
-    setCardHeaderTitleColor(appConfig.layout.card.cardHeaderTitleColor);
-    setCardHeaderSubTitleColor(appConfig.layout.card.cardHeaderSubTitleColor);
   }, [appConfig]);
 
   return (

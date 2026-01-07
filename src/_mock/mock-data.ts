@@ -9,6 +9,11 @@ export const MOCK_DATA = {
   contentType: "person",
   avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
   showAvatar: true,
+  layout: {
+    headerBackgroundColor: "#123456",
+    headerTitleColor: "#ffffff",
+    headerSubtitleColor: "#cccccc",
+  },
   children: [
     {
       id: "NodeAA",
@@ -21,6 +26,11 @@ export const MOCK_DATA = {
       contentType: "person",
       avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
       showAvatar: true,
+      layout: {
+        headerBackgroundColor: "#123456",
+        headerTitleColor: "#ffffff",
+        headerSubtitleColor: "#cccccc",
+      },
       children: [
         {
           id: "NodeAAA",
@@ -33,6 +43,11 @@ export const MOCK_DATA = {
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
           showAvatar: true,
+          layout: {
+            headerBackgroundColor: "#123456",
+            headerTitleColor: "#ffffff",
+            headerSubtitleColor: "#cccccc",
+          },
           children: [],
         },
         {
@@ -46,6 +61,11 @@ export const MOCK_DATA = {
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
           showAvatar: true,
+          layout: {
+            headerBackgroundColor: "#123456",
+            headerTitleColor: "#ffffff",
+            headerSubtitleColor: "#cccccc",
+          },
           children: [
             {
               id: "NodeAABA",
@@ -58,6 +78,11 @@ export const MOCK_DATA = {
               contentType: "person",
               avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
               showAvatar: true,
+              layout: {
+                headerBackgroundColor: "#123456",
+                headerTitleColor: "#ffffff",
+                headerSubtitleColor: "#cccccc",
+              },
               children: [],
             },
             {
@@ -71,6 +96,11 @@ export const MOCK_DATA = {
               contentType: "person",
               avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
               showAvatar: true,
+              layout: {
+                headerBackgroundColor: "#123456",
+                headerTitleColor: "#ffffff",
+                headerSubtitleColor: "#cccccc",
+              },
               children: [],
             },
             {
@@ -84,6 +114,11 @@ export const MOCK_DATA = {
               contentType: "person",
               avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
               showAvatar: true,
+              layout: {
+                headerBackgroundColor: "#123456",
+                headerTitleColor: "#ffffff",
+                headerSubtitleColor: "#cccccc",
+              },
               children: [],
             },
           ],
@@ -99,6 +134,11 @@ export const MOCK_DATA = {
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
           showAvatar: true,
+          layout: {
+            headerBackgroundColor: "#123456",
+            headerTitleColor: "#ffffff",
+            headerSubtitleColor: "#cccccc",
+          },
           children: [],
         },
         {
@@ -112,6 +152,11 @@ export const MOCK_DATA = {
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
           showAvatar: true,
+          layout: {
+            headerBackgroundColor: "#123456",
+            headerTitleColor: "#ffffff",
+            headerSubtitleColor: "#cccccc",
+          },
           children: [
             {
               id: "NodeAADA",
@@ -124,6 +169,11 @@ export const MOCK_DATA = {
               contentType: "person",
               avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
               showAvatar: true,
+              layout: {
+                headerBackgroundColor: "#123456",
+                headerTitleColor: "#ffffff",
+                headerSubtitleColor: "#cccccc",
+              },
               children: [],
             },
             {
@@ -137,6 +187,11 @@ export const MOCK_DATA = {
               contentType: "person",
               avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
               showAvatar: true,
+              layout: {
+                headerBackgroundColor: "#123456",
+                headerTitleColor: "#ffffff",
+                headerSubtitleColor: "#cccccc",
+              },
               children: [],
             },
           ],
@@ -154,6 +209,11 @@ export const MOCK_DATA = {
       contentType: "person",
       avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
       showAvatar: true,
+      layout: {
+        headerBackgroundColor: "#123456",
+        headerTitleColor: "#ffffff",
+        headerSubtitleColor: "#cccccc",
+      },
       children: [
         {
           id: "NodeABA",
@@ -166,6 +226,11 @@ export const MOCK_DATA = {
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
           showAvatar: true,
+          layout: {
+            headerBackgroundColor: "#123456",
+            headerTitleColor: "#ffffff",
+            headerSubtitleColor: "#cccccc",
+          },
           children: [],
         },
         {
@@ -179,6 +244,11 @@ export const MOCK_DATA = {
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
           showAvatar: true,
+          layout: {
+            headerBackgroundColor: "#123456",
+            headerTitleColor: "#ffffff",
+            headerSubtitleColor: "#cccccc",
+          },
           children: [],
         },
       ],
@@ -194,6 +264,11 @@ export const MOCK_DATA = {
       contentType: "person",
       avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
       showAvatar: true,
+      layout: {
+        headerBackgroundColor: "#123456",
+        headerTitleColor: "#ffffff",
+        headerSubtitleColor: "#cccccc",
+      },
       children: [
         {
           id: "NodeACA",
@@ -206,6 +281,11 @@ export const MOCK_DATA = {
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
           showAvatar: true,
+          layout: {
+            headerBackgroundColor: "#123456",
+            headerTitleColor: "#ffffff",
+            headerSubtitleColor: "#cccccc",
+          },
           children: [],
         },
       ],
@@ -221,6 +301,11 @@ export const MOCK_DATA = {
       contentType: "person",
       avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
       showAvatar: true,
+      layout: {
+        headerBackgroundColor: "#123456",
+        headerTitleColor: "#ffffff",
+        headerSubtitleColor: "#cccccc",
+      },
       children: [
         {
           id: "NodeADA",
@@ -233,6 +318,11 @@ export const MOCK_DATA = {
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
           showAvatar: true,
+          layout: {
+            headerBackgroundColor: "#123456",
+            headerTitleColor: "#ffffff",
+            headerSubtitleColor: "#cccccc",
+          },
           children: [],
         },
         {
@@ -246,6 +336,11 @@ export const MOCK_DATA = {
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
           showAvatar: true,
+          layout: {
+            headerBackgroundColor: "#123456",
+            headerTitleColor: "#ffffff",
+            headerSubtitleColor: "#cccccc",
+          },
           children: [],
         },
         {
@@ -259,6 +354,11 @@ export const MOCK_DATA = {
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
           showAvatar: true,
+          layout: {
+            headerBackgroundColor: "#123456",
+            headerTitleColor: "#ffffff",
+            headerSubtitleColor: "#cccccc",
+          },
           children: [],
         },
         {
@@ -272,6 +372,11 @@ export const MOCK_DATA = {
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
           showAvatar: true,
+          layout: {
+            headerBackgroundColor: "#123456",
+            headerTitleColor: "#ffffff",
+            headerSubtitleColor: "#cccccc",
+          },
           children: [],
         },
         {
@@ -285,6 +390,11 @@ export const MOCK_DATA = {
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
           showAvatar: true,
+          layout: {
+            headerBackgroundColor: "#123456",
+            headerTitleColor: "#ffffff",
+            headerSubtitleColor: "#cccccc",
+          },
           children: [],
         },
       ],
@@ -300,6 +410,11 @@ export const MOCK_DATA = {
       contentType: "person",
       avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
       showAvatar: true,
+      layout: {
+        headerBackgroundColor: "#123456",
+        headerTitleColor: "#ffffff",
+        headerSubtitleColor: "#cccccc",
+      },
       children: [],
     },
   ],
@@ -317,6 +432,11 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
   contentType: "person",
   avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
   showAvatar: true,
+  layout: {
+    headerBackgroundColor: "#123456",
+    headerTitleColor: "#ffffff",
+    headerSubtitleColor: "#cccccc",
+  },
   children: [
     {
       id: "NodeAA",
@@ -330,6 +450,11 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
       contentType: "person",
       avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
       showAvatar: true,
+      layout: {
+        headerBackgroundColor: "#123456",
+        headerTitleColor: "#ffffff",
+        headerSubtitleColor: "#cccccc",
+      },
       children: [
         {
           id: "NodeAAA",
@@ -343,6 +468,11 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
           showAvatar: true,
+          layout: {
+            headerBackgroundColor: "#123456",
+            headerTitleColor: "#ffffff",
+            headerSubtitleColor: "#cccccc",
+          },
           children: [],
         },
         {
@@ -357,6 +487,11 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
           showAvatar: true,
+          layout: {
+            headerBackgroundColor: "#123456",
+            headerTitleColor: "#ffffff",
+            headerSubtitleColor: "#cccccc",
+          },
           children: [
             {
               id: "NodeAABA",
@@ -370,6 +505,11 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
               contentType: "person",
               avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
               showAvatar: true,
+              layout: {
+                headerBackgroundColor: "#123456",
+                headerTitleColor: "#ffffff",
+                headerSubtitleColor: "#cccccc",
+              },
               children: [],
             },
             {
@@ -384,6 +524,11 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
               contentType: "person",
               avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
               showAvatar: true,
+              layout: {
+                headerBackgroundColor: "#123456",
+                headerTitleColor: "#ffffff",
+                headerSubtitleColor: "#cccccc",
+              },
               children: [],
             },
             {
@@ -398,6 +543,11 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
               contentType: "person",
               avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
               showAvatar: true,
+              layout: {
+                headerBackgroundColor: "#123456",
+                headerTitleColor: "#ffffff",
+                headerSubtitleColor: "#cccccc",
+              },
               children: [],
             },
           ],
@@ -414,6 +564,11 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
           showAvatar: true,
+          layout: {
+            headerBackgroundColor: "#123456",
+            headerTitleColor: "#ffffff",
+            headerSubtitleColor: "#cccccc",
+          },
           children: [],
         },
         {
@@ -428,6 +583,11 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
           showAvatar: true,
+          layout: {
+            headerBackgroundColor: "#123456",
+            headerTitleColor: "#ffffff",
+            headerSubtitleColor: "#cccccc",
+          },
           children: [
             {
               id: "NodeAADA",
@@ -441,6 +601,11 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
               contentType: "person",
               avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
               showAvatar: true,
+              layout: {
+                headerBackgroundColor: "#123456",
+                headerTitleColor: "#ffffff",
+                headerSubtitleColor: "#cccccc",
+              },
               children: [],
             },
             {
@@ -455,6 +620,11 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
               contentType: "person",
               avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
               showAvatar: true,
+              layout: {
+                headerBackgroundColor: "#123456",
+                headerTitleColor: "#ffffff",
+                headerSubtitleColor: "#cccccc",
+              },
               children: [],
             },
           ],
@@ -473,6 +643,11 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
       contentType: "person",
       avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
       showAvatar: true,
+      layout: {
+        headerBackgroundColor: "#123456",
+        headerTitleColor: "#ffffff",
+        headerSubtitleColor: "#cccccc",
+      },
       children: [
         {
           id: "NodeABA",
@@ -486,6 +661,11 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
           showAvatar: true,
+          layout: {
+            headerBackgroundColor: "#123456",
+            headerTitleColor: "#ffffff",
+            headerSubtitleColor: "#cccccc",
+          },
           children: [],
         },
         {
@@ -500,6 +680,11 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
           showAvatar: true,
+          layout: {
+            headerBackgroundColor: "#123456",
+            headerTitleColor: "#ffffff",
+            headerSubtitleColor: "#cccccc",
+          },
           children: [],
         },
       ],
@@ -516,6 +701,11 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
       contentType: "person",
       avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
       showAvatar: true,
+      layout: {
+        headerBackgroundColor: "#123456",
+        headerTitleColor: "#ffffff",
+        headerSubtitleColor: "#cccccc",
+      },
       children: [
         {
           id: "NodeACA",
@@ -529,6 +719,11 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
           showAvatar: true,
+          layout: {
+            headerBackgroundColor: "#123456",
+            headerTitleColor: "#ffffff",
+            headerSubtitleColor: "#cccccc",
+          },
           children: [],
         },
       ],
@@ -545,6 +740,11 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
       contentType: "person",
       avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
       showAvatar: true,
+      layout: {
+        headerBackgroundColor: "#123456",
+        headerTitleColor: "#ffffff",
+        headerSubtitleColor: "#cccccc",
+      },
       children: [
         {
           id: "NodeADA",
@@ -558,6 +758,11 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
           showAvatar: true,
+          layout: {
+            headerBackgroundColor: "#123456",
+            headerTitleColor: "#ffffff",
+            headerSubtitleColor: "#cccccc",
+          },
           children: [],
         },
         {
@@ -572,6 +777,11 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
           showAvatar: true,
+          layout: {
+            headerBackgroundColor: "#123456",
+            headerTitleColor: "#ffffff",
+            headerSubtitleColor: "#cccccc",
+          },
           children: [],
         },
         {
@@ -586,6 +796,11 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
           showAvatar: true,
+          layout: {
+            headerBackgroundColor: "#123456",
+            headerTitleColor: "#ffffff",
+            headerSubtitleColor: "#cccccc",
+          },
           children: [],
         },
         {
@@ -600,6 +815,11 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
           showAvatar: true,
+          layout: {
+            headerBackgroundColor: "#123456",
+            headerTitleColor: "#ffffff",
+            headerSubtitleColor: "#cccccc",
+          },
           children: [],
         },
         {
@@ -614,6 +834,11 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
           contentType: "person",
           avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
           showAvatar: true,
+          layout: {
+            headerBackgroundColor: "#123456",
+            headerTitleColor: "#ffffff",
+            headerSubtitleColor: "#cccccc",
+          },
           children: [],
         },
       ],
@@ -629,6 +854,11 @@ export const DEMO_DATA_DEFAULT_CONST_B = {
       contentType: "person",
       avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
       showAvatar: true,
+      layout: {
+        headerBackgroundColor: "#123456",
+        headerTitleColor: "#ffffff",
+        headerSubtitleColor: "#cccccc",
+      },
       children: [],
     },
   ],

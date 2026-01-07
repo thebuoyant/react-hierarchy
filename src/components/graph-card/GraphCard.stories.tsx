@@ -15,6 +15,11 @@ const mockNode: HierarchyNode = {
   contentType: "person",
   avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
   showAvatar: true,
+  layout: {
+    headerBackgroundColor: "#123456",
+    headerTitleColor: "#ffffff",
+    headerSubtitleColor: "#cccccc",
+  },
   children: [],
 };
 

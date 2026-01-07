@@ -4,9 +4,6 @@ export const APP_CONFIG = {
       cardHeight: 170,
       cardWidth: 300,
       cardSpace: 12,
-      cardHeaderBackgroundColor: "#123456",
-      cardHeaderTitleColor: "#ffffff",
-      cardHeaderSubTitleColor: "#cccccc",
     },
   },
 };

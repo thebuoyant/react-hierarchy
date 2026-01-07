@@ -8,5 +8,10 @@ export type HierarchyNode = {
   contentType: "person" | "team" | "org" | string;
   avatarUrl: string;
   showAvatar: boolean;
+  layout: {
+    headerBackgroundColor: string;
+    headerTitleColor: string;
+    headerSubtitleColor: string;
+  };
   children: HierarchyNode[];
 };

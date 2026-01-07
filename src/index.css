@@ -1,6 +1,8 @@
 :root {
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+    sans-serif;
   line-height: 1.4;
+  --cardBackgroundColor: #ffffff;
 }
 
 body {

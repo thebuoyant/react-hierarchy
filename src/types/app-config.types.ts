@@ -4,9 +4,6 @@ export type AppConfigType = {
       cardHeight: number;
       cardWidth: number;
       cardSpace: number;
-      cardHeaderBackgroundColor: string;
-      cardHeaderTitleColor: string;
-      cardHeaderSubTitleColor: string;
     };
   };
 };
