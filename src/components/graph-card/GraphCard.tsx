@@ -5,15 +5,16 @@ import { HierarchyNode } from "../../types/data.type";
 import { Avatar, Typography } from "@mui/material";
 import { useLayoutStore } from "../../store/layoutStore";
 import GraphBadge from "../graph-badge/GraphBadge";
+import { APP_CONFIG } from "../../app.config";
 
 export type GraphCardProps = {
-  node?: HierarchyNode;
-  showBadge?: boolean;
+  node: HierarchyNode;
+  showBadge: boolean;
   showChildren: boolean;
   onBadgeClick?: ({}: any) => void;
   positionIndex: number;
   content: React.ReactNode;
-  showParent?: boolean;
+  showParent: boolean;
 };
 
 export default function GraphCard({
@@ -45,6 +46,7 @@ export default function GraphCard({
   const cardHeight = useLayoutStore((s) => s.cardHeight);
   const cardWidth = useLayoutStore((s) => s.cardWidth);
   const cardSpace = useLayoutStore((s) => s.cardSpace);
+  const branchHeight = useLayoutStore((s) => s.branchHeight);
 
   const totalWidth = 2 * cardSpace + cardWidth;
   const showAvatar = node.showAvatar;
@@ -102,16 +104,26 @@ export default function GraphCard({
         className="space-right"
         style={{ width: cardSpace, overflow: "hidden" }}
       ></div>
-      <div className="badge-section">
-        {showBadge && (
+      {showBadge && (
+        <div className="badge-section">
           <GraphBadge
             nodeId={node.id}
             positionIndex={positionIndex}
             counter={node.children.length}
             isExpanded={showChildren}
           />
-        )}
-      </div>
+        </div>
+      )}
+      {showChildren && (
+        <div
+          className="children-line"
+          style={{
+            height: `${branchHeight / 2}px`,
+            bottom: `-${branchHeight / 2}px`,
+            backgroundColor: APP_CONFIG.layout.branch.lineColor,
+          }}
+        ></div>
+      )}
     </div>
   );
 }

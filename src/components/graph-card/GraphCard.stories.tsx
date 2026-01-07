@@ -28,7 +28,7 @@ const meta: Meta<typeof GraphCard> = {
   component: GraphCard,
   args: {
     node: mockNode,
-    showBadge: false,
+    showBadge: true,
     showChildren: true,
     showParent: true,
     positionIndex: 0,

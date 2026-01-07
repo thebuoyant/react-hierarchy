@@ -3,6 +3,7 @@
     sans-serif;
   line-height: 1.4;
   --cardBackgroundColor: #ffffff;
+  --branchLineColor: #666666;
 }
 
 body {

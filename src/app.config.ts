@@ -5,5 +5,8 @@ export const APP_CONFIG = {
       cardWidth: 300,
       cardSpace: 12,
     },
+    branch: {
+      lineColor: "#666666",
+    },
   },
 };

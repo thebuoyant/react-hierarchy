@@ -5,5 +5,8 @@ export type AppConfigType = {
       cardWidth: number;
       cardSpace: number;
     };
+    branch: {
+      lineColor: string;
+    };
   };
 };
