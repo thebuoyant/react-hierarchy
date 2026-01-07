@@ -6,6 +6,7 @@ import { useLayoutStore } from "../../store/layoutStore";
 import { AppConfigType } from "../../types/app-config.types";
 import { APP_CONFIG } from "../../app.config";
 import { useCardLayerStore } from "../../store/cardLayerStore";
+import { findFirstNodeWithChildrenById } from "../../util/node.util";
 
 export type ReactHierarchyProps = {
   title?: string;
@@ -34,7 +35,9 @@ export default function ReactHierarchy({
 
   // card layer store
   const cardLayer_A_Data = useCardLayerStore((s) => s.cardLayer_A_Data);
+  const cardLayer_B_Data = useCardLayerStore((s) => s.cardLayer_B_Data);
   const setCardLayer_A_Data = useCardLayerStore((s) => s.setCardLayer_A_Data);
+  const setCardLayer_B_Data = useCardLayerStore((s) => s.setCardLayer_B_Data);
 
   useEffect(() => {
     setCardHeight(appConfig.layout.card.cardHeight);
@@ -45,9 +48,14 @@ export default function ReactHierarchy({
   useEffect(() => {
     // console.log("data", data);
     setCardLayer_A_Data([data]);
-  }, [data, setCardLayer_A_Data]);
+    console.log("layer-b-???:");
+    const layer_B_children = findFirstNodeWithChildrenById(data, data.id) || [];
+    console.log("layer_B_children", layer_B_children);
+    setCardLayer_B_Data(layer_B_children);
+  }, [data, setCardLayer_A_Data, setCardLayer_B_Data]);
 
   console.log("cardLayer_A_Data", cardLayer_A_Data);
+  console.log("cardLayer_B_Data", cardLayer_B_Data);
 
   return (
     <div className="react-hierarchy">
