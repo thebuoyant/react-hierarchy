@@ -59,6 +59,16 @@ export default function GraphCard({
         height: cardHeight,
       }}
     >
+      {showParent && (
+        <div
+          className="parent-line"
+          style={{
+            height: `${branchHeight / 2}px`,
+            top: `-${branchHeight / 2}px`,
+            backgroundColor: APP_CONFIG.layout.branch.lineColor,
+          }}
+        ></div>
+      )}
       <div
         className="space-left"
         style={{ width: cardSpace, overflow: "hidden" }}

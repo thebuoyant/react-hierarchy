@@ -57,4 +57,9 @@
     width: 1px;
     position: absolute;
   }
+
+  .parent-line {
+    width: 1px;
+    position: absolute;
+  }
 }
