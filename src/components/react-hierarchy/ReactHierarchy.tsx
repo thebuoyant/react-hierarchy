@@ -5,6 +5,7 @@ import "./ReactHierarchy.css";
 import { useLayoutStore } from "../../store/layoutStore";
 import { AppConfigType } from "../../types/app-config.types";
 import { APP_CONFIG } from "../../app.config";
+import { useCardLayerStore } from "../../store/cardLayerStore";
 
 export type ReactHierarchyProps = {
   title?: string;
@@ -19,7 +20,10 @@ export default function ReactHierarchy({
   titleType = "h3",
   appConfig = APP_CONFIG,
 }: ReactHierarchyProps) {
+  // data store
   const data = useDataStore((s) => s.data);
+
+  // layout store
   const headerHeight = useLayoutStore((s) => s.headerHeight);
   const branchHeight = useLayoutStore((s) => s.branchHeight);
   const branchBackgroundColor = useLayoutStore((s) => s.branchBackgroundColor);
@@ -28,11 +32,22 @@ export default function ReactHierarchy({
   const setCardWidth = useLayoutStore((s) => s.setCardWidth);
   const setCardSpace = useLayoutStore((s) => s.setCardSpace);
 
+  // card layer store
+  const cardLayer_A_Data = useCardLayerStore((s) => s.cardLayer_A_Data);
+  const setCardLayer_A_Data = useCardLayerStore((s) => s.setCardLayer_A_Data);
+
   useEffect(() => {
     setCardHeight(appConfig.layout.card.cardHeight);
     setCardWidth(appConfig.layout.card.cardWidth);
     setCardSpace(appConfig.layout.card.cardSpace);
   }, [appConfig, setCardHeight, setCardWidth, setCardSpace]);
+
+  useEffect(() => {
+    // console.log("data", data);
+    setCardLayer_A_Data([data]);
+  }, [data, setCardLayer_A_Data]);
+
+  console.log("cardLayer_A_Data", cardLayer_A_Data);
 
   return (
     <div className="react-hierarchy">
