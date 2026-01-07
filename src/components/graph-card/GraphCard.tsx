@@ -1,17 +1,17 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import * as React from "react";
 import "./GraphCard.css";
-import { HierarchyNode } from "../../types/data.type";
+import type { HierarchyNode } from "../../types/data.type";
 import { Avatar, Typography } from "@mui/material";
 import { useLayoutStore } from "../../store/layoutStore";
 import GraphBadge from "../graph-badge/GraphBadge";
 import { APP_CONFIG } from "../../app.config";
+import { BadgeClickPayload } from "../../types/graph.types";
 
 export type GraphCardProps = {
   node: HierarchyNode;
   showBadge: boolean;
   showChildren: boolean;
-  onBadgeClick?: ({}: any) => void;
+  onBadgeClick?: (payload: BadgeClickPayload) => void;
   positionIndex: number;
   content: React.ReactNode;
   showParent: boolean;
@@ -38,7 +38,7 @@ export default function GraphCard({
   },
   showBadge = true,
   showChildren,
-  onBadgeClick = () => {},
+  onBadgeClick,
   positionIndex,
   content = <div>Content</div>,
   showParent = true,
@@ -50,6 +50,10 @@ export default function GraphCard({
 
   const totalWidth = 2 * cardSpace + cardWidth;
   const showAvatar = node.showAvatar;
+
+  const handleBadgeClick = (payload: BadgeClickPayload) => {
+    onBadgeClick?.(payload);
+  };
 
   return (
     <div
@@ -67,12 +71,14 @@ export default function GraphCard({
             top: `-${branchHeight / 2}px`,
             backgroundColor: APP_CONFIG.layout.branch.lineColor,
           }}
-        ></div>
+        />
       )}
+
       <div
         className="space-left"
         style={{ width: cardSpace, overflow: "hidden" }}
-      ></div>
+      />
+
       <div
         className="card-content-wrapper"
         style={{ width: cardWidth, overflow: "hidden" }}
@@ -90,6 +96,7 @@ export default function GraphCard({
               />
             </div>
           )}
+
           <div className="title-section">
             <Typography
               className="header-title-typo"
@@ -99,6 +106,7 @@ export default function GraphCard({
             >
               {node.headerTitle}
             </Typography>
+
             <Typography
               className="header-sub-title-typo"
               variant="subtitle2"
@@ -108,12 +116,15 @@ export default function GraphCard({
             </Typography>
           </div>
         </div>
+
         <div className="content-main">{content}</div>
       </div>
+
       <div
         className="space-right"
         style={{ width: cardSpace, overflow: "hidden" }}
-      ></div>
+      />
+
       {showBadge && (
         <div className="badge-section">
           <GraphBadge
@@ -121,9 +132,11 @@ export default function GraphCard({
             positionIndex={positionIndex}
             counter={node.children.length}
             isExpanded={showChildren}
+            onClick={handleBadgeClick}
           />
         </div>
       )}
+
       {showChildren && (
         <div
           className="children-line"
@@ -132,7 +145,7 @@ export default function GraphCard({
             bottom: `-${branchHeight / 2}px`,
             backgroundColor: APP_CONFIG.layout.branch.lineColor,
           }}
-        ></div>
+        />
       )}
     </div>
   );

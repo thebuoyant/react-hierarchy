@@ -29,12 +29,10 @@ export default function ReactHierarchy({
   const setCardSpace = useLayoutStore((s) => s.setCardSpace);
 
   useEffect(() => {
-    console.log("APP-CONFIG", appConfig);
-    console.log("set layout store from app config");
     setCardHeight(appConfig.layout.card.cardHeight);
     setCardWidth(appConfig.layout.card.cardWidth);
     setCardSpace(appConfig.layout.card.cardSpace);
-  }, [appConfig]);
+  }, [appConfig, setCardHeight, setCardWidth, setCardSpace]);
 
   return (
     <div className="react-hierarchy">

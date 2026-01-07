@@ -1,13 +1,12 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable no-empty-pattern */
 import { Chip } from "@mui/material";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { BadgeClickPayload } from "../../types/graph.types";
 
 export type GraphBadgeProps = {
   counter?: number;
   isExpanded?: boolean;
-  onClick?: ({}: any) => void;
+  onClick?: (payload: BadgeClickPayload) => void;
   nodeId: string;
   positionIndex: number;
 };
@@ -15,19 +14,17 @@ export type GraphBadgeProps = {
 export default function GraphBadge({
   counter = 0,
   isExpanded = false,
-  onClick = () => {},
+  onClick,
   nodeId,
   positionIndex,
 }: GraphBadgeProps) {
   const handleExpansionClick = () => {
-    if (onClick) {
-      onClick({
-        expanded: !isExpanded,
-        counter,
-        nodeId,
-        positionIndex,
-      });
-    }
+    onClick?.({
+      expanded: !isExpanded,
+      counter,
+      nodeId,
+      positionIndex,
+    });
   };
 
   return (
