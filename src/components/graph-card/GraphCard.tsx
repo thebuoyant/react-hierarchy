@@ -4,6 +4,7 @@ import "./GraphCard.css";
 import { HierarchyNode } from "../../types/data.type";
 import { Avatar, Typography } from "@mui/material";
 import { useLayoutStore } from "../../store/layoutStore";
+import GraphBadge from "../graph-badge/GraphBadge";
 
 export type GraphCardProps = {
   node?: HierarchyNode;
@@ -101,6 +102,16 @@ export default function GraphCard({
         className="space-right"
         style={{ width: cardSpace, overflow: "hidden" }}
       ></div>
+      <div className="badge-section">
+        {showBadge && (
+          <GraphBadge
+            nodeId={node.id}
+            positionIndex={positionIndex}
+            counter={node.children.length}
+            isExpanded={showChildren}
+          />
+        )}
+      </div>
     </div>
   );
 }
