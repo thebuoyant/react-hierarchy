@@ -1,0 +1,41 @@
+import { useCardLayerStore } from "../../store/cardLayerStore";
+import { HierarchyNode } from "../../types/data.type";
+import GraphCard from "../graph-card/GraphCard";
+import "./LayerBCards.css";
+
+export default function LayerBCards() {
+  const cardLayer_B_Data = useCardLayerStore((s) => s.cardLayer_B_Data);
+  const cardLayer_B_JustifyContent = useCardLayerStore(
+    (s) => s.cardLayer_B_JustifyContent
+  );
+  const cardLayer_B_FirstItemIndexNumber = useCardLayerStore(
+    (s) => s.cardLayer_B_FirstItemIndexNumber
+  );
+
+  return (
+    <div
+      className="layer-a-cards"
+      style={{ justifyContent: cardLayer_B_JustifyContent }}
+    >
+      {cardLayer_B_Data.map((node: HierarchyNode, index: number) => {
+        console.log("??? > node:", node);
+        const content = <div>some content</div>;
+        const handleOnBadgeClick = () => {
+          console.log("handleOnBadgeClick", node);
+        };
+        return (
+          <GraphCard
+            key={index}
+            node={node}
+            showBadge={node.children.length > 0}
+            showChildren={index === cardLayer_B_FirstItemIndexNumber}
+            showParent
+            positionIndex={cardLayer_B_FirstItemIndexNumber}
+            content={content}
+            onBadgeClick={handleOnBadgeClick}
+          />
+        );
+      })}
+    </div>
+  );
+}
