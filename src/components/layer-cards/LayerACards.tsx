@@ -1,3 +1,4 @@
+import { APP_CONFIG } from "../../app.config";
 import { useCardLayerStore } from "../../store/cardLayerStore";
 import { HierarchyNode } from "../../types/data.type";
 import GraphCard from "../graph-card/GraphCard";
@@ -17,25 +18,30 @@ export default function LayerACards() {
       className="layer-a-cards"
       style={{ justifyContent: cardLayer_A_JustifyContent }}
     >
-      {cardLayer_A_Data.map((node: HierarchyNode, index: number) => {
-        console.log("??? > node:", node);
-        const content = <div>some content</div>;
-        const handleOnBadgeClick = () => {
-          console.log("handleOnBadgeClick", node);
-        };
-        return (
-          <GraphCard
-            key={index}
-            node={node}
-            showBadge={node.children.length > 0}
-            showChildren={index === cardLayer_A_FirstItemIndexNumber}
-            showParent={false}
-            positionIndex={cardLayer_A_FirstItemIndexNumber}
-            content={content}
-            onBadgeClick={handleOnBadgeClick}
-          />
-        );
-      })}
+      {cardLayer_A_Data
+        .map((node: HierarchyNode, index: number) => {
+          const content = <div>some content</div>;
+          const handleOnBadgeClick = () => {
+            console.log("handleOnBadgeClick", node);
+          };
+          return (
+            <GraphCard
+              key={index}
+              node={node}
+              showBadge={node.children.length > 0}
+              showChildren={index === cardLayer_A_FirstItemIndexNumber}
+              showParent={false}
+              positionIndex={cardLayer_A_FirstItemIndexNumber}
+              content={content}
+              onBadgeClick={handleOnBadgeClick}
+            />
+          );
+        })
+        .slice(
+          cardLayer_A_FirstItemIndexNumber,
+          APP_CONFIG.default.maxNumberOfCardsPerLayer +
+            cardLayer_A_FirstItemIndexNumber
+        )}
     </div>
   );
 }
