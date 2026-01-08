@@ -10,6 +10,7 @@ import {
   findFirstNodeWithChildrenById,
   getChildrenOfFirstNodeWithChildren,
 } from "../../util/node.util";
+import LayerACards from "../layer-cards/LayerACards";
 
 export type ReactHierarchyProps = {
   title?: string;
@@ -86,7 +87,7 @@ export default function ReactHierarchy({
         <div className="layer-a">
           <div className="layer-content">
             <div className="layer-content-main" style={{ height: cardHeight }}>
-              cards
+              <LayerACards />
             </div>
             <div
               className="layer-content-branch"
