@@ -33,6 +33,8 @@ export default function ReactHierarchy({
   const branchHeight = useLayoutStore((s) => s.branchHeight);
   const branchBackgroundColor = useLayoutStore((s) => s.branchBackgroundColor);
   const cardHeight = useLayoutStore((s) => s.cardHeight);
+  const cardWidth = useLayoutStore((s) => s.cardWidth);
+  const cardSpace = useLayoutStore((s) => s.cardSpace);
   const setCardHeight = useLayoutStore((s) => s.setCardHeight);
   const setCardWidth = useLayoutStore((s) => s.setCardWidth);
   const setCardSpace = useLayoutStore((s) => s.setCardSpace);
@@ -67,8 +69,11 @@ export default function ReactHierarchy({
   console.log("cardLayer_B_Data", cardLayer_B_Data);
   console.log("cardLayer_C_Data", cardLayer_C_Data);
 
+  const totalWidth =
+    (2 * cardSpace + cardWidth) * APP_CONFIG.default.maxNumberOfCardsPerLayer;
+
   return (
-    <div className="react-hierarchy">
+    <div className="react-hierarchy" style={{ width: totalWidth }}>
       {showTitle && (
         <Typography className="hierarchy-title" variant={titleType}>
           {title}
