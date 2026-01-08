@@ -1,5 +1,8 @@
 import { HierarchyNode } from "../types/data.type";
 
+/**
+ * Result interface for findNodeAndMetaData
+ */
 interface TResult {
   node: HierarchyNode;
   childCount: number;
@@ -7,8 +10,28 @@ interface TResult {
 }
 
 /**
- * Finds the first node with the given id whose children.length > 0
- * and returns its children array.
+ * Recursively searches for a node by id.
+ * Returns the node if found, otherwise null.
+ */
+export function findNodeById(
+  node: HierarchyNode,
+  targetId: string
+): HierarchyNode | null {
+  if (node.id === targetId) {
+    return node;
+  }
+
+  for (const child of node.children) {
+    const result = findNodeById(child, targetId);
+    if (result) return result;
+  }
+
+  return null;
+}
+
+/**
+ * Finds the first node with the given id
+ * and returns its children ONLY if children exist.
  */
 export function findFirstNodeWithChildrenById(
   node: HierarchyNode,
@@ -27,24 +50,25 @@ export function findFirstNodeWithChildrenById(
 }
 
 /**
- * Layer helper:
- * Returns the children of the FIRST entry in the list (nodes[0]),
- * if that entry has children; otherwise [].
+ * Returns the children of the first element in the array
+ * ONLY if it exists and has children.
  *
- * Strict-mode safe (no TS18048).
+ * Note: With `noUncheckedIndexedAccess`, `nodes[0]` is `HierarchyNode | undefined`,
+ * so we must guard it explicitly.
  */
 export function getChildrenOfFirstEntry(
   nodes: HierarchyNode[]
 ): HierarchyNode[] {
-  const firstNode = nodes[0];
+  const firstNode = nodes[0]; // can be undefined in TS config with noUncheckedIndexedAccess
   if (!firstNode) return [];
-  return firstNode.children.length > 0 ? firstNode.children : [];
+
+  if (firstNode.children.length === 0) return [];
+  return firstNode.children;
 }
 
 /**
- * Layer helper (usually better):
- * Returns the children of the FIRST node in the list whose children.length > 0.
- * If none, returns [].
+ * Returns the children of the FIRST node in the list
+ * that actually has children.
  */
 export function getChildrenOfFirstNodeWithChildren(
   nodes: HierarchyNode[]
@@ -54,31 +78,32 @@ export function getChildrenOfFirstNodeWithChildren(
       return node.children;
     }
   }
+
   return [];
 }
 
 /**
- * Finds a node by id anywhere in the tree.
+ * Internal helper:
+ * Searches a subtree for the first node that has children.
  */
-export function findNodeById(
-  node: HierarchyNode,
-  targetId: string
+function findFirstNodeWithChildrenInSubtree(
+  node: HierarchyNode
 ): HierarchyNode | null {
-  if (node.id === targetId) return node;
+  if (node.children.length > 0) {
+    return node;
+  }
 
   for (const child of node.children) {
-    const result = findNodeById(child, targetId);
-    if (result) return result;
+    const found = findFirstNodeWithChildrenInSubtree(child);
+    if (found) return found;
   }
 
   return null;
 }
 
 /**
- * Finds (below targetId) the first descendant NODE (child/child-child/...)
- * where children.length > 0 and returns that NODE.
- *
- * Note: "descendant" means the target node itself is NOT considered.
+ * Finds the first descendant (below targetId)
+ * that has children.
  */
 export function findFirstDescendantNodeWithChildrenById(
   root: HierarchyNode,
@@ -87,7 +112,6 @@ export function findFirstDescendantNodeWithChildrenById(
   const targetNode = findNodeById(root, targetId);
   if (!targetNode) return null;
 
-  // Search ONLY below the target node (descendants)
   for (const child of targetNode.children) {
     const found = findFirstNodeWithChildrenInSubtree(child);
     if (found) return found;
@@ -97,47 +121,36 @@ export function findFirstDescendantNodeWithChildrenById(
 }
 
 /**
- * DFS: Returns the first node in this subtree with children.length > 0.
+ * Finds a node in a list/tree and returns metadata.
  */
-function findFirstNodeWithChildrenInSubtree(
-  node: HierarchyNode
-): HierarchyNode | null {
-  if (node.children.length > 0) return node;
-
-  for (const child of node.children) {
-    const found = findFirstNodeWithChildrenInSubtree(child);
-    if (found) return found;
-  }
-
-  return null;
-}
-
 export function findNodeAndMetaData(
   nodes: HierarchyNode[],
   nodeId: string,
   parentChildren: HierarchyNode[] | null = null
 ): TResult | null {
   for (let i = 0; i < nodes.length; i++) {
+    // With noUncheckedIndexedAccess, nodes[i] can be undefined -> guard it
     const node = nodes[i];
+    if (!node) continue;
 
     if (node.id === nodeId) {
       return {
         node,
-        childCount: node.children ? node.children.length : 0,
+        childCount: node.children.length,
         indexInParent: parentChildren ? i : null,
       };
     }
 
-    if (node.children) {
-      const found = findNodeAndMetaData(node.children, nodeId, node.children);
-      if (found) {
-        return found;
-      }
-    }
+    const found = findNodeAndMetaData(node.children, nodeId, node.children);
+    if (found) return found;
   }
+
   return null;
 }
 
+/**
+ * Finds a node (including its children) by id.
+ */
 export function findNodeAndChildren(
   nodes: HierarchyNode[],
   nodeId: string
@@ -146,84 +159,90 @@ export function findNodeAndChildren(
     if (node.id === nodeId) {
       return node;
     }
-    if (node.children) {
-      const found = findNodeAndChildren(node.children, nodeId);
-      if (found) {
-        return found;
-      }
-    }
+
+    const found = findNodeAndChildren(node.children, nodeId);
+    if (found) return found;
   }
+
   return null;
 }
 
+/**
+ * Finds the parent of a node by id.
+ */
 export function findParentNode(
   nodes: HierarchyNode[],
   nodeId: string
 ): HierarchyNode | null {
   function helper(
-    nodes: HierarchyNode[],
-    nodeId: string,
+    currentNodes: HierarchyNode[],
     parent: HierarchyNode | null
   ): HierarchyNode | null {
-    for (const node of nodes) {
+    for (const node of currentNodes) {
       if (node.id === nodeId) {
         return parent;
       }
-      if (node.children) {
-        const foundParent = helper(node.children, nodeId, node);
-        if (foundParent) {
-          return foundParent;
-        }
-      }
+
+      const found = helper(node.children, node);
+      if (found) return found;
     }
+
     return null;
   }
 
-  return helper(nodes, nodeId, null);
+  return helper(nodes, null);
 }
 
-export const findParentNodeItem = (
-  node: HierarchyNode,
-  targetId: string,
-  parent: HierarchyNode | null = null
-): HierarchyNode | null => {
-  for (const child of node.children) {
-    if (child.id === targetId) {
-      // Return parent directly if found
-      return parent;
-    }
-    const found = findParentNodeItem(child, targetId, node);
-    if (found) return found;
-  }
-
-  return null;
-};
-
+/**
+ * Calculates the depth of the subtree starting at nodeId.
+ *
+ * Depth rules:
+ * - no children => 0
+ * - otherwise => 1 + deepest child
+ */
 export function getGraphDepth(nodes: HierarchyNode[], nodeId: string): number {
-  function findDepth(node: HierarchyNode | null): number {
-    // No children = depth 0
-    if (!node || !node.children || node.children.length === 0) return 0;
+  function calculateDepth(node: HierarchyNode | null): number {
+    if (!node) return 0;
+    if (node.children.length === 0) return 0;
 
-    // Recursively calculate the maximum depth of the children and add +1
-    return 1 + Math.max(...node.children.map(findDepth));
+    return 1 + Math.max(...node.children.map((child) => calculateDepth(child)));
   }
 
-  // First find the node
   const targetNode = findNodeAndChildren(nodes, nodeId);
-  return findDepth(targetNode);
+  return calculateDepth(targetNode);
 }
 
-export function getFirstFilledNodeChildrenItem(nodes: HierarchyNode[]) {
-  return nodes.find((node: HierarchyNode) => node.children.length > 0);
+/**
+ * Returns the first node that has children.
+ * Safe for strict mode + noUncheckedIndexedAccess.
+ */
+export function getFirstFilledNodeChildrenItem(
+  nodes: HierarchyNode[]
+): HierarchyNode | undefined {
+  const node = nodes.find((n) => n.children.length > 0);
+  return node; // find already returns HierarchyNode | undefined
 }
 
-export function extractNodesForLevels(root: HierarchyNode) {
-  // Root node as the only element
-  const arrayLevelA = [root];
-  // All direct children of the root node
-  const arrayLevelB = root.children || [];
-  // Children of the first child element of the root node
-  const arrayLevelC = root.children.length > 0 ? root.children[0].children : [];
+/**
+ * Extracts nodes for your current UI structure.
+ *
+ * Note: With `noUncheckedIndexedAccess`, `root.children[0]` can be undefined.
+ * We therefore guard the first child explicitly.
+ */
+export function extractNodesForLevels(root: HierarchyNode): {
+  arrayLevelA: HierarchyNode[];
+  arrayLevelB: HierarchyNode[];
+  arrayLevelC: HierarchyNode[];
+} {
+  const arrayLevelA: HierarchyNode[] = [root];
+  const arrayLevelB: HierarchyNode[] = root.children;
 
-  return { arrayLevelA, arrayLevelB, arrayLevelC };
+  const firstChild = root.children[0]; // HierarchyNode | undefined
+  const arrayLevelC: HierarchyNode[] = firstChild ? firstChild.children : [];
+
+  return {
+    arrayLevelA,
+    arrayLevelB,
+    arrayLevelC,
+  };
 }
