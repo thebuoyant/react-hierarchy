@@ -5,24 +5,34 @@ import "./LayerACards.css";
 
 export default function LayerACards() {
   const cardLayer_A_Data = useCardLayerStore((s) => s.cardLayer_A_Data);
+  const cardLayer_A_JustifyContent = useCardLayerStore(
+    (s) => s.cardLayer_A_JustifyContent
+  );
   const cardLayer_A_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.cardLayer_A_FirstItemIndexNumber
   );
 
   return (
-    <div className="layer-a-cards">
+    <div
+      className="layer-a-cards"
+      style={{ justifyContent: cardLayer_A_JustifyContent }}
+    >
       {cardLayer_A_Data.map((node: HierarchyNode, index: number) => {
         console.log("??? > node:", node);
         const content = <div>some content</div>;
+        const handleOnBadgeClick = () => {
+          console.log("handleOnBadgeClick", node);
+        };
         return (
           <GraphCard
             key={index}
             node={node}
-            showBadge
-            showChildren
+            showBadge={node.children.length > 0}
+            showChildren={index === cardLayer_A_FirstItemIndexNumber}
             showParent={false}
             positionIndex={cardLayer_A_FirstItemIndexNumber}
             content={content}
+            onBadgeClick={handleOnBadgeClick}
           />
         );
       })}
