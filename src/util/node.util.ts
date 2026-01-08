@@ -1,5 +1,11 @@
 import { HierarchyNode } from "../types/data.type";
 
+interface TResult {
+  node: HierarchyNode;
+  childCount: number;
+  indexInParent: number | null;
+}
+
 /**
  * Finds the first node with the given id whose children.length > 0
  * and returns its children array.
@@ -104,4 +110,120 @@ function findFirstNodeWithChildrenInSubtree(
   }
 
   return null;
+}
+
+export function findNodeAndMetaData(
+  nodes: HierarchyNode[],
+  nodeId: string,
+  parentChildren: HierarchyNode[] | null = null
+): TResult | null {
+  for (let i = 0; i < nodes.length; i++) {
+    const node = nodes[i];
+
+    if (node.id === nodeId) {
+      return {
+        node,
+        childCount: node.children ? node.children.length : 0,
+        indexInParent: parentChildren ? i : null,
+      };
+    }
+
+    if (node.children) {
+      const found = findNodeAndMetaData(node.children, nodeId, node.children);
+      if (found) {
+        return found;
+      }
+    }
+  }
+  return null;
+}
+
+export function findNodeAndChildren(
+  nodes: HierarchyNode[],
+  nodeId: string
+): HierarchyNode | null {
+  for (const node of nodes) {
+    if (node.id === nodeId) {
+      return node;
+    }
+    if (node.children) {
+      const found = findNodeAndChildren(node.children, nodeId);
+      if (found) {
+        return found;
+      }
+    }
+  }
+  return null;
+}
+
+export function findParentNode(
+  nodes: HierarchyNode[],
+  nodeId: string
+): HierarchyNode | null {
+  function helper(
+    nodes: HierarchyNode[],
+    nodeId: string,
+    parent: HierarchyNode | null
+  ): HierarchyNode | null {
+    for (const node of nodes) {
+      if (node.id === nodeId) {
+        return parent;
+      }
+      if (node.children) {
+        const foundParent = helper(node.children, nodeId, node);
+        if (foundParent) {
+          return foundParent;
+        }
+      }
+    }
+    return null;
+  }
+
+  return helper(nodes, nodeId, null);
+}
+
+export const findParentNodeItem = (
+  node: HierarchyNode,
+  targetId: string,
+  parent: HierarchyNode | null = null
+): HierarchyNode | null => {
+  for (const child of node.children) {
+    if (child.id === targetId) {
+      // Return parent directly if found
+      return parent;
+    }
+    const found = findParentNodeItem(child, targetId, node);
+    if (found) return found;
+  }
+
+  return null;
+};
+
+export function getGraphDepth(nodes: HierarchyNode[], nodeId: string): number {
+  function findDepth(node: HierarchyNode | null): number {
+    // No children = depth 0
+    if (!node || !node.children || node.children.length === 0) return 0;
+
+    // Recursively calculate the maximum depth of the children and add +1
+    return 1 + Math.max(...node.children.map(findDepth));
+  }
+
+  // First find the node
+  const targetNode = findNodeAndChildren(nodes, nodeId);
+  return findDepth(targetNode);
+}
+
+export function getFirstFilledNodeChildrenItem(nodes: HierarchyNode[]) {
+  return nodes.find((node: HierarchyNode) => node.children.length > 0);
+}
+
+export function extractNodesForLevels(root: HierarchyNode) {
+  // Root node as the only element
+  const arrayLevelA = [root];
+  // All direct children of the root node
+  const arrayLevelB = root.children || [];
+  // Children of the first child element of the root node
+  const arrayLevelC = root.children.length > 0 ? root.children[0].children : [];
+
+  return { arrayLevelA, arrayLevelB, arrayLevelC };
 }
