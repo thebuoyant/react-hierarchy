@@ -1,4 +1,7 @@
 export const APP_CONFIG = {
+  default: {
+    maxNumberOfCardsPerLayer: 3,
+  },
   layout: {
     card: {
       cardHeight: 170,
