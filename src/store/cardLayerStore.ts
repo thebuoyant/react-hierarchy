@@ -13,6 +13,7 @@ type CardLayerState = {
 
   cardLayer_A_JustifyContent: "flex-start" | "center" | "flex-end";
   cardLayer_B_JustifyContent: "flex-start" | "center" | "flex-end";
+  cardLayer_C_JustifyContent: "flex-start" | "center" | "flex-end";
 
   setCardLayer_A_Data: (data: HierarchyNode[]) => void;
   setCardLayer_B_Data: (data: HierarchyNode[]) => void;
@@ -29,6 +30,9 @@ type CardLayerState = {
   setCardLayer_B_JustifyContent: (
     justifyContent: "flex-start" | "center" | "flex-end"
   ) => void;
+  setCardLayer_C_JustifyContent: (
+    justifyContent: "flex-start" | "center" | "flex-end"
+  ) => void;
 };
 
 export const useCardLayerStore = create<CardLayerState>((set) => ({
@@ -43,6 +47,7 @@ export const useCardLayerStore = create<CardLayerState>((set) => ({
 
   cardLayer_A_JustifyContent: "center",
   cardLayer_B_JustifyContent: "center",
+  cardLayer_C_JustifyContent: "center",
 
   setCardLayer_A_Data: (receivedValue) =>
     set({ cardLayer_A_Data: receivedValue }),
@@ -64,4 +69,6 @@ export const useCardLayerStore = create<CardLayerState>((set) => ({
     set({ cardLayer_A_JustifyContent: receivedValue }),
   setCardLayer_B_JustifyContent: (receivedValue) =>
     set({ cardLayer_B_JustifyContent: receivedValue }),
+  setCardLayer_C_JustifyContent: (receivedValue) =>
+    set({ cardLayer_C_JustifyContent: receivedValue }),
 }));
