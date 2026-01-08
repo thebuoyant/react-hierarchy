@@ -1,6 +1,4 @@
 .react-hierarchy {
-  background-color: aqua;
-
   .hierarchy-title {
     margin-bottom: 16px;
   }
@@ -25,7 +23,6 @@
   }
 
   .layer-content {
-    background-color: beige;
     height: 300px;
     position: relative;
     z-index: 10;

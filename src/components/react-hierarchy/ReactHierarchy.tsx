@@ -137,19 +137,8 @@ export default function ReactHierarchy({
             <div className="layer-content-main" style={{ height: cardHeight }}>
               <LayerCCards />
             </div>
-            <div
-              className="layer-content-branch"
-              style={{
-                height: branchHeight,
-                backgroundColor: branchBackgroundColor,
-              }}
-            >
-              branch
-            </div>
           </div>
         </div>
-        {/* Debug */}
-        {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
       </div>
     </div>
   );
