@@ -30,7 +30,7 @@ export default function LayerACards() {
               node={node}
               showBadge={node.children.length > 0}
               showChildren={index === cardLayer_A_FirstItemIndexNumber}
-              showParent={false}
+              showParent
               positionIndex={cardLayer_A_FirstItemIndexNumber}
               content={content}
               onBadgeClick={handleOnBadgeClick}

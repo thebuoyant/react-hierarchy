@@ -13,6 +13,7 @@ import {
 import LayerACards from "../layer-cards/LayerACards";
 import LayerBCards from "../layer-cards/LayerBCards";
 import LayerCCards from "../layer-cards/LayerCCards";
+import HeaderNav from "../header-nav/HeaderNav";
 
 export type ReactHierarchyProps = {
   title?: string;
@@ -89,7 +90,7 @@ export default function ReactHierarchy({
             height: headerHeight,
           }}
         >
-          HEADER
+          <HeaderNav />
         </div>
         <div className="layer-a">
           <div

@@ -1,0 +1,37 @@
+.header-nav {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  .nav-item-left {
+    position: absolute;
+    left: 0;
+    z-index: 100;
+
+    .MuiChip-root {
+      background-color: rgb(229, 229, 229);
+    }
+  }
+
+  .nav-item-center {
+    position: absolute;
+    left: calc(50% - 20px);
+    z-index: 100;
+
+    .MuiChip-root {
+      background-color: rgb(229, 229, 229);
+    }
+  }
+
+  .nav-item-right {
+    position: absolute;
+    right: 0;
+
+    z-index: 100;
+
+    .MuiChip-root {
+      background-color: rgb(229, 229, 229);
+    }
+  }
+}
