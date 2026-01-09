@@ -5,6 +5,7 @@ import GraphCard from "../graph-card/GraphCard";
 import "./LayerACards.css";
 
 export default function LayerACards() {
+  // card layer store
   const cardLayer_A_Data = useCardLayerStore((s) => s.cardLayer_A_Data);
   const cardLayer_A_JustifyContent = useCardLayerStore(
     (s) => s.cardLayer_A_JustifyContent
@@ -12,6 +13,9 @@ export default function LayerACards() {
   const cardLayer_A_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.cardLayer_A_FirstItemIndexNumber
   );
+
+  // internal calculations
+  const numberOfLayerAItems = cardLayer_A_Data.length;
 
   return (
     <div
@@ -30,7 +34,10 @@ export default function LayerACards() {
               node={node}
               showBadge={node.children.length > 0}
               showChildren={index === cardLayer_A_FirstItemIndexNumber}
-              showParent
+              showParent={
+                numberOfLayerAItems >=
+                APP_CONFIG.default.maxNumberOfCardsPerLayer
+              }
               positionIndex={cardLayer_A_FirstItemIndexNumber}
               content={content}
               onBadgeClick={handleOnBadgeClick}

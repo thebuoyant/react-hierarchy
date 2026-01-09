@@ -22,15 +22,17 @@ export default function HeaderNav() {
             <NavBadge isVisible direction="left" />
           </div>
         )}
-      <div className="nav-item-center">
-        <GraphBadge
-          counter={0}
-          isExpanded
-          nodeId=""
-          onClick={() => {}}
-          positionIndex={0}
-        />
-      </div>
+      {numberOfLayerAItems >= APP_CONFIG.default.maxNumberOfCardsPerLayer && (
+        <div className="nav-item-center">
+          <GraphBadge
+            counter={0}
+            isExpanded
+            nodeId=""
+            onClick={() => {}}
+            positionIndex={0}
+          />
+        </div>
+      )}
       {numberOfLayerAItems -
         cardLayer_A_FirstItemIndexNumber -
         APP_CONFIG.default.maxNumberOfCardsPerLayer >
