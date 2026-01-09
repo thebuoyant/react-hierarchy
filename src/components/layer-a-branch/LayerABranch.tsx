@@ -9,9 +9,6 @@ export default function LayerABranch() {
   const cardWidth = useLayoutStore((s) => s.cardWidth);
   const cardSpace = useLayoutStore((s) => s.cardSpace);
 
-  const branchLineItemWidth = 2 * cardSpace + cardWidth;
-  const branchLineItemColor = APP_CONFIG.layout.branch.lineColor;
-
   // card layer store
   const cardLayer_B_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.cardLayer_B_FirstItemIndexNumber
@@ -22,8 +19,11 @@ export default function LayerABranch() {
   const cardLayer_B_Data = useCardLayerStore((s) => s.cardLayer_B_Data);
 
   // internal calculations
+  const branchLineItemWidth = 2 * cardSpace + cardWidth;
+  const branchLineItemColor = APP_CONFIG.layout.branch.lineColor;
   const numberOfLayerBItems = cardLayer_B_Data.length;
 
+  // actions
   const handleClickLeft = () => {
     setCardLayer_B_FirstItemIndexNumber(cardLayer_B_FirstItemIndexNumber - 1);
   };
