@@ -22,20 +22,17 @@
 
     .branch-line-item-a,
     .branch-line-item-b,
-    .branch-line-item-,
+    .branch-line-item-c,
     .branch-line-item-d,
     .branch-line-item-e,
     .branch-line-item-f {
       height: 1px;
-      background-color: blue;
-      width: 200px;
     }
   }
 
   .nav-item-right {
     position: absolute;
     right: 0;
-
     z-index: 100;
 
     .MuiChip-root {
