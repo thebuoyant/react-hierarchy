@@ -1,0 +1,42 @@
+.layer-b-branch {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  .nav-item-left {
+    position: absolute;
+    left: 0;
+    z-index: 100;
+
+    .MuiChip-root {
+      background-color: rgb(229, 229, 229);
+    }
+  }
+
+  .branch-line {
+    position: absolute;
+    display: flex;
+    height: 1px;
+    width: 100%;
+
+    .branch-line-item-a,
+    .branch-line-item-b,
+    .branch-line-item-c,
+    .branch-line-item-d,
+    .branch-line-item-e,
+    .branch-line-item-f {
+      height: 1px;
+    }
+  }
+
+  .nav-item-right {
+    position: absolute;
+    right: 0;
+    z-index: 100;
+
+    .MuiChip-root {
+      background-color: rgb(229, 229, 229);
+    }
+  }
+}

@@ -15,6 +15,7 @@ import LayerBCards from "../layer-cards/LayerBCards";
 import LayerCCards from "../layer-cards/LayerCCards";
 import HeaderNav from "../header-nav/HeaderNav";
 import LayerABranch from "../layer-a-branch/LayerABranch";
+import LayerBBranch from "../layer-b-branch/LayerBBranch";
 
 export type ReactHierarchyProps = {
   title?: string;
@@ -127,7 +128,7 @@ export default function ReactHierarchy({
                 backgroundColor: branchBackgroundColor,
               }}
             >
-              branch
+              <LayerBBranch />
             </div>
           </div>
         </div>
