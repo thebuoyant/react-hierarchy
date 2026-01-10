@@ -3,16 +3,20 @@
   justify-content: center;
   position: relative;
   z-index: 10;
+  transition: opacity 160ms ease;
 
   .card-content-wrapper {
-    border-radius: 4px;
+    border-radius: 6px;
     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.14) !important;
     background-color: #ffffff;
+    overflow: hidden;
+
+    /* a tiny border helps the "selected" state look crisp */
+    border: 1px solid rgba(0, 0, 0, 0.06);
 
     .content-header {
       padding: 0 8px;
       height: 60px;
-      background-color: aliceblue;
       display: flex;
 
       .avatar-section {
@@ -53,14 +57,34 @@
       box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.14) !important;
     }
   }
+}
 
-  .children-line {
-    width: 1px;
-    position: absolute;
+/* Selected = current focus card (the user "is here") */
+.graph-card--selected {
+  z-index: 30;
+
+  .card-content-wrapper {
+    border: 2px solid rgba(25, 118, 210, 0.7); /* MUI-ish blue */
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.14) !important;
   }
 
-  .parent-line {
-    width: 1px;
-    position: absolute;
+  .badge-section {
+    .MuiChip-root {
+      background-color: rgba(25, 118, 210, 0.12);
+    }
+  }
+}
+
+/* Dimmed = still visible, but not part of the current focus */
+.graph-card--dimmed {
+  opacity: 0.35;
+}
+
+/* Connected = belongs to the focus "path" (parent/child relationship) */
+.graph-card--connected {
+  opacity: 1;
+
+  .card-content-wrapper {
+    border-color: rgba(25, 118, 210, 0.18);
   }
 }

@@ -5,17 +5,23 @@ import NavBadge from "../nav-badge/NavBadge";
 import "./HeaderNav.css";
 import { BadgeClickPayload } from "../../types/graph.types";
 
+function clamp(value: number, min: number, max: number) {
+  return Math.min(Math.max(value, min), max);
+}
+
 export default function HeaderNav() {
-  // card layer store
   const cardLayer_A_Data = useCardLayerStore((s) => s.cardLayer_A_Data);
   const cardLayer_A_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.cardLayer_A_FirstItemIndexNumber
+  );
+  const setCardLayer_A_FirstItemIndexNumber = useCardLayerStore(
+    (s) => s.setCardLayer_A_FirstItemIndexNumber
   );
 
   const cardLayer_B_Data = useCardLayerStore((s) => s.cardLayer_B_Data);
   const cardLayer_C_Data = useCardLayerStore((s) => s.cardLayer_C_Data);
 
-  // Used as a simple "one-step-back" buffer when we drill down from Layer-C.
+  // Simple one-step back buffer (set in Layer-C drill-down)
   const cardLayer_Tmp_Data = useCardLayerStore((s) => s.cardLayer_Tmp_Data);
 
   const setCardLayer_A_Data = useCardLayerStore((s) => s.setCardLayer_A_Data);
@@ -25,9 +31,6 @@ export default function HeaderNav() {
     (s) => s.setCardLayer_Tmp_Data
   );
 
-  const setCardLayer_A_FirstItemIndexNumber = useCardLayerStore(
-    (s) => s.setCardLayer_A_FirstItemIndexNumber
-  );
   const setCardLayer_B_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.setCardLayer_B_FirstItemIndexNumber
   );
@@ -35,11 +38,23 @@ export default function HeaderNav() {
     (s) => s.setCardLayer_C_FirstItemIndexNumber
   );
 
-  // internal calculations
   const numberOfLayerAItems = cardLayer_A_Data.length;
+  const maxSlots = APP_CONFIG.default.maxNumberOfCardsPerLayer;
+
+  const maxFirstIndex = Math.max(0, numberOfLayerAItems - maxSlots);
+
+  const handleClickLeft = () => {
+    const next = clamp(cardLayer_A_FirstItemIndexNumber - 1, 0, maxFirstIndex);
+    setCardLayer_A_FirstItemIndexNumber(next);
+  };
+
+  const handleClickRight = () => {
+    const next = clamp(cardLayer_A_FirstItemIndexNumber + 1, 0, maxFirstIndex);
+    setCardLayer_A_FirstItemIndexNumber(next);
+  };
+
   const canGoBackOneLevel = cardLayer_Tmp_Data.length > 0;
 
-  // actions
   const handleBackClick = (_payload: BadgeClickPayload) => {
     if (!canGoBackOneLevel) return;
 
@@ -50,7 +65,7 @@ export default function HeaderNav() {
     setCardLayer_A_Data(cardLayer_Tmp_Data);
     setCardLayer_Tmp_Data([]);
 
-    // Reset selections / windows
+    // Reset selection & horizontal windows
     setCardLayer_A_FirstItemIndexNumber(0);
     setCardLayer_B_FirstItemIndexNumber(0);
     setCardLayer_C_FirstItemIndexNumber(0);
@@ -59,16 +74,20 @@ export default function HeaderNav() {
   return (
     <div className="header-nav">
       {cardLayer_A_FirstItemIndexNumber > 0 &&
-        numberOfLayerAItems > APP_CONFIG.default.maxNumberOfCardsPerLayer && (
+        numberOfLayerAItems > maxSlots && (
           <div className="nav-item-left">
-            <NavBadge isVisible direction="left" />
+            <NavBadge
+              isVisible
+              direction="left"
+              onClick={handleClickLeft}
+              counter={cardLayer_A_FirstItemIndexNumber}
+            />
           </div>
         )}
 
       {canGoBackOneLevel && (
         <div className="nav-item-center">
           <GraphBadge
-            // Counter is not important here, but we keep the UI consistent
             counter={0}
             isExpanded
             nodeId="__back__"
@@ -78,12 +97,17 @@ export default function HeaderNav() {
         </div>
       )}
 
-      {numberOfLayerAItems -
-        cardLayer_A_FirstItemIndexNumber -
-        APP_CONFIG.default.maxNumberOfCardsPerLayer >
+      {numberOfLayerAItems - cardLayer_A_FirstItemIndexNumber - maxSlots >
         0 && (
         <div className="nav-item-right">
-          <NavBadge isVisible direction="right" />
+          <NavBadge
+            isVisible
+            direction="right"
+            onClick={handleClickRight}
+            counter={
+              numberOfLayerAItems - cardLayer_A_FirstItemIndexNumber - maxSlots
+            }
+          />
         </div>
       )}
     </div>

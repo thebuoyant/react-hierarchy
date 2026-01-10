@@ -7,7 +7,6 @@ import "./LayerACards.css";
 import { BadgeClickPayload } from "../../types/graph.types";
 
 export default function LayerACards() {
-  // card layer store
   const cardLayer_A_Data = useCardLayerStore((s) => s.cardLayer_A_Data);
   const cardLayer_A_JustifyContent = useCardLayerStore(
     (s) => s.cardLayer_A_JustifyContent
@@ -29,22 +28,22 @@ export default function LayerACards() {
     (s) => s.setCardLayer_C_FirstItemIndexNumber
   );
 
-  // internal calculations
   const numberOfLayerAItems = cardLayer_A_Data.length;
 
   const handleBadgeClick = (
     payload: BadgeClickPayload,
     node: HierarchyNode
   ) => {
-    // Which card should show the "expanded" state?
+    // We treat "FirstItemIndexNumber" as the current focus/selection index.
+    // (This follows your existing design & navigation approach.)
     setCardLayer_A_FirstItemIndexNumber(payload.positionIndex);
 
-    // When we move vertically, we always reset the horizontal "window"
+    // When we change the selected parent, we reset horizontal navigation in lower layers.
     setCardLayer_B_FirstItemIndexNumber(0);
     setCardLayer_C_FirstItemIndexNumber(0);
 
     if (!payload.expanded) {
-      // Collapse: hide children below
+      // Collapse: hide lower layers
       setCardLayer_B_Data([]);
       setCardLayer_C_Data([]);
       return;
@@ -54,11 +53,14 @@ export default function LayerACards() {
     const layerBChildren = node.children ?? [];
     setCardLayer_B_Data(layerBChildren);
 
-    // For Layer-C we show the children of the first Layer-B entry that actually has children.
-    // (This matches your initial logic in ReactHierarchy.tsx)
+    // Layer-C initially shows the children of the first Layer-B entry with children
     const layerCChildren = getChildrenOfFirstNodeWithChildren(layerBChildren);
     setCardLayer_C_Data(layerCChildren);
   };
+
+  // "Focus" logic for a clearer UX:
+  const selectedIndex = cardLayer_A_FirstItemIndexNumber;
+  const hasSelection = numberOfLayerAItems > 1;
 
   return (
     <div
@@ -69,18 +71,20 @@ export default function LayerACards() {
         .map((node: HierarchyNode, index: number) => {
           const content = <div>some content</div>;
 
+          const isSelected = index === selectedIndex;
+          const isDimmed = hasSelection && !isSelected;
+
           return (
             <GraphCard
               key={node.id}
               node={node}
               showBadge={node.children.length > 0}
-              showChildren={index === cardLayer_A_FirstItemIndexNumber}
-              showParent={
-                numberOfLayerAItems >=
-                APP_CONFIG.default.maxNumberOfCardsPerLayer
-              }
+              showChildren={isSelected}
               positionIndex={index}
               content={content}
+              isSelected={isSelected}
+              isDimmed={isDimmed}
+              isConnected={isSelected}
               onBadgeClick={(payload) => handleBadgeClick(payload, node)}
             />
           );

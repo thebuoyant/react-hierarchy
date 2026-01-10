@@ -12,9 +12,6 @@ import { BadgeClickPayload } from "../../types/graph.types";
  *   - A <- B
  *   - B <- C
  *   - C <- children of selected C node
- *
- * To keep the code close to your current approach, we store the old Layer-A
- * in `cardLayer_Tmp_Data` so the HeaderNav can navigate one step back.
  */
 export default function LayerCCards() {
   const rootNode = useCardLayerStore((s) => s.rootNode);
@@ -53,16 +50,14 @@ export default function LayerCCards() {
     payload: BadgeClickPayload,
     node: HierarchyNode
   ) => {
-    // Mark clicked C item as "selected/expanded"
     setCardLayer_C_FirstItemIndexNumber(payload.positionIndex);
 
     if (!payload.expanded) {
-      // In Layer-C we treat "collapse" as: do nothing.
-      // (Because there is no additional visible layer below.)
+      // In Layer-C we do not "collapse" into a lower layer (there is none).
       return;
     }
 
-    // Drill-down: use util to make sure we always get the latest children from root.
+    // Drill-down: fetch children from root (always the truth source)
     const newChildrenForLayerC = getChildrenByNodeId(rootNode, node.id);
 
     // Save current A so we can go one step back
@@ -73,11 +68,13 @@ export default function LayerCCards() {
     setCardLayer_B_Data(cardLayer_C_Data);
     setCardLayer_C_Data(newChildrenForLayerC);
 
-    // Reset "expanded" selection and horizontal windows
+    // Reset selection & horizontal windows
     setCardLayer_A_FirstItemIndexNumber(0);
     setCardLayer_B_FirstItemIndexNumber(0);
     setCardLayer_C_FirstItemIndexNumber(0);
   };
+
+  const selectedIndex = cardLayer_C_FirstItemIndexNumber;
 
   return (
     <div
@@ -87,16 +84,19 @@ export default function LayerCCards() {
       {cardLayer_C_Data
         .map((node: HierarchyNode, index: number) => {
           const content = <div>some content</div>;
+          const isSelected = index === selectedIndex;
 
           return (
             <GraphCard
               key={node.id}
               node={node}
               showBadge={node.children.length > 0}
-              showChildren={index === cardLayer_C_FirstItemIndexNumber}
-              showParent
+              showChildren={isSelected}
               positionIndex={index}
               content={content}
+              isSelected={isSelected}
+              isDimmed={false}
+              isConnected
               onBadgeClick={(payload) => handleBadgeClick(payload, node)}
             />
           );

@@ -11,27 +11,30 @@ function clamp(value: number, min: number, max: number) {
 export default function LayerBBranch() {
   const cardWidth = useLayoutStore((s) => s.cardWidth);
   const cardSpace = useLayoutStore((s) => s.cardSpace);
+  const branchHeight = useLayoutStore((s) => s.branchHeight);
 
-  // card layer store
+  // Parent layer (B)
+  const cardLayer_B_Data = useCardLayerStore((s) => s.cardLayer_B_Data);
+  const cardLayer_B_FirstItemIndexNumber = useCardLayerStore(
+    (s) => s.cardLayer_B_FirstItemIndexNumber
+  );
+
+  // Child layer (C)
+  const cardLayer_C_Data = useCardLayerStore((s) => s.cardLayer_C_Data);
   const cardLayer_C_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.cardLayer_C_FirstItemIndexNumber
   );
   const setCardLayer_C_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.setCardLayer_C_FirstItemIndexNumber
   );
-  const cardLayer_C_Data = useCardLayerStore((s) => s.cardLayer_C_Data);
 
-  // internal calculations
-  const branchLineItemWidth = 2 * cardSpace + cardWidth;
-  const branchLineItemColor = APP_CONFIG.layout.branch.lineColor;
+  const slotWidth = 2 * cardSpace + cardWidth;
+  const maxSlots = APP_CONFIG.default.maxNumberOfCardsPerLayer;
+  const totalWidth = maxSlots * slotWidth;
+
   const numberOfLayerCItems = cardLayer_C_Data.length;
+  const maxFirstIndex = Math.max(0, numberOfLayerCItems - maxSlots);
 
-  const maxFirstIndex = Math.max(
-    0,
-    numberOfLayerCItems - APP_CONFIG.default.maxNumberOfCardsPerLayer
-  );
-
-  // actions
   const handleClickLeft = () => {
     const next = clamp(cardLayer_C_FirstItemIndexNumber - 1, 0, maxFirstIndex);
     setCardLayer_C_FirstItemIndexNumber(next);
@@ -42,10 +45,39 @@ export default function LayerBBranch() {
     setCardLayer_C_FirstItemIndexNumber(next);
   };
 
+  // --- Focus / connection geometry ---
+  const parentFirstIndex = cardLayer_B_FirstItemIndexNumber;
+  const selectedParentIndex = cardLayer_B_FirstItemIndexNumber; // current design: same value
+
+  const parentVisibleSlots = Math.min(
+    maxSlots,
+    Math.max(0, cardLayer_B_Data.length - parentFirstIndex)
+  );
+  const childVisibleSlots = Math.min(
+    maxSlots,
+    Math.max(0, cardLayer_C_Data.length - cardLayer_C_FirstItemIndexNumber)
+  );
+
+  const parentOffset = (totalWidth - parentVisibleSlots * slotWidth) / 2;
+  const childOffset = (totalWidth - childVisibleSlots * slotWidth) / 2;
+
+  const focusSlot =
+    parentVisibleSlots === 0
+      ? 0
+      : clamp(
+          selectedParentIndex - parentFirstIndex,
+          0,
+          parentVisibleSlots - 1
+        );
+
+  const parentX = parentOffset + (focusSlot + 0.5) * slotWidth;
+
+  const showConnections = parentVisibleSlots > 0 && childVisibleSlots > 0;
+
   return (
-    <div className="layer-b-branch">
+    <div className="layer-b-branch" style={{ width: totalWidth }}>
       {cardLayer_C_FirstItemIndexNumber > 0 &&
-        numberOfLayerCItems > APP_CONFIG.default.maxNumberOfCardsPerLayer && (
+        numberOfLayerCItems > maxSlots && (
           <div className="nav-item-left">
             <NavBadge
               isVisible
@@ -56,35 +88,65 @@ export default function LayerBBranch() {
           </div>
         )}
 
-      <div className="branch-line">
-        <div
-          className="branch-line-item"
-          style={{
-            width: branchLineItemWidth,
-            backgroundColor: branchLineItemColor,
-          }}
-        ></div>
+      {showConnections && (
+        <div className="branch-focus" style={{ height: branchHeight }}>
+          <div
+            className="branch-parent-drop"
+            style={{
+              left: parentX,
+              height: branchHeight / 2,
+              backgroundColor: APP_CONFIG.layout.branch.lineColor,
+            }}
+          />
 
-        <div
-          className="branch-line-item"
-          style={{
-            width: branchLineItemWidth,
-            backgroundColor: branchLineItemColor,
-          }}
-        ></div>
+          <div
+            className="branch-children-line"
+            style={{
+              left: childOffset,
+              width: childVisibleSlots * slotWidth,
+              top: branchHeight / 2,
+              backgroundColor: APP_CONFIG.layout.branch.lineColor,
+            }}
+          />
 
-        <div
-          className="branch-line-item-f"
-          style={{
-            width: branchLineItemWidth,
-            backgroundColor: branchLineItemColor,
-          }}
-        ></div>
-      </div>
+          {Array.from({ length: childVisibleSlots }).map((_, i) => {
+            const x = childOffset + (i + 0.5) * slotWidth;
 
-      {numberOfLayerCItems -
-        cardLayer_C_FirstItemIndexNumber -
-        APP_CONFIG.default.maxNumberOfCardsPerLayer >
+            return (
+              <div key={i}>
+                <div
+                  className="branch-child-drop"
+                  style={{
+                    left: x,
+                    top: branchHeight / 2,
+                    height: branchHeight / 2,
+                    backgroundColor: APP_CONFIG.layout.branch.lineColor,
+                  }}
+                />
+                <div
+                  className="branch-dot"
+                  style={{
+                    left: x,
+                    top: branchHeight / 2,
+                    backgroundColor: APP_CONFIG.layout.branch.lineColor,
+                  }}
+                />
+              </div>
+            );
+          })}
+
+          <div
+            className="branch-dot branch-dot--parent"
+            style={{
+              left: parentX,
+              top: branchHeight / 2,
+              backgroundColor: APP_CONFIG.layout.branch.lineColor,
+            }}
+          />
+        </div>
+      )}
+
+      {numberOfLayerCItems - cardLayer_C_FirstItemIndexNumber - maxSlots >
         0 && (
         <div className="nav-item-right">
           <NavBadge
@@ -92,9 +154,7 @@ export default function LayerBBranch() {
             direction="right"
             onClick={handleClickRight}
             counter={
-              numberOfLayerCItems -
-              cardLayer_C_FirstItemIndexNumber -
-              APP_CONFIG.default.maxNumberOfCardsPerLayer
+              numberOfLayerCItems - cardLayer_C_FirstItemIndexNumber - maxSlots
             }
           />
         </div>

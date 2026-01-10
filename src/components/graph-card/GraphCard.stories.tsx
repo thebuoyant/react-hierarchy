@@ -30,8 +30,10 @@ const meta: Meta<typeof GraphCard> = {
     node: mockNode,
     showBadge: true,
     showChildren: true,
-    showParent: true,
     positionIndex: 0,
+    isSelected: true,
+    isDimmed: false,
+    isConnected: true,
     content: (
       <div>
         <strong>Custom Content</strong>
@@ -47,15 +49,23 @@ const meta: Meta<typeof GraphCard> = {
     },
     showChildren: {
       control: "boolean",
-      description: "Kinder visuell anzeigen",
+      description: "Node ist expanded/ausgewählt",
     },
-    showParent: {
+    isSelected: {
       control: "boolean",
-      description: "Parent-Bezug anzeigen",
+      description: "Fokus-Zustand (visuelles Highlight)",
+    },
+    isDimmed: {
+      control: "boolean",
+      description: "Dezent anzeigen (nicht im Fokus)",
+    },
+    isConnected: {
+      control: "boolean",
+      description: "Gehört zur aktuellen Fokus-Spur",
     },
     positionIndex: {
       control: { type: "number", min: 0 },
-      description: "Index des Nodes im Parent",
+      description: "Index des Nodes im Layer",
     },
     onBadgeClick: {
       action: "badge-clicked",

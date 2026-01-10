@@ -23,6 +23,8 @@ export default function LayerBCards() {
     (s) => s.setCardLayer_C_FirstItemIndexNumber
   );
 
+  const numberOfLayerBItems = cardLayer_B_Data.length;
+
   const handleBadgeClick = (
     payload: BadgeClickPayload,
     node: HierarchyNode
@@ -41,6 +43,9 @@ export default function LayerBCards() {
     setCardLayer_C_Data(node.children ?? []);
   };
 
+  const selectedIndex = cardLayer_B_FirstItemIndexNumber;
+  const hasSelection = numberOfLayerBItems > 1;
+
   return (
     <div
       className="layer-a-cards"
@@ -50,15 +55,20 @@ export default function LayerBCards() {
         .map((node: HierarchyNode, index: number) => {
           const content = <div>some content</div>;
 
+          const isSelected = index === selectedIndex;
+          const isDimmed = hasSelection && !isSelected;
+
           return (
             <GraphCard
               key={node.id}
               node={node}
               showBadge={node.children.length > 0}
-              showChildren={index === cardLayer_B_FirstItemIndexNumber}
-              showParent
+              showChildren={isSelected}
               positionIndex={index}
               content={content}
+              isSelected={isSelected}
+              isDimmed={isDimmed}
+              isConnected
               onBadgeClick={(payload) => handleBadgeClick(payload, node)}
             />
           );
