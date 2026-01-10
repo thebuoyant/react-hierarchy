@@ -8,18 +8,36 @@ function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);
 }
 
+function keepSelectionVisible(
+  selectedIndex: number,
+  windowStart: number,
+  maxSlots: number
+) {
+  const windowEnd = windowStart + maxSlots - 1;
+  if (selectedIndex < windowStart) return windowStart;
+  if (selectedIndex > windowEnd) return windowEnd;
+  return selectedIndex;
+}
+
 export default function LayerABranch() {
   const cardWidth = useLayoutStore((s) => s.cardWidth);
   const cardSpace = useLayoutStore((s) => s.cardSpace);
   const branchHeight = useLayoutStore((s) => s.branchHeight);
 
-  // Parent layer (A)
+  const slotWidth = 2 * cardSpace + cardWidth;
+  const maxSlots = APP_CONFIG.default.maxNumberOfCardsPerLayer;
+  const totalWidth = maxSlots * slotWidth;
+
+  // Parent A
   const cardLayer_A_Data = useCardLayerStore((s) => s.cardLayer_A_Data);
   const cardLayer_A_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.cardLayer_A_FirstItemIndexNumber
   );
+  const cardLayer_A_SelectedIndexNumber = useCardLayerStore(
+    (s) => s.cardLayer_A_SelectedIndexNumber
+  );
 
-  // Child layer (B)
+  // Child B
   const cardLayer_B_Data = useCardLayerStore((s) => s.cardLayer_B_Data);
   const cardLayer_B_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.cardLayer_B_FirstItemIndexNumber
@@ -27,32 +45,52 @@ export default function LayerABranch() {
   const setCardLayer_B_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.setCardLayer_B_FirstItemIndexNumber
   );
-
-  const slotWidth = 2 * cardSpace + cardWidth;
-  const maxSlots = APP_CONFIG.default.maxNumberOfCardsPerLayer;
-  const totalWidth = maxSlots * slotWidth;
+  const cardLayer_B_SelectedIndexNumber = useCardLayerStore(
+    (s) => s.cardLayer_B_SelectedIndexNumber
+  );
+  const setCardLayer_B_SelectedIndexNumber = useCardLayerStore(
+    (s) => s.setCardLayer_B_SelectedIndexNumber
+  );
 
   const numberOfLayerBItems = cardLayer_B_Data.length;
   const maxFirstIndex = Math.max(0, numberOfLayerBItems - maxSlots);
 
   const handleClickLeft = () => {
-    const next = clamp(cardLayer_B_FirstItemIndexNumber - 1, 0, maxFirstIndex);
-    setCardLayer_B_FirstItemIndexNumber(next);
+    const nextStart = clamp(
+      cardLayer_B_FirstItemIndexNumber - 1,
+      0,
+      maxFirstIndex
+    );
+    setCardLayer_B_FirstItemIndexNumber(nextStart);
+
+    const nextSelected = keepSelectionVisible(
+      cardLayer_B_SelectedIndexNumber,
+      nextStart,
+      maxSlots
+    );
+    setCardLayer_B_SelectedIndexNumber(nextSelected);
   };
 
   const handleClickRight = () => {
-    const next = clamp(cardLayer_B_FirstItemIndexNumber + 1, 0, maxFirstIndex);
-    setCardLayer_B_FirstItemIndexNumber(next);
+    const nextStart = clamp(
+      cardLayer_B_FirstItemIndexNumber + 1,
+      0,
+      maxFirstIndex
+    );
+    setCardLayer_B_FirstItemIndexNumber(nextStart);
+
+    const nextSelected = keepSelectionVisible(
+      cardLayer_B_SelectedIndexNumber,
+      nextStart,
+      maxSlots
+    );
+    setCardLayer_B_SelectedIndexNumber(nextSelected);
   };
 
-  // --- Geometry ---
-  // The important fix: the horizontal line must always reach the parent's x-position.
-  const parentFirstIndex = cardLayer_A_FirstItemIndexNumber;
-  const selectedParentIndex = cardLayer_A_FirstItemIndexNumber;
-
+  // Geometry
   const parentVisibleSlots = Math.min(
     maxSlots,
-    Math.max(0, cardLayer_A_Data.length - parentFirstIndex)
+    Math.max(0, cardLayer_A_Data.length - cardLayer_A_FirstItemIndexNumber)
   );
 
   const childVisibleSlots = Math.min(
@@ -63,11 +101,12 @@ export default function LayerABranch() {
   const parentOffset = (totalWidth - parentVisibleSlots * slotWidth) / 2;
   const childOffset = (totalWidth - childVisibleSlots * slotWidth) / 2;
 
+  // ✅ Use SelectedIndex for focus slot
   const focusSlot =
     parentVisibleSlots === 0
       ? 0
       : clamp(
-          selectedParentIndex - parentFirstIndex,
+          cardLayer_A_SelectedIndexNumber - cardLayer_A_FirstItemIndexNumber,
           0,
           parentVisibleSlots - 1
         );
@@ -77,7 +116,6 @@ export default function LayerABranch() {
   const childGroupLeft = childOffset;
   const childGroupRight = childOffset + childVisibleSlots * slotWidth;
 
-  // ✅ Fix: make the horizontal line span from parentX to the child group
   const lineLeft = Math.min(parentX, childGroupLeft);
   const lineRight = Math.max(parentX, childGroupRight);
   const lineWidth = Math.max(0, lineRight - lineLeft);

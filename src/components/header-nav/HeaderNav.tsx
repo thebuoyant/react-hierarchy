@@ -10,26 +10,51 @@ function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);
 }
 
+/**
+ * Helper: keep selection inside visible window after scrolling
+ */
+function keepSelectionVisible(
+  selectedIndex: number,
+  windowStart: number,
+  maxSlots: number
+) {
+  const windowEnd = windowStart + maxSlots - 1;
+  if (selectedIndex < windowStart) return windowStart;
+  if (selectedIndex > windowEnd) return windowEnd;
+  return selectedIndex;
+}
+
 export default function HeaderNav() {
+  const maxSlots = APP_CONFIG.default.maxNumberOfCardsPerLayer;
+
+  // Layer A data + indices
   const cardLayer_A_Data = useCardLayerStore((s) => s.cardLayer_A_Data);
   const cardLayer_A_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.cardLayer_A_FirstItemIndexNumber
   );
+  const cardLayer_A_SelectedIndexNumber = useCardLayerStore(
+    (s) => s.cardLayer_A_SelectedIndexNumber
+  );
+
   const setCardLayer_A_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.setCardLayer_A_FirstItemIndexNumber
   );
+  const setCardLayer_A_SelectedIndexNumber = useCardLayerStore(
+    (s) => s.setCardLayer_A_SelectedIndexNumber
+  );
 
+  // Layer B/C selection for breadcrumb
   const cardLayer_B_Data = useCardLayerStore((s) => s.cardLayer_B_Data);
-  const cardLayer_B_FirstItemIndexNumber = useCardLayerStore(
-    (s) => s.cardLayer_B_FirstItemIndexNumber
+  const cardLayer_B_SelectedIndexNumber = useCardLayerStore(
+    (s) => s.cardLayer_B_SelectedIndexNumber
   );
 
   const cardLayer_C_Data = useCardLayerStore((s) => s.cardLayer_C_Data);
-  const cardLayer_C_FirstItemIndexNumber = useCardLayerStore(
-    (s) => s.cardLayer_C_FirstItemIndexNumber
+  const cardLayer_C_SelectedIndexNumber = useCardLayerStore(
+    (s) => s.cardLayer_C_SelectedIndexNumber
   );
 
-  // Simple one-step back buffer (set in Layer-C drill-down)
+  // Back buffer
   const cardLayer_Tmp_Data = useCardLayerStore((s) => s.cardLayer_Tmp_Data);
 
   const setCardLayer_A_Data = useCardLayerStore((s) => s.setCardLayer_A_Data);
@@ -45,20 +70,47 @@ export default function HeaderNav() {
   const setCardLayer_C_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.setCardLayer_C_FirstItemIndexNumber
   );
+  const setCardLayer_B_SelectedIndexNumber = useCardLayerStore(
+    (s) => s.setCardLayer_B_SelectedIndexNumber
+  );
+  const setCardLayer_C_SelectedIndexNumber = useCardLayerStore(
+    (s) => s.setCardLayer_C_SelectedIndexNumber
+  );
 
   const numberOfLayerAItems = cardLayer_A_Data.length;
-  const maxSlots = APP_CONFIG.default.maxNumberOfCardsPerLayer;
-
   const maxFirstIndex = Math.max(0, numberOfLayerAItems - maxSlots);
 
+  // --- Horizontal nav changes window-start, not selection ---
   const handleClickLeft = () => {
-    const next = clamp(cardLayer_A_FirstItemIndexNumber - 1, 0, maxFirstIndex);
-    setCardLayer_A_FirstItemIndexNumber(next);
+    const nextStart = clamp(
+      cardLayer_A_FirstItemIndexNumber - 1,
+      0,
+      maxFirstIndex
+    );
+    setCardLayer_A_FirstItemIndexNumber(nextStart);
+
+    const nextSelected = keepSelectionVisible(
+      cardLayer_A_SelectedIndexNumber,
+      nextStart,
+      maxSlots
+    );
+    setCardLayer_A_SelectedIndexNumber(nextSelected);
   };
 
   const handleClickRight = () => {
-    const next = clamp(cardLayer_A_FirstItemIndexNumber + 1, 0, maxFirstIndex);
-    setCardLayer_A_FirstItemIndexNumber(next);
+    const nextStart = clamp(
+      cardLayer_A_FirstItemIndexNumber + 1,
+      0,
+      maxFirstIndex
+    );
+    setCardLayer_A_FirstItemIndexNumber(nextStart);
+
+    const nextSelected = keepSelectionVisible(
+      cardLayer_A_SelectedIndexNumber,
+      nextStart,
+      maxSlots
+    );
+    setCardLayer_A_SelectedIndexNumber(nextSelected);
   };
 
   const canGoBackOneLevel = cardLayer_Tmp_Data.length > 0;
@@ -66,31 +118,31 @@ export default function HeaderNav() {
   const handleBackClick = (_payload: BadgeClickPayload) => {
     if (!canGoBackOneLevel) return;
 
-    // Reverse the drill-down shift:
-    //   C -> B, B -> A, A -> TMP
+    // Reverse drill-down shift:
     setCardLayer_C_Data(cardLayer_B_Data);
     setCardLayer_B_Data(cardLayer_A_Data);
     setCardLayer_A_Data(cardLayer_Tmp_Data);
     setCardLayer_Tmp_Data([]);
 
-    // Reset selection & horizontal windows
+    // reset indices
     setCardLayer_A_FirstItemIndexNumber(0);
     setCardLayer_B_FirstItemIndexNumber(0);
     setCardLayer_C_FirstItemIndexNumber(0);
+
+    setCardLayer_A_SelectedIndexNumber(0);
+    setCardLayer_B_SelectedIndexNumber(0);
+    setCardLayer_C_SelectedIndexNumber(0);
   };
 
-  // --- Breadcrumb (Where am I?) ---
-  const nodeA = cardLayer_A_Data[cardLayer_A_FirstItemIndexNumber];
-  const nodeB = cardLayer_B_Data[cardLayer_B_FirstItemIndexNumber];
-  const nodeC = cardLayer_C_Data[cardLayer_C_FirstItemIndexNumber];
+  // --- Breadcrumb (stable) ---
+  const nodeA = cardLayer_A_Data[cardLayer_A_SelectedIndexNumber];
+  const nodeB = cardLayer_B_Data[cardLayer_B_SelectedIndexNumber];
+  const nodeC = cardLayer_C_Data[cardLayer_C_SelectedIndexNumber];
 
-  // Simple level indicator:
-  // If Tmp has data we are "drilled down"
   const levelText = canGoBackOneLevel ? "Drill-Down aktiv" : "Root-Ansicht";
 
   return (
     <div className="header-nav">
-      {/* Breadcrumb center */}
       <div className="breadcrumb">
         <div className="breadcrumb-top">
           <Chip
@@ -99,13 +151,6 @@ export default function HeaderNav() {
             className="breadcrumb-chip"
             variant="outlined"
           />
-          {canGoBackOneLevel && (
-            <div className="breadcrumb-backhint">
-              <Typography variant="caption">
-                (Badge in der Mitte = 1 Schritt zurück)
-              </Typography>
-            </div>
-          )}
         </div>
 
         <Typography className="breadcrumb-path" variant="body2">
@@ -123,7 +168,6 @@ export default function HeaderNav() {
         </Typography>
       </div>
 
-      {/* Horizontal navigation for Layer-A */}
       {cardLayer_A_FirstItemIndexNumber > 0 &&
         numberOfLayerAItems > maxSlots && (
           <div className="nav-item-left">
@@ -136,7 +180,6 @@ export default function HeaderNav() {
           </div>
         )}
 
-      {/* Back (drill-down) */}
       {canGoBackOneLevel && (
         <div className="nav-item-center">
           <GraphBadge

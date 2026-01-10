@@ -8,18 +8,36 @@ function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);
 }
 
+function keepSelectionVisible(
+  selectedIndex: number,
+  windowStart: number,
+  maxSlots: number
+) {
+  const windowEnd = windowStart + maxSlots - 1;
+  if (selectedIndex < windowStart) return windowStart;
+  if (selectedIndex > windowEnd) return windowEnd;
+  return selectedIndex;
+}
+
 export default function LayerBBranch() {
   const cardWidth = useLayoutStore((s) => s.cardWidth);
   const cardSpace = useLayoutStore((s) => s.cardSpace);
   const branchHeight = useLayoutStore((s) => s.branchHeight);
 
-  // Parent layer (B)
+  const slotWidth = 2 * cardSpace + cardWidth;
+  const maxSlots = APP_CONFIG.default.maxNumberOfCardsPerLayer;
+  const totalWidth = maxSlots * slotWidth;
+
+  // Parent B
   const cardLayer_B_Data = useCardLayerStore((s) => s.cardLayer_B_Data);
   const cardLayer_B_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.cardLayer_B_FirstItemIndexNumber
   );
+  const cardLayer_B_SelectedIndexNumber = useCardLayerStore(
+    (s) => s.cardLayer_B_SelectedIndexNumber
+  );
 
-  // Child layer (C)
+  // Child C
   const cardLayer_C_Data = useCardLayerStore((s) => s.cardLayer_C_Data);
   const cardLayer_C_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.cardLayer_C_FirstItemIndexNumber
@@ -27,31 +45,51 @@ export default function LayerBBranch() {
   const setCardLayer_C_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.setCardLayer_C_FirstItemIndexNumber
   );
-
-  const slotWidth = 2 * cardSpace + cardWidth;
-  const maxSlots = APP_CONFIG.default.maxNumberOfCardsPerLayer;
-  const totalWidth = maxSlots * slotWidth;
+  const cardLayer_C_SelectedIndexNumber = useCardLayerStore(
+    (s) => s.cardLayer_C_SelectedIndexNumber
+  );
+  const setCardLayer_C_SelectedIndexNumber = useCardLayerStore(
+    (s) => s.setCardLayer_C_SelectedIndexNumber
+  );
 
   const numberOfLayerCItems = cardLayer_C_Data.length;
   const maxFirstIndex = Math.max(0, numberOfLayerCItems - maxSlots);
 
   const handleClickLeft = () => {
-    const next = clamp(cardLayer_C_FirstItemIndexNumber - 1, 0, maxFirstIndex);
-    setCardLayer_C_FirstItemIndexNumber(next);
+    const nextStart = clamp(
+      cardLayer_C_FirstItemIndexNumber - 1,
+      0,
+      maxFirstIndex
+    );
+    setCardLayer_C_FirstItemIndexNumber(nextStart);
+
+    const nextSelected = keepSelectionVisible(
+      cardLayer_C_SelectedIndexNumber,
+      nextStart,
+      maxSlots
+    );
+    setCardLayer_C_SelectedIndexNumber(nextSelected);
   };
 
   const handleClickRight = () => {
-    const next = clamp(cardLayer_C_FirstItemIndexNumber + 1, 0, maxFirstIndex);
-    setCardLayer_C_FirstItemIndexNumber(next);
-  };
+    const nextStart = clamp(
+      cardLayer_C_FirstItemIndexNumber + 1,
+      0,
+      maxFirstIndex
+    );
+    setCardLayer_C_FirstItemIndexNumber(nextStart);
 
-  // --- Geometry fix (same as LayerABranch) ---
-  const parentFirstIndex = cardLayer_B_FirstItemIndexNumber;
-  const selectedParentIndex = cardLayer_B_FirstItemIndexNumber;
+    const nextSelected = keepSelectionVisible(
+      cardLayer_C_SelectedIndexNumber,
+      nextStart,
+      maxSlots
+    );
+    setCardLayer_C_SelectedIndexNumber(nextSelected);
+  };
 
   const parentVisibleSlots = Math.min(
     maxSlots,
-    Math.max(0, cardLayer_B_Data.length - parentFirstIndex)
+    Math.max(0, cardLayer_B_Data.length - cardLayer_B_FirstItemIndexNumber)
   );
 
   const childVisibleSlots = Math.min(
@@ -66,7 +104,7 @@ export default function LayerBBranch() {
     parentVisibleSlots === 0
       ? 0
       : clamp(
-          selectedParentIndex - parentFirstIndex,
+          cardLayer_B_SelectedIndexNumber - cardLayer_B_FirstItemIndexNumber,
           0,
           parentVisibleSlots - 1
         );

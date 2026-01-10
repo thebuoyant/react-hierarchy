@@ -9,9 +9,19 @@ type CardLayerState = {
   cardLayer_C_Data: HierarchyNode[];
   cardLayer_Tmp_Data: HierarchyNode[];
 
+  /**
+   * Window start indices (horizontal scrolling / slicing)
+   */
   cardLayer_A_FirstItemIndexNumber: number;
   cardLayer_B_FirstItemIndexNumber: number;
   cardLayer_C_FirstItemIndexNumber: number;
+
+  /**
+   * Selected indices (the actual focused node in each layer)
+   */
+  cardLayer_A_SelectedIndexNumber: number;
+  cardLayer_B_SelectedIndexNumber: number;
+  cardLayer_C_SelectedIndexNumber: number;
 
   cardLayer_A_JustifyContent: "flex-start" | "center" | "flex-end";
   cardLayer_B_JustifyContent: "flex-start" | "center" | "flex-end";
@@ -31,6 +41,10 @@ type CardLayerState = {
   setCardLayer_A_FirstItemIndexNumber: (index: number) => void;
   setCardLayer_B_FirstItemIndexNumber: (index: number) => void;
   setCardLayer_C_FirstItemIndexNumber: (index: number) => void;
+
+  setCardLayer_A_SelectedIndexNumber: (index: number) => void;
+  setCardLayer_B_SelectedIndexNumber: (index: number) => void;
+  setCardLayer_C_SelectedIndexNumber: (index: number) => void;
 
   setCardLayer_A_JustifyContent: (
     justifyContent: "flex-start" | "center" | "flex-end"
@@ -72,9 +86,15 @@ export const useCardLayerStore = create<CardLayerState>((set) => ({
   cardLayer_C_Data: [],
   cardLayer_Tmp_Data: [],
 
+  // window start
   cardLayer_A_FirstItemIndexNumber: 0,
   cardLayer_B_FirstItemIndexNumber: 0,
   cardLayer_C_FirstItemIndexNumber: 0,
+
+  // selected
+  cardLayer_A_SelectedIndexNumber: 0,
+  cardLayer_B_SelectedIndexNumber: 0,
+  cardLayer_C_SelectedIndexNumber: 0,
 
   cardLayer_A_JustifyContent: "center",
   cardLayer_B_JustifyContent: "center",
@@ -101,6 +121,13 @@ export const useCardLayerStore = create<CardLayerState>((set) => ({
     set({ cardLayer_B_FirstItemIndexNumber: receivedValue }),
   setCardLayer_C_FirstItemIndexNumber: (receivedValue) =>
     set({ cardLayer_C_FirstItemIndexNumber: receivedValue }),
+
+  setCardLayer_A_SelectedIndexNumber: (receivedValue) =>
+    set({ cardLayer_A_SelectedIndexNumber: receivedValue }),
+  setCardLayer_B_SelectedIndexNumber: (receivedValue) =>
+    set({ cardLayer_B_SelectedIndexNumber: receivedValue }),
+  setCardLayer_C_SelectedIndexNumber: (receivedValue) =>
+    set({ cardLayer_C_SelectedIndexNumber: receivedValue }),
 
   setCardLayer_A_JustifyContent: (receivedValue) =>
     set({ cardLayer_A_JustifyContent: receivedValue }),

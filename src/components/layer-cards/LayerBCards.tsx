@@ -10,74 +10,81 @@ export default function LayerBCards() {
   const cardLayer_B_JustifyContent = useCardLayerStore(
     (s) => s.cardLayer_B_JustifyContent
   );
+
+  // window start
   const cardLayer_B_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.cardLayer_B_FirstItemIndexNumber
   );
 
-  const setCardLayer_B_FirstItemIndexNumber = useCardLayerStore(
-    (s) => s.setCardLayer_B_FirstItemIndexNumber
+  // selected
+  const cardLayer_B_SelectedIndexNumber = useCardLayerStore(
+    (s) => s.cardLayer_B_SelectedIndexNumber
+  );
+  const setCardLayer_B_SelectedIndexNumber = useCardLayerStore(
+    (s) => s.setCardLayer_B_SelectedIndexNumber
   );
 
   const setCardLayer_C_Data = useCardLayerStore((s) => s.setCardLayer_C_Data);
+
   const setCardLayer_C_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.setCardLayer_C_FirstItemIndexNumber
   );
+  const setCardLayer_C_SelectedIndexNumber = useCardLayerStore(
+    (s) => s.setCardLayer_C_SelectedIndexNumber
+  );
 
-  const numberOfLayerBItems = cardLayer_B_Data.length;
+  const maxSlots = APP_CONFIG.default.maxNumberOfCardsPerLayer;
 
   const handleBadgeClick = (
     payload: BadgeClickPayload,
     node: HierarchyNode
   ) => {
-    setCardLayer_B_FirstItemIndexNumber(payload.positionIndex);
+    // ✅ focus B selection
+    setCardLayer_B_SelectedIndexNumber(payload.positionIndex);
 
-    // When we select a different Layer-B item we reset the horizontal navigation of Layer-C
+    // reset C scrolling + selection
     setCardLayer_C_FirstItemIndexNumber(0);
+    setCardLayer_C_SelectedIndexNumber(0);
 
     if (!payload.expanded) {
       setCardLayer_C_Data([]);
       return;
     }
 
-    // Expand: children of selected B-node become Layer-C
     setCardLayer_C_Data(node.children ?? []);
   };
 
-  const selectedIndex = cardLayer_B_FirstItemIndexNumber;
-  const hasSelection = numberOfLayerBItems > 1;
+  const visible = cardLayer_B_Data.slice(
+    cardLayer_B_FirstItemIndexNumber,
+    cardLayer_B_FirstItemIndexNumber + maxSlots
+  );
 
   return (
     <div
       className="layer-a-cards"
       style={{ justifyContent: cardLayer_B_JustifyContent }}
     >
-      {cardLayer_B_Data
-        .map((node: HierarchyNode, index: number) => {
-          const content = <div>some content</div>;
+      {visible.map((node, localIndex) => {
+        const globalIndex = cardLayer_B_FirstItemIndexNumber + localIndex;
 
-          const isSelected = index === selectedIndex;
-          const isDimmed = hasSelection && !isSelected;
+        const isSelected = globalIndex === cardLayer_B_SelectedIndexNumber;
+        const isDimmed = visible.length > 1 && !isSelected;
 
-          return (
-            <GraphCard
-              key={node.id}
-              node={node}
-              showBadge={node.children.length > 0}
-              showChildren={isSelected}
-              positionIndex={index}
-              content={content}
-              isSelected={isSelected}
-              isDimmed={isDimmed}
-              isConnected
-              onBadgeClick={(payload) => handleBadgeClick(payload, node)}
-            />
-          );
-        })
-        .slice(
-          cardLayer_B_FirstItemIndexNumber,
-          APP_CONFIG.default.maxNumberOfCardsPerLayer +
-            cardLayer_B_FirstItemIndexNumber
-        )}
+        return (
+          <GraphCard
+            key={node.id}
+            node={node}
+            showBadge={node.children.length > 0}
+            showChildren={isSelected}
+            positionIndex={globalIndex}
+            content={<div>some content</div>}
+            isSelected={isSelected}
+            isDimmed={isDimmed}
+            isConnected={true}
+            onBadgeClick={(payload) => handleBadgeClick(payload, node)}
+          />
+        );
+      })}
     </div>
   );
 }

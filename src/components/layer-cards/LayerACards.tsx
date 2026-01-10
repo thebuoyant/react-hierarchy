@@ -11,11 +11,21 @@ export default function LayerACards() {
   const cardLayer_A_JustifyContent = useCardLayerStore(
     (s) => s.cardLayer_A_JustifyContent
   );
+
+  // window start (slice)
   const cardLayer_A_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.cardLayer_A_FirstItemIndexNumber
   );
   const setCardLayer_A_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.setCardLayer_A_FirstItemIndexNumber
+  );
+
+  // selected index (focus)
+  const cardLayer_A_SelectedIndexNumber = useCardLayerStore(
+    (s) => s.cardLayer_A_SelectedIndexNumber
+  );
+  const setCardLayer_A_SelectedIndexNumber = useCardLayerStore(
+    (s) => s.setCardLayer_A_SelectedIndexNumber
   );
 
   const setCardLayer_B_Data = useCardLayerStore((s) => s.setCardLayer_B_Data);
@@ -28,72 +38,72 @@ export default function LayerACards() {
     (s) => s.setCardLayer_C_FirstItemIndexNumber
   );
 
-  const numberOfLayerAItems = cardLayer_A_Data.length;
+  const setCardLayer_B_SelectedIndexNumber = useCardLayerStore(
+    (s) => s.setCardLayer_B_SelectedIndexNumber
+  );
+  const setCardLayer_C_SelectedIndexNumber = useCardLayerStore(
+    (s) => s.setCardLayer_C_SelectedIndexNumber
+  );
+
+  const maxSlots = APP_CONFIG.default.maxNumberOfCardsPerLayer;
 
   const handleBadgeClick = (
     payload: BadgeClickPayload,
     node: HierarchyNode
   ) => {
-    // We treat "FirstItemIndexNumber" as the current focus/selection index.
-    // (This follows your existing design & navigation approach.)
-    setCardLayer_A_FirstItemIndexNumber(payload.positionIndex);
+    // ✅ Update selection (this is what the user chose)
+    setCardLayer_A_SelectedIndexNumber(payload.positionIndex);
 
-    // When we change the selected parent, we reset horizontal navigation in lower layers.
+    // Reset lower layers navigation + selection
     setCardLayer_B_FirstItemIndexNumber(0);
     setCardLayer_C_FirstItemIndexNumber(0);
+    setCardLayer_B_SelectedIndexNumber(0);
+    setCardLayer_C_SelectedIndexNumber(0);
 
     if (!payload.expanded) {
-      // Collapse: hide lower layers
       setCardLayer_B_Data([]);
       setCardLayer_C_Data([]);
       return;
     }
 
-    // Expand: children of selected A-node become Layer-B
     const layerBChildren = node.children ?? [];
     setCardLayer_B_Data(layerBChildren);
 
-    // Layer-C initially shows the children of the first Layer-B entry with children
     const layerCChildren = getChildrenOfFirstNodeWithChildren(layerBChildren);
     setCardLayer_C_Data(layerCChildren);
   };
 
-  // "Focus" logic for a clearer UX:
-  const selectedIndex = cardLayer_A_FirstItemIndexNumber;
-  const hasSelection = numberOfLayerAItems > 1;
+  const visible = cardLayer_A_Data.slice(
+    cardLayer_A_FirstItemIndexNumber,
+    cardLayer_A_FirstItemIndexNumber + maxSlots
+  );
 
   return (
     <div
       className="layer-a-cards"
       style={{ justifyContent: cardLayer_A_JustifyContent }}
     >
-      {cardLayer_A_Data
-        .map((node: HierarchyNode, index: number) => {
-          const content = <div>some content</div>;
+      {visible.map((node, localIndex) => {
+        const globalIndex = cardLayer_A_FirstItemIndexNumber + localIndex;
 
-          const isSelected = index === selectedIndex;
-          const isDimmed = hasSelection && !isSelected;
+        const isSelected = globalIndex === cardLayer_A_SelectedIndexNumber;
+        const isDimmed = visible.length > 1 && !isSelected;
 
-          return (
-            <GraphCard
-              key={node.id}
-              node={node}
-              showBadge={node.children.length > 0}
-              showChildren={isSelected}
-              positionIndex={index}
-              content={content}
-              isSelected={isSelected}
-              isDimmed={isDimmed}
-              isConnected={isSelected}
-              onBadgeClick={(payload) => handleBadgeClick(payload, node)}
-            />
-          );
-        })
-        .slice(
-          cardLayer_A_FirstItemIndexNumber,
-          APP_CONFIG.default.maxNumberOfCardsPerLayer +
-            cardLayer_A_FirstItemIndexNumber
-        )}
+        return (
+          <GraphCard
+            key={node.id}
+            node={node}
+            showBadge={node.children.length > 0}
+            showChildren={isSelected}
+            positionIndex={globalIndex}
+            content={<div>some content</div>}
+            isSelected={isSelected}
+            isDimmed={isDimmed}
+            isConnected={isSelected}
+            onBadgeClick={(payload) => handleBadgeClick(payload, node)}
+          />
+        );
+      })}
     </div>
   );
 }
