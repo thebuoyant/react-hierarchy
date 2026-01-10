@@ -10,9 +10,26 @@ export default function HeaderNav() {
   const cardLayer_A_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.cardLayer_A_FirstItemIndexNumber
   );
+  const cardLayer_Tmp_Data = useCardLayerStore((s) => s.cardLayer_Tmp_Data);
+  const setCardLayer_A_Data = useCardLayerStore((s) => s.setCardLayer_A_Data);
+  const cardLayer_B_Data = useCardLayerStore((s) => s.cardLayer_B_Data);
+  const setCardLayer_B_Data = useCardLayerStore((s) => s.setCardLayer_B_Data);
+  const setCardLayer_C_Data = useCardLayerStore((s) => s.setCardLayer_C_Data);
+  const setCardLayer_Tmp_Data = useCardLayerStore(
+    (s) => s.setCardLayer_Tmp_Data
+  );
 
   // internal calculations
   const numberOfLayerAItems = cardLayer_A_Data.length;
+
+  // actions
+  const handleBadgeClick = (item: any) => {
+    console.log("header badge", item);
+    setCardLayer_A_Data(cardLayer_Tmp_Data);
+    setCardLayer_B_Data(cardLayer_A_Data);
+    setCardLayer_C_Data(cardLayer_B_Data);
+    setCardLayer_Tmp_Data([]);
+  };
 
   return (
     <div className="header-nav">
@@ -28,7 +45,7 @@ export default function HeaderNav() {
             counter={0}
             isExpanded
             nodeId=""
-            onClick={() => {}}
+            onClick={handleBadgeClick}
             positionIndex={0}
           />
         </div>
