@@ -8,32 +8,12 @@ import { BadgeClickPayload } from "../../types/graph.types";
 
 export type GraphCardProps = {
   node: HierarchyNode;
-
-  /**
-   * Whether the expand/collapse badge should be shown.
-   * In your UI: only show it when a node has children.
-   */
   showBadge: boolean;
-
-  /**
-   * Whether this node is currently "expanded" / selected (vertical navigation).
-   * Used to render the correct arrow icon in the GraphBadge.
-   */
   showChildren: boolean;
-
   onBadgeClick?: (payload: BadgeClickPayload) => void;
-
-  /**
-   * Index of this card within its layer data array.
-   * This is important for navigation and "selected" logic.
-   */
   positionIndex: number;
-
   content: React.ReactNode;
 
-  /**
-   * Visual states (UX helpers)
-   */
   isSelected?: boolean;
   isDimmed?: boolean;
   isConnected?: boolean;
@@ -97,19 +77,15 @@ export default function GraphCard({
       data-nodeid={node.id}
       data-selected={isSelected ? "true" : "false"}
     >
-      <div
-        className="space-left"
-        style={{ width: cardSpace, overflow: "hidden" }}
-      />
+      <div className="space-left" style={{ width: cardSpace }} />
 
-      <div
-        className="card-content-wrapper"
-        style={{ width: cardWidth, overflow: "hidden" }}
-      >
+      <div className="card-content-wrapper" style={{ width: cardWidth }}>
         <div
           className="content-header"
           style={{ backgroundColor: node.layout.headerBackgroundColor }}
         >
+          {isSelected && <div className="selected-pill">Aktiv</div>}
+
           {showAvatar && (
             <div className="avatar-section">
               <Avatar
@@ -143,10 +119,7 @@ export default function GraphCard({
         <div className="content-main">{content}</div>
       </div>
 
-      <div
-        className="space-right"
-        style={{ width: cardSpace, overflow: "hidden" }}
-      />
+      <div className="space-right" style={{ width: cardSpace }} />
 
       {showBadge && (
         <div className="badge-section">

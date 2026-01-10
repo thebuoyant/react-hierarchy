@@ -4,6 +4,52 @@
   display: flex;
   align-items: center;
 
+  /* Breadcrumb is always visible and centered */
+  .breadcrumb {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 44px; /* leaves space for left/right badges */
+    box-sizing: border-box;
+    user-select: none;
+  }
+
+  .breadcrumb-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .breadcrumb-chip {
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+
+  .breadcrumb-backhint {
+    opacity: 0.75;
+  }
+
+  .breadcrumb-path {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0.9;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    .crumb {
+      max-width: 240px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sep {
+      opacity: 0.5;
+    }
+  }
+
   .nav-item-left {
     position: absolute;
     left: 0;
@@ -27,7 +73,6 @@
   .nav-item-right {
     position: absolute;
     right: 0;
-
     z-index: 100;
 
     .MuiChip-root {

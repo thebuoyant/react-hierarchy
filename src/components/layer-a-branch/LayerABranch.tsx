@@ -33,7 +33,6 @@ export default function LayerABranch() {
   const totalWidth = maxSlots * slotWidth;
 
   const numberOfLayerBItems = cardLayer_B_Data.length;
-
   const maxFirstIndex = Math.max(0, numberOfLayerBItems - maxSlots);
 
   const handleClickLeft = () => {
@@ -46,21 +45,21 @@ export default function LayerABranch() {
     setCardLayer_B_FirstItemIndexNumber(next);
   };
 
-  // --- Focus / connection geometry (junior-friendly math) ---
-  // Visible cards are the slice: [firstIndex .. firstIndex + maxSlots)
+  // --- Geometry ---
+  // The important fix: the horizontal line must always reach the parent's x-position.
   const parentFirstIndex = cardLayer_A_FirstItemIndexNumber;
-  const selectedParentIndex = cardLayer_A_FirstItemIndexNumber; // same store value in your current design
+  const selectedParentIndex = cardLayer_A_FirstItemIndexNumber;
 
   const parentVisibleSlots = Math.min(
     maxSlots,
     Math.max(0, cardLayer_A_Data.length - parentFirstIndex)
   );
+
   const childVisibleSlots = Math.min(
     maxSlots,
     Math.max(0, cardLayer_B_Data.length - cardLayer_B_FirstItemIndexNumber)
   );
 
-  // Cards are centered within the total width.
   const parentOffset = (totalWidth - parentVisibleSlots * slotWidth) / 2;
   const childOffset = (totalWidth - childVisibleSlots * slotWidth) / 2;
 
@@ -75,11 +74,18 @@ export default function LayerABranch() {
 
   const parentX = parentOffset + (focusSlot + 0.5) * slotWidth;
 
+  const childGroupLeft = childOffset;
+  const childGroupRight = childOffset + childVisibleSlots * slotWidth;
+
+  // ✅ Fix: make the horizontal line span from parentX to the child group
+  const lineLeft = Math.min(parentX, childGroupLeft);
+  const lineRight = Math.max(parentX, childGroupRight);
+  const lineWidth = Math.max(0, lineRight - lineLeft);
+
   const showConnections = parentVisibleSlots > 0 && childVisibleSlots > 0;
 
   return (
     <div className="layer-a-branch" style={{ width: totalWidth }}>
-      {/* Horizontal navigation for Layer-B */}
       {cardLayer_B_FirstItemIndexNumber > 0 &&
         numberOfLayerBItems > maxSlots && (
           <div className="nav-item-left">
@@ -92,10 +98,8 @@ export default function LayerABranch() {
           </div>
         )}
 
-      {/* Focus connections */}
       {showConnections && (
         <div className="branch-focus" style={{ height: branchHeight }}>
-          {/* Parent drop line (from parent card down to the middle) */}
           <div
             className="branch-parent-drop"
             style={{
@@ -105,18 +109,16 @@ export default function LayerABranch() {
             }}
           />
 
-          {/* Horizontal line for the visible children */}
           <div
             className="branch-children-line"
             style={{
-              left: childOffset,
-              width: childVisibleSlots * slotWidth,
+              left: lineLeft,
+              width: lineWidth,
               top: branchHeight / 2,
               backgroundColor: APP_CONFIG.layout.branch.lineColor,
             }}
           />
 
-          {/* Child drops + dots */}
           {Array.from({ length: childVisibleSlots }).map((_, i) => {
             const x = childOffset + (i + 0.5) * slotWidth;
 
@@ -143,7 +145,6 @@ export default function LayerABranch() {
             );
           })}
 
-          {/* A dot under the parent helps the eye track the focus */}
           <div
             className="branch-dot branch-dot--parent"
             style={{

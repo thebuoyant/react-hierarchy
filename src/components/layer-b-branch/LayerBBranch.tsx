@@ -45,14 +45,15 @@ export default function LayerBBranch() {
     setCardLayer_C_FirstItemIndexNumber(next);
   };
 
-  // --- Focus / connection geometry ---
+  // --- Geometry fix (same as LayerABranch) ---
   const parentFirstIndex = cardLayer_B_FirstItemIndexNumber;
-  const selectedParentIndex = cardLayer_B_FirstItemIndexNumber; // current design: same value
+  const selectedParentIndex = cardLayer_B_FirstItemIndexNumber;
 
   const parentVisibleSlots = Math.min(
     maxSlots,
     Math.max(0, cardLayer_B_Data.length - parentFirstIndex)
   );
+
   const childVisibleSlots = Math.min(
     maxSlots,
     Math.max(0, cardLayer_C_Data.length - cardLayer_C_FirstItemIndexNumber)
@@ -71,6 +72,13 @@ export default function LayerBBranch() {
         );
 
   const parentX = parentOffset + (focusSlot + 0.5) * slotWidth;
+
+  const childGroupLeft = childOffset;
+  const childGroupRight = childOffset + childVisibleSlots * slotWidth;
+
+  const lineLeft = Math.min(parentX, childGroupLeft);
+  const lineRight = Math.max(parentX, childGroupRight);
+  const lineWidth = Math.max(0, lineRight - lineLeft);
 
   const showConnections = parentVisibleSlots > 0 && childVisibleSlots > 0;
 
@@ -102,8 +110,8 @@ export default function LayerBBranch() {
           <div
             className="branch-children-line"
             style={{
-              left: childOffset,
-              width: childVisibleSlots * slotWidth,
+              left: lineLeft,
+              width: lineWidth,
               top: branchHeight / 2,
               backgroundColor: APP_CONFIG.layout.branch.lineColor,
             }}
