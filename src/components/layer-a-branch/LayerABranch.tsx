@@ -4,6 +4,10 @@ import { useLayoutStore } from "../../store/layoutStore";
 import NavBadge from "../nav-badge/NavBadge";
 import "./LayerABranch.css";
 
+function clamp(value: number, min: number, max: number) {
+  return Math.min(Math.max(value, min), max);
+}
+
 export default function LayerABranch() {
   // layout store
   const cardWidth = useLayoutStore((s) => s.cardWidth);
@@ -23,20 +27,21 @@ export default function LayerABranch() {
   const branchLineItemColor = APP_CONFIG.layout.branch.lineColor;
   const numberOfLayerBItems = cardLayer_B_Data.length;
 
+  const maxFirstIndex = Math.max(
+    0,
+    numberOfLayerBItems - APP_CONFIG.default.maxNumberOfCardsPerLayer
+  );
+
   // actions
   const handleClickLeft = () => {
-    setCardLayer_B_FirstItemIndexNumber(cardLayer_B_FirstItemIndexNumber - 1);
+    const next = clamp(cardLayer_B_FirstItemIndexNumber - 1, 0, maxFirstIndex);
+    setCardLayer_B_FirstItemIndexNumber(next);
   };
 
   const handleClickRight = () => {
-    setCardLayer_B_FirstItemIndexNumber(cardLayer_B_FirstItemIndexNumber + 1);
+    const next = clamp(cardLayer_B_FirstItemIndexNumber + 1, 0, maxFirstIndex);
+    setCardLayer_B_FirstItemIndexNumber(next);
   };
-
-  console.log("numberOfLayerBItems", numberOfLayerBItems);
-  console.log(
-    "cardLayer_B_FirstItemIndexNumber",
-    cardLayer_B_FirstItemIndexNumber
-  );
 
   return (
     <div className="layer-a-branch">
@@ -51,42 +56,24 @@ export default function LayerABranch() {
             />
           </div>
         )}
+
       <div className="branch-line">
         <div
-          className="branch-line-item-a"
+          className="branch-line-item"
           style={{
             width: branchLineItemWidth,
             backgroundColor: branchLineItemColor,
           }}
         ></div>
+
         <div
-          className="branch-line-item-b"
+          className="branch-line-item"
           style={{
             width: branchLineItemWidth,
             backgroundColor: branchLineItemColor,
           }}
         ></div>
-        <div
-          className="branch-line-item-c"
-          style={{
-            width: branchLineItemWidth,
-            backgroundColor: branchLineItemColor,
-          }}
-        ></div>
-        <div
-          className="branch-line-item-d"
-          style={{
-            width: branchLineItemWidth,
-            backgroundColor: branchLineItemColor,
-          }}
-        ></div>
-        <div
-          className="branch-line-item-e"
-          style={{
-            width: branchLineItemWidth,
-            backgroundColor: branchLineItemColor,
-          }}
-        ></div>
+
         <div
           className="branch-line-item-f"
           style={{
@@ -95,6 +82,7 @@ export default function LayerABranch() {
           }}
         ></div>
       </div>
+
       {numberOfLayerBItems -
         cardLayer_B_FirstItemIndexNumber -
         APP_CONFIG.default.maxNumberOfCardsPerLayer >

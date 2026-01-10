@@ -3,6 +3,7 @@ import { useCardLayerStore } from "../../store/cardLayerStore";
 import { HierarchyNode } from "../../types/data.type";
 import GraphCard from "../graph-card/GraphCard";
 import "./LayerBCards.css";
+import { BadgeClickPayload } from "../../types/graph.types";
 
 export default function LayerBCards() {
   const cardLayer_B_Data = useCardLayerStore((s) => s.cardLayer_B_Data);
@@ -13,6 +14,33 @@ export default function LayerBCards() {
     (s) => s.cardLayer_B_FirstItemIndexNumber
   );
 
+  const setCardLayer_B_FirstItemIndexNumber = useCardLayerStore(
+    (s) => s.setCardLayer_B_FirstItemIndexNumber
+  );
+
+  const setCardLayer_C_Data = useCardLayerStore((s) => s.setCardLayer_C_Data);
+  const setCardLayer_C_FirstItemIndexNumber = useCardLayerStore(
+    (s) => s.setCardLayer_C_FirstItemIndexNumber
+  );
+
+  const handleBadgeClick = (
+    payload: BadgeClickPayload,
+    node: HierarchyNode
+  ) => {
+    setCardLayer_B_FirstItemIndexNumber(payload.positionIndex);
+
+    // When we select a different Layer-B item we reset the horizontal navigation of Layer-C
+    setCardLayer_C_FirstItemIndexNumber(0);
+
+    if (!payload.expanded) {
+      setCardLayer_C_Data([]);
+      return;
+    }
+
+    // Expand: children of selected B-node become Layer-C
+    setCardLayer_C_Data(node.children ?? []);
+  };
+
   return (
     <div
       className="layer-a-cards"
@@ -21,19 +49,17 @@ export default function LayerBCards() {
       {cardLayer_B_Data
         .map((node: HierarchyNode, index: number) => {
           const content = <div>some content</div>;
-          const handleOnBadgeClick = () => {
-            console.log("handleOnBadgeClick", node);
-          };
+
           return (
             <GraphCard
-              key={index}
+              key={node.id}
               node={node}
               showBadge={node.children.length > 0}
               showChildren={index === cardLayer_B_FirstItemIndexNumber}
               showParent
-              positionIndex={cardLayer_B_FirstItemIndexNumber}
+              positionIndex={index}
               content={content}
-              onBadgeClick={handleOnBadgeClick}
+              onBadgeClick={(payload) => handleBadgeClick(payload, node)}
             />
           );
         })

@@ -4,24 +4,80 @@ import { HierarchyNode } from "../../types/data.type";
 import { getChildrenByNodeId } from "../../util/node.util";
 import GraphCard from "../graph-card/GraphCard";
 import "./LayerCCards.css";
+import { BadgeClickPayload } from "../../types/graph.types";
 
+/**
+ * Layer-C is the last visible layer.
+ * If a Layer-C node has children, we "drill down":
+ *   - A <- B
+ *   - B <- C
+ *   - C <- children of selected C node
+ *
+ * To keep the code close to your current approach, we store the old Layer-A
+ * in `cardLayer_Tmp_Data` so the HeaderNav can navigate one step back.
+ */
 export default function LayerCCards() {
   const rootNode = useCardLayerStore((s) => s.rootNode);
+
   const cardLayer_A_Data = useCardLayerStore((s) => s.cardLayer_A_Data);
   const setCardLayer_A_Data = useCardLayerStore((s) => s.setCardLayer_A_Data);
+
   const cardLayer_B_Data = useCardLayerStore((s) => s.cardLayer_B_Data);
   const setCardLayer_B_Data = useCardLayerStore((s) => s.setCardLayer_B_Data);
+
+  const cardLayer_C_Data = useCardLayerStore((s) => s.cardLayer_C_Data);
   const setCardLayer_C_Data = useCardLayerStore((s) => s.setCardLayer_C_Data);
+
   const setCardLayer_Tmp_Data = useCardLayerStore(
     (s) => s.setCardLayer_Tmp_Data
   );
-  const cardLayer_C_Data = useCardLayerStore((s) => s.cardLayer_C_Data);
+
   const cardLayer_C_JustifyContent = useCardLayerStore(
     (s) => s.cardLayer_C_JustifyContent
   );
   const cardLayer_C_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.cardLayer_C_FirstItemIndexNumber
   );
+
+  const setCardLayer_A_FirstItemIndexNumber = useCardLayerStore(
+    (s) => s.setCardLayer_A_FirstItemIndexNumber
+  );
+  const setCardLayer_B_FirstItemIndexNumber = useCardLayerStore(
+    (s) => s.setCardLayer_B_FirstItemIndexNumber
+  );
+  const setCardLayer_C_FirstItemIndexNumber = useCardLayerStore(
+    (s) => s.setCardLayer_C_FirstItemIndexNumber
+  );
+
+  const handleBadgeClick = (
+    payload: BadgeClickPayload,
+    node: HierarchyNode
+  ) => {
+    // Mark clicked C item as "selected/expanded"
+    setCardLayer_C_FirstItemIndexNumber(payload.positionIndex);
+
+    if (!payload.expanded) {
+      // In Layer-C we treat "collapse" as: do nothing.
+      // (Because there is no additional visible layer below.)
+      return;
+    }
+
+    // Drill-down: use util to make sure we always get the latest children from root.
+    const newChildrenForLayerC = getChildrenByNodeId(rootNode, node.id);
+
+    // Save current A so we can go one step back
+    setCardLayer_Tmp_Data(cardLayer_A_Data);
+
+    // Shift levels up
+    setCardLayer_A_Data(cardLayer_B_Data);
+    setCardLayer_B_Data(cardLayer_C_Data);
+    setCardLayer_C_Data(newChildrenForLayerC);
+
+    // Reset "expanded" selection and horizontal windows
+    setCardLayer_A_FirstItemIndexNumber(0);
+    setCardLayer_B_FirstItemIndexNumber(0);
+    setCardLayer_C_FirstItemIndexNumber(0);
+  };
 
   return (
     <div
@@ -31,28 +87,17 @@ export default function LayerCCards() {
       {cardLayer_C_Data
         .map((node: HierarchyNode, index: number) => {
           const content = <div>some content</div>;
-          const handleOnBadgeClick = () => {
-            const selectedNodeId = node.id;
-            const newChildrenForLayerC = getChildrenByNodeId(
-              rootNode,
-              selectedNodeId
-            );
 
-            setCardLayer_Tmp_Data(cardLayer_A_Data);
-            setCardLayer_A_Data(cardLayer_B_Data);
-            setCardLayer_B_Data(cardLayer_C_Data);
-            setCardLayer_C_Data(newChildrenForLayerC);
-          };
           return (
             <GraphCard
-              key={index}
+              key={node.id}
               node={node}
               showBadge={node.children.length > 0}
-              showChildren={false}
+              showChildren={index === cardLayer_C_FirstItemIndexNumber}
               showParent
-              positionIndex={cardLayer_C_FirstItemIndexNumber}
+              positionIndex={index}
               content={content}
-              onBadgeClick={handleOnBadgeClick}
+              onBadgeClick={(payload) => handleBadgeClick(payload, node)}
             />
           );
         })
