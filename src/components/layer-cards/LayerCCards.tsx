@@ -1,10 +1,20 @@
 import { APP_CONFIG } from "../../app.config";
 import { useCardLayerStore } from "../../store/cardLayerStore";
 import { HierarchyNode } from "../../types/data.type";
+import { getChildrenByNodeId } from "../../util/node.util";
 import GraphCard from "../graph-card/GraphCard";
 import "./LayerCCards.css";
 
 export default function LayerCCards() {
+  const rootNode = useCardLayerStore((s) => s.rootNode);
+  const cardLayer_A_Data = useCardLayerStore((s) => s.cardLayer_A_Data);
+  const setCardLayer_A_Data = useCardLayerStore((s) => s.setCardLayer_A_Data);
+  const cardLayer_B_Data = useCardLayerStore((s) => s.cardLayer_B_Data);
+  const setCardLayer_B_Data = useCardLayerStore((s) => s.setCardLayer_B_Data);
+  const setCardLayer_C_Data = useCardLayerStore((s) => s.setCardLayer_C_Data);
+  const setCardLayer_Tmp_Data = useCardLayerStore(
+    (s) => s.setCardLayer_Tmp_Data
+  );
   const cardLayer_C_Data = useCardLayerStore((s) => s.cardLayer_C_Data);
   const cardLayer_C_JustifyContent = useCardLayerStore(
     (s) => s.cardLayer_C_JustifyContent
@@ -22,7 +32,16 @@ export default function LayerCCards() {
         .map((node: HierarchyNode, index: number) => {
           const content = <div>some content</div>;
           const handleOnBadgeClick = () => {
-            console.log("handleOnBadgeClick", node);
+            const selectedNodeId = node.id;
+            const newChildrenForLayerC = getChildrenByNodeId(
+              rootNode,
+              selectedNodeId
+            );
+
+            setCardLayer_Tmp_Data(cardLayer_A_Data);
+            setCardLayer_A_Data(cardLayer_B_Data);
+            setCardLayer_B_Data(cardLayer_C_Data);
+            setCardLayer_C_Data(newChildrenForLayerC);
           };
           return (
             <GraphCard

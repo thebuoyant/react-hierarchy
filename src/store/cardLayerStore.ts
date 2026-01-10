@@ -2,6 +2,8 @@ import { create } from "zustand";
 import { HierarchyNode } from "../types/data.type";
 
 type CardLayerState = {
+  rootNode: HierarchyNode;
+
   cardLayer_A_Data: HierarchyNode[];
   cardLayer_B_Data: HierarchyNode[];
   cardLayer_C_Data: HierarchyNode[];
@@ -18,6 +20,8 @@ type CardLayerState = {
   layer_A_RowIndexNumber: number;
   layer_B_RowIndexNumber: number;
   layer_C_RowIndexNumber: number;
+
+  setRootNode: (root: HierarchyNode) => void;
 
   setCardLayer_A_Data: (data: HierarchyNode[]) => void;
   setCardLayer_B_Data: (data: HierarchyNode[]) => void;
@@ -44,6 +48,25 @@ type CardLayerState = {
 };
 
 export const useCardLayerStore = create<CardLayerState>((set) => ({
+  rootNode: {
+    id: "NodeA",
+    headerTitle: "Node-A",
+    headerSubTitle: "Node-A-Subtitle",
+    content: {
+      valueA: "Node-A-Value-A",
+      valueB: "Node-A-Value-B",
+    },
+    contentType: "person",
+    avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
+    showAvatar: true,
+    layout: {
+      headerBackgroundColor: "#123456",
+      headerTitleColor: "#ffffff",
+      headerSubtitleColor: "#cccccc",
+    },
+    children: [],
+  },
+
   cardLayer_A_Data: [],
   cardLayer_B_Data: [],
   cardLayer_C_Data: [],
@@ -60,6 +83,8 @@ export const useCardLayerStore = create<CardLayerState>((set) => ({
   layer_A_RowIndexNumber: 0,
   layer_B_RowIndexNumber: 1,
   layer_C_RowIndexNumber: 2,
+
+  setRootNode: (receivedValue) => set({ rootNode: receivedValue }),
 
   setCardLayer_A_Data: (receivedValue) =>
     set({ cardLayer_A_Data: receivedValue }),

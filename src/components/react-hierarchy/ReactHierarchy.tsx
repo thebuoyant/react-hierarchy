@@ -45,9 +45,7 @@ export default function ReactHierarchy({
   const setCardSpace = useLayoutStore((s) => s.setCardSpace);
 
   // card layer store
-  const cardLayer_A_Data = useCardLayerStore((s) => s.cardLayer_A_Data);
-  const cardLayer_B_Data = useCardLayerStore((s) => s.cardLayer_B_Data);
-  const cardLayer_C_Data = useCardLayerStore((s) => s.cardLayer_C_Data);
+  const setRootNode = useCardLayerStore((s) => s.setRootNode);
 
   const setCardLayer_A_Data = useCardLayerStore((s) => s.setCardLayer_A_Data);
   const setCardLayer_B_Data = useCardLayerStore((s) => s.setCardLayer_B_Data);
@@ -60,6 +58,8 @@ export default function ReactHierarchy({
   }, [appConfig, setCardHeight, setCardWidth, setCardSpace]);
 
   useEffect(() => {
+    setRootNode(data);
+
     setCardLayer_A_Data([data]);
 
     const layer_B_children = findFirstNodeWithChildrenById(data, data.id) || [];
@@ -68,11 +68,13 @@ export default function ReactHierarchy({
     const layer_C_children =
       getChildrenOfFirstNodeWithChildren(layer_B_children);
     setCardLayer_C_Data(layer_C_children);
-  }, [data, setCardLayer_A_Data, setCardLayer_B_Data, setCardLayer_C_Data]);
-
-  console.log("cardLayer_A_Data", cardLayer_A_Data);
-  console.log("cardLayer_B_Data", cardLayer_B_Data);
-  console.log("cardLayer_C_Data", cardLayer_C_Data);
+  }, [
+    data,
+    setCardLayer_A_Data,
+    setCardLayer_B_Data,
+    setCardLayer_C_Data,
+    setRootNode,
+  ]);
 
   const totalWidth =
     (2 * cardSpace + cardWidth) * APP_CONFIG.default.maxNumberOfCardsPerLayer;

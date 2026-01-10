@@ -246,3 +246,35 @@ export function extractNodesForLevels(root: HierarchyNode): {
     arrayLevelC,
   };
 }
+
+/**
+ * Returns all direct children of a node by its id.
+ *
+ * - If the node does not exist -> returns []
+ * - If the node exists but has no children -> returns []
+ *
+ * This is a very common helper for:
+ * - expanding nodes
+ * - lazy loading
+ * - UI level rendering
+ */
+export function getChildrenByNodeId(
+  root: HierarchyNode,
+  targetId: string
+): HierarchyNode[] {
+  function dfs(node: HierarchyNode): HierarchyNode[] | null {
+    if (node.id === targetId) {
+      return node.children;
+    }
+
+    for (const child of node.children) {
+      const found = dfs(child);
+      if (found) return found;
+    }
+
+    return null;
+  }
+
+  const result = dfs(root);
+  return result ?? [];
+}

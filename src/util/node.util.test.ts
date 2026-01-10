@@ -11,6 +11,7 @@ import {
   findNodeAndMetaData,
   findNodeById,
   findParentNode,
+  getChildrenByNodeId,
   getChildrenOfFirstEntry,
   getChildrenOfFirstNodeWithChildren,
   getFirstFilledNodeChildrenItem,
@@ -181,5 +182,33 @@ describe("node.util.ts", () => {
     } else {
       expect(arrayLevelC.length).toBe(firstChild.children.length);
     }
+  });
+
+  it("getChildrenByNodeId: should return children for an existing node", () => {
+    const root = createRoot();
+
+    const children = getChildrenByNodeId(root, "NodeAA");
+
+    expect(children.length).toBeGreaterThan(0);
+    const ids = children.map((c) => c.id);
+    expect(ids).toContain("NodeAAA");
+    expect(ids).toContain("NodeAAB");
+  });
+
+  it("getChildrenByNodeId: should return [] for a leaf node", () => {
+    const root = createRoot();
+
+    // NodeAAA is a leaf in mock data
+    const children = getChildrenByNodeId(root, "NodeAAA");
+
+    expect(children).toEqual([]);
+  });
+
+  it("getChildrenByNodeId: should return [] when node does not exist", () => {
+    const root = createRoot();
+
+    const children = getChildrenByNodeId(root, "DOES_NOT_EXIST");
+
+    expect(children).toEqual([]);
   });
 });
