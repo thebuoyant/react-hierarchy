@@ -1,11 +1,13 @@
 import { APP_CONFIG } from "../../app.config";
 import { useCardLayerStore } from "../../store/cardLayerStore";
 import { HierarchyNode } from "../../types/data.type";
+import { findNodeAndChildren } from "../../util/node.util";
 import GraphCard from "../graph-card/GraphCard";
 import "./LayerACards.css";
 
 export default function LayerACards() {
   // card layer store
+  const rootNode = useCardLayerStore((s) => s.rootNode);
   const cardLayer_A_Data = useCardLayerStore((s) => s.cardLayer_A_Data);
   const cardLayer_A_JustifyContent = useCardLayerStore(
     (s) => s.cardLayer_A_JustifyContent
@@ -16,6 +18,10 @@ export default function LayerACards() {
   const connectedNodeIdLayerA = useCardLayerStore(
     (s) => s.connectedNodeIdLayerA
   );
+  const setConnectedNodeIdLayerA = useCardLayerStore(
+    (s) => s.setConnectedNodeIdLayerA
+  );
+  const setCardLayer_B_Data = useCardLayerStore((s) => s.setCardLayer_B_Data);
 
   // internal calculations
   const numberOfLayerAItems = cardLayer_A_Data.length;
@@ -30,6 +36,18 @@ export default function LayerACards() {
           const content = <div>some content layer a</div>;
           const handleOnBadgeClick = () => {
             console.log("handleOnBadgeClick", node);
+            const selectedNodeId = node.id;
+            const nodesForLayerC = findNodeAndChildren(
+              [rootNode],
+              selectedNodeId
+            )?.children;
+
+            console.log("handleOnBadgeClick", node);
+            console.log("selectedNodeId", selectedNodeId);
+            console.log("nodesForLayerC", nodesForLayerC);
+
+            setConnectedNodeIdLayerA(selectedNodeId);
+            setCardLayer_B_Data(nodesForLayerC || []);
           };
           return (
             <GraphCard
