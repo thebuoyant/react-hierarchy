@@ -1,6 +1,7 @@
 import { Chip } from "@mui/material";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import { APP_CONFIG } from "../../app.config";
 
 export type NavBadgeProps = {
   counter?: number;
@@ -37,6 +38,10 @@ export default function NavBadge({
         )
       }
       size="small"
+      style={{
+        backgroundColor: APP_CONFIG.layout.badge.navBackgroundColor,
+        color: APP_CONFIG.layout.badge.navHierarchyColor,
+      }}
     />
   );
 }
