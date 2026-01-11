@@ -49,7 +49,7 @@ export default function LayerCCards() {
     >
       {cardLayer_C_Data
         .map((node: HierarchyNode, index: number) => {
-          const content = <div>some content</div>;
+          const content = <div>some content layer c</div>;
           const handleOnBadgeClick = () => {
             const selectedNodeId = node.id;
             const newChildrenForLayerC = getChildrenByNodeId(

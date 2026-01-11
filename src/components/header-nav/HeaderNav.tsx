@@ -1,10 +1,15 @@
 import { APP_CONFIG } from "../../app.config";
 import { useCardLayerStore } from "../../store/cardLayerStore";
+import { useLayoutStore } from "../../store/layoutStore";
 import GraphBadge from "../graph-badge/GraphBadge";
 import NavBadge from "../nav-badge/NavBadge";
 import "./HeaderNav.css";
 
 export default function HeaderNav() {
+  // layout store
+  const cardWidth = useLayoutStore((s) => s.cardWidth);
+  const cardSpace = useLayoutStore((s) => s.cardSpace);
+
   // card layer store
   const cardLayer_A_Data = useCardLayerStore((s) => s.cardLayer_A_Data);
   const cardLayer_A_FirstItemIndexNumber = useCardLayerStore(
@@ -43,6 +48,8 @@ export default function HeaderNav() {
   // internal calculations
   const numberOfLayerAItems = cardLayer_A_Data.length;
   const numberOfLayerBItems = cardLayer_B_Data.length;
+  const branchLineItemWidth = 2 * cardSpace + cardWidth;
+  const branchLineItemColor = APP_CONFIG.layout.branch.lineColor;
 
   // actions
   const handleBadgeClick = () => {
@@ -78,6 +85,17 @@ export default function HeaderNav() {
             />
           </div>
         )}
+      {numberOfLayerAItems > 1 && (
+        <div className="branch-line">
+          <div
+            className="branch-line-item-header"
+            style={{
+              width: branchLineItemWidth * numberOfLayerAItems,
+              backgroundColor: branchLineItemColor,
+            }}
+          ></div>
+        </div>
+      )}
       {numberOfLayerAItems >= APP_CONFIG.default.maxNumberOfCardsPerLayer && (
         <div className="nav-item-center">
           <GraphBadge
