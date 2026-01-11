@@ -68,6 +68,10 @@ export default function ReactHierarchy({
     const layer_C_children =
       getChildrenOfFirstNodeWithChildren(layer_B_children);
     setCardLayer_C_Data(layer_C_children);
+
+    // getFirstFilledNodeChildrenItem(
+    //   nodes: HierarchyNode[]
+    // )
   }, [
     data,
     setCardLayer_A_Data,

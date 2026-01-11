@@ -22,6 +22,10 @@ type CardLayerState = {
   layer_B_RowIndexNumber: number;
   layer_C_RowIndexNumber: number;
 
+  connectedNodeIdLayerA: string;
+  connectedNodeIdLayerB: string;
+  connectedNodeIdLayerC: string;
+
   setRootNode: (root: HierarchyNode) => void;
 
   setCardLayer_A_Data: (data: HierarchyNode[]) => void;
@@ -47,6 +51,10 @@ type CardLayerState = {
   setLayer_A_RowIndexNumber: (index: number) => void;
   setLayer_B_RowIndexNumber: (index: number) => void;
   setLayer_C_RowIndexNumber: (index: number) => void;
+
+  setConnectedNodeIdLayerA: (nodeId: string) => void;
+  setConnectedNodeIdLayerB: (nodeId: string) => void;
+  setConnectedNodeIdLayerC: (nodeId: string) => void;
 };
 
 export const useCardLayerStore = create<CardLayerState>((set) => ({
@@ -87,6 +95,10 @@ export const useCardLayerStore = create<CardLayerState>((set) => ({
   layer_B_RowIndexNumber: 1,
   layer_C_RowIndexNumber: 2,
 
+  connectedNodeIdLayerA: "",
+  connectedNodeIdLayerB: "",
+  connectedNodeIdLayerC: "",
+
   setRootNode: (receivedValue) => set({ rootNode: receivedValue }),
 
   setCardLayer_A_Data: (receivedValue) =>
@@ -120,4 +132,11 @@ export const useCardLayerStore = create<CardLayerState>((set) => ({
     set({ layer_B_RowIndexNumber: receivedValue }),
   setLayer_C_RowIndexNumber: (receivedValue) =>
     set({ layer_C_RowIndexNumber: receivedValue }),
+
+  setConnectedNodeIdLayerA: (receivedValue) =>
+    set({ connectedNodeIdLayerA: receivedValue }),
+  setConnectedNodeIdLayerB: (receivedValue) =>
+    set({ connectedNodeIdLayerA: receivedValue }),
+  setConnectedNodeIdLayerC: (receivedValue) =>
+    set({ connectedNodeIdLayerA: receivedValue }),
 }));
