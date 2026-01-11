@@ -20,7 +20,7 @@ export default function LayerBCards() {
     >
       {cardLayer_B_Data
         .map((node: HierarchyNode, index: number) => {
-          const content = <div>some content</div>;
+          const content = <div>some content layer b</div>;
           const handleOnBadgeClick = () => {
             console.log("handleOnBadgeClick", node);
           };

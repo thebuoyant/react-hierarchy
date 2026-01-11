@@ -19,10 +19,25 @@ export default function HeaderNav() {
   const cardLayer_B_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.cardLayer_B_FirstItemIndexNumber
   );
+  const cardLayer_C_FirstItemIndexNumber = useCardLayerStore(
+    (s) => s.cardLayer_C_FirstItemIndexNumber
+  );
+  const cardLayer_TMP_FirstItemIndexNumber = useCardLayerStore(
+    (s) => s.cardLayer_TMP_FirstItemIndexNumber
+  );
   const setCardLayer_B_Data = useCardLayerStore((s) => s.setCardLayer_B_Data);
   const setCardLayer_C_Data = useCardLayerStore((s) => s.setCardLayer_C_Data);
   const setCardLayer_Tmp_Data = useCardLayerStore(
     (s) => s.setCardLayer_Tmp_Data
+  );
+  const setCardLayer_TMP_FirstItemIndexNumber = useCardLayerStore(
+    (s) => s.setCardLayer_TMP_FirstItemIndexNumber
+  );
+  const setCardLayer_B_FirstItemIndexNumber = useCardLayerStore(
+    (s) => s.setCardLayer_B_FirstItemIndexNumber
+  );
+  const setCardLayer_C_FirstItemIndexNumber = useCardLayerStore(
+    (s) => s.setCardLayer_C_FirstItemIndexNumber
   );
 
   // internal calculations
@@ -35,6 +50,11 @@ export default function HeaderNav() {
     setCardLayer_B_Data(cardLayer_A_Data);
     setCardLayer_C_Data(cardLayer_B_Data);
     setCardLayer_Tmp_Data([]);
+
+    setCardLayer_A_FirstItemIndexNumber(cardLayer_TMP_FirstItemIndexNumber);
+    setCardLayer_B_FirstItemIndexNumber(cardLayer_A_FirstItemIndexNumber);
+    setCardLayer_C_FirstItemIndexNumber(cardLayer_B_FirstItemIndexNumber);
+    setCardLayer_TMP_FirstItemIndexNumber(0);
   };
 
   const handleClickLeft = () => {
@@ -54,6 +74,7 @@ export default function HeaderNav() {
               isVisible
               direction="left"
               counter={cardLayer_A_FirstItemIndexNumber}
+              onClick={handleClickLeft}
             />
           </div>
         )}
@@ -81,6 +102,7 @@ export default function HeaderNav() {
               cardLayer_A_FirstItemIndexNumber -
               APP_CONFIG.default.maxNumberOfCardsPerLayer
             }
+            onClick={handleClickRight}
           />
         </div>
       )}
