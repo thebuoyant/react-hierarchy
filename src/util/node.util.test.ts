@@ -27,7 +27,7 @@ function createRoot(): HierarchyNode {
 }
 
 describe("node.util.ts", () => {
-  it("findNodeById: should find a node by id (deep)", () => {
+  it("findNodeById: Should find a node by id (deep)", () => {
     const root = createRoot();
 
     const node = findNodeById(root, "NodeAAB");
@@ -35,14 +35,14 @@ describe("node.util.ts", () => {
     expect(node?.id).toBe("NodeAAB");
   });
 
-  it("findNodeById: should return null when node does not exist", () => {
+  it("findNodeById: Should return null when node does not exist", () => {
     const root = createRoot();
 
     const node = findNodeById(root, "DOES_NOT_EXIST");
     expect(node).toBeNull();
   });
 
-  it("findFirstNodeWithChildrenById: should return children for a node that has children", () => {
+  it("findFirstNodeWithChildrenById: Should return children for a node that has children", () => {
     const root = createRoot();
 
     const children = findFirstNodeWithChildrenById(root, "NodeAA");
@@ -53,18 +53,18 @@ describe("node.util.ts", () => {
     expect(childIds).toContain("NodeAAB");
   });
 
-  it("findFirstNodeWithChildrenById: should return null when node has no children", () => {
+  it("findFirstNodeWithChildrenById: Should return null when node has no children", () => {
     const root = createRoot();
 
     const children = findFirstNodeWithChildrenById(root, "NodeAAA"); // leaf in mock
     expect(children).toBeNull();
   });
 
-  it("getChildrenOfFirstEntry: should return [] for empty input", () => {
+  it("getChildrenOfFirstEntry: Should return [] for empty input", () => {
     expect(getChildrenOfFirstEntry([])).toEqual([]);
   });
 
-  it("getChildrenOfFirstEntry: should return children of first node if present", () => {
+  it("getChildrenOfFirstEntry: Should return children of first node if present", () => {
     const root = createRoot();
 
     const children = getChildrenOfFirstEntry([root]);
@@ -72,7 +72,7 @@ describe("node.util.ts", () => {
     expect(children.map((n) => n.id)).toContain("NodeAA");
   });
 
-  it("getChildrenOfFirstNodeWithChildren: should return children of the first node that has children", () => {
+  it("getChildrenOfFirstNodeWithChildren: Should return children of the first node that has children", () => {
     const root = createRoot();
 
     // Create a leaf node (no children) before the root
@@ -87,16 +87,16 @@ describe("node.util.ts", () => {
     expect(children.map((n) => n.id)).toContain("NodeAB");
   });
 
-  it("findFirstDescendantNodeWithChildrenById: should find first descendant node that has children", () => {
+  it("findFirstDescendantNodeWithChildrenById: Should find first descendant node that has children", () => {
     const root = createRoot();
 
-    // Under NodeAA, NodeAAA is a leaf, NodeAAB has children => should return NodeAAB
+    // Under NodeAA, NodeAAA is a leaf, NodeAAB has children => Should return NodeAAB
     const found = findFirstDescendantNodeWithChildrenById(root, "NodeAA");
     expect(found).not.toBeNull();
     expect(found?.id).toBe("NodeAAB");
   });
 
-  it("findFirstDescendantNodeWithChildrenById: should return null if no descendant has children", () => {
+  it("findFirstDescendantNodeWithChildrenById: Should return null if no descendant has children", () => {
     const root = createRoot();
 
     // Under NodeAAB, children are leaves in mock => no descendant with children
@@ -104,7 +104,7 @@ describe("node.util.ts", () => {
     expect(found).toBeNull();
   });
 
-  it("findNodeAndMetaData: should return node + childCount + indexInParent", () => {
+  it("findNodeAndMetaData: Should return node + childCount + indexInParent", () => {
     const root = createRoot();
 
     const result = findNodeAndMetaData([root], "NodeAA");
@@ -117,7 +117,7 @@ describe("node.util.ts", () => {
     expect(result?.indexInParent).toBe(0);
   });
 
-  it("findNodeAndChildren: should return a node including its children", () => {
+  it("findNodeAndChildren: Should return a node including its children", () => {
     const root = createRoot();
 
     const node = findNodeAndChildren([root], "NodeAAB");
@@ -126,7 +126,7 @@ describe("node.util.ts", () => {
     expect(node?.children.length).toBeGreaterThan(0);
   });
 
-  it("findParentNode: should return the parent node", () => {
+  it("findParentNode: Should return the parent node", () => {
     const root = createRoot();
 
     const parent = findParentNode([root], "NodeAAB");
@@ -134,17 +134,17 @@ describe("node.util.ts", () => {
     expect(parent?.id).toBe("NodeAA");
   });
 
-  it("findParentNode: should return null for root node", () => {
+  it("findParentNode: Should return null for root node", () => {
     const root = createRoot();
 
     const parent = findParentNode([root], "NodeA");
     expect(parent).toBeNull();
   });
 
-  it("getGraphDepth: should calculate depth correctly", () => {
+  it("getGraphDepth: Should calculate depth correctly", () => {
     const root = createRoot();
 
-    // NodeAAB has children, but those are leaves => depth should be 1
+    // NodeAAB has children, but those are leaves => depth Should be 1
     const depthAAB = getGraphDepth([root], "NodeAAB");
     expect(depthAAB).toBe(1);
 
@@ -153,7 +153,7 @@ describe("node.util.ts", () => {
     expect(depthAAA).toBe(0);
   });
 
-  it("getFirstFilledNodeChildrenItem: should return first node that has children", () => {
+  it("getFirstFilledNodeChildrenItem: Should return first node that has children", () => {
     const root = createRoot();
 
     // root definitely has children
@@ -162,13 +162,13 @@ describe("node.util.ts", () => {
     expect(found?.id).toBe("NodeA");
   });
 
-  it("extractNodesForLevels: should extract A/B/C arrays", () => {
+  it("extractNodesForLevels: Should extract A/B/C arrays", () => {
     const root = createRoot();
 
     const { arrayLevelA, arrayLevelB, arrayLevelC } =
       extractNodesForLevels(root);
 
-    // Level A: should be [root]
+    // Level A: Should be [root]
     expect(arrayLevelA.length).toBe(1);
     expect(arrayLevelA[0]?.id).toBe("NodeA");
 
@@ -184,7 +184,7 @@ describe("node.util.ts", () => {
     }
   });
 
-  it("getChildrenByNodeId: should return children for an existing node", () => {
+  it("getChildrenByNodeId: Should return children for an existing node", () => {
     const root = createRoot();
 
     const children = getChildrenByNodeId(root, "NodeAA");
@@ -195,7 +195,7 @@ describe("node.util.ts", () => {
     expect(ids).toContain("NodeAAB");
   });
 
-  it("getChildrenByNodeId: should return [] for a leaf node", () => {
+  it("getChildrenByNodeId: Should return [] for a leaf node", () => {
     const root = createRoot();
 
     // NodeAAA is a leaf in mock data
@@ -204,7 +204,7 @@ describe("node.util.ts", () => {
     expect(children).toEqual([]);
   });
 
-  it("getChildrenByNodeId: should return [] when node does not exist", () => {
+  it("getChildrenByNodeId: Should return [] when node does not exist", () => {
     const root = createRoot();
 
     const children = getChildrenByNodeId(root, "DOES_NOT_EXIST");

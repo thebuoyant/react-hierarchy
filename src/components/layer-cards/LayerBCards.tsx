@@ -38,10 +38,6 @@ export default function LayerBCards() {
               selectedNodeId
             )?.children;
 
-            console.log("handleOnBadgeClick", node);
-            console.log("selectedNodeId", selectedNodeId);
-            console.log("nodesForLayerC", nodesForLayerC);
-
             setConnectedNodeIdLayerB(selectedNodeId);
             setCardLayer_C_Data(nodesForLayerC || []);
           };

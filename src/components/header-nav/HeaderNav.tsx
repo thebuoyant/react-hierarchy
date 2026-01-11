@@ -24,9 +24,6 @@ export default function HeaderNav() {
   const cardLayer_B_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.cardLayer_B_FirstItemIndexNumber
   );
-  const cardLayer_C_FirstItemIndexNumber = useCardLayerStore(
-    (s) => s.cardLayer_C_FirstItemIndexNumber
-  );
   const cardLayer_TMP_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.cardLayer_TMP_FirstItemIndexNumber
   );
@@ -47,7 +44,6 @@ export default function HeaderNav() {
 
   // internal calculations
   const numberOfLayerAItems = cardLayer_A_Data.length;
-  const numberOfLayerBItems = cardLayer_B_Data.length;
   const branchLineItemWidth = 2 * cardSpace + cardWidth;
   const branchLineItemColor = APP_CONFIG.layout.branch.lineColor;
 

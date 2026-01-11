@@ -35,16 +35,11 @@ export default function LayerACards() {
         .map((node: HierarchyNode, index: number) => {
           const content = <div>some content layer a</div>;
           const handleOnBadgeClick = () => {
-            console.log("handleOnBadgeClick", node);
             const selectedNodeId = node.id;
             const nodesForLayerC = findNodeAndChildren(
               [rootNode],
               selectedNodeId
             )?.children;
-
-            console.log("handleOnBadgeClick", node);
-            console.log("selectedNodeId", selectedNodeId);
-            console.log("nodesForLayerC", nodesForLayerC);
 
             setConnectedNodeIdLayerA(selectedNodeId);
             setCardLayer_B_Data(nodesForLayerC || []);
