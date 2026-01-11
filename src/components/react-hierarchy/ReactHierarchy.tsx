@@ -89,10 +89,6 @@ export default function ReactHierarchy({
     const firstConnectedChildrenLayer_C_NodeId =
       getFirstFilledNodeChildrenItem(layer_C_children)?.id;
 
-    console.log(
-      "firstConnectedChildrenLayer_A_NodeId >>>>",
-      firstConnectedChildrenLayer_A_NodeId
-    );
     setConnectedNodeIdLayerA(firstConnectedChildrenLayer_A_NodeId || "");
     setConnectedNodeIdLayerB(firstConnectedChildrenLayer_B_NodeId || "");
     setConnectedNodeIdLayerC(firstConnectedChildrenLayer_C_NodeId || "");

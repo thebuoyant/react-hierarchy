@@ -20,8 +20,6 @@ export default function LayerACards() {
   // internal calculations
   const numberOfLayerAItems = cardLayer_A_Data.length;
 
-  console.log("connectedNodeIdLayerA ###", connectedNodeIdLayerA);
-
   return (
     <div
       className="layer-a-cards"

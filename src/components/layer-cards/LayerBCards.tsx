@@ -17,8 +17,6 @@ export default function LayerBCards() {
     (s) => s.connectedNodeIdLayerB
   );
 
-  console.log("connectedNodeIdLayerB ###", connectedNodeIdLayerB);
-
   return (
     <div
       className="layer-a-cards"
