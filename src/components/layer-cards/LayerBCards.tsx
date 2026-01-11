@@ -5,6 +5,7 @@ import GraphCard from "../graph-card/GraphCard";
 import "./LayerBCards.css";
 
 export default function LayerBCards() {
+  // card layer store
   const cardLayer_B_Data = useCardLayerStore((s) => s.cardLayer_B_Data);
   const cardLayer_B_JustifyContent = useCardLayerStore(
     (s) => s.cardLayer_B_JustifyContent
@@ -12,6 +13,11 @@ export default function LayerBCards() {
   const cardLayer_B_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.cardLayer_B_FirstItemIndexNumber
   );
+  const connectedNodeIdLayerB = useCardLayerStore(
+    (s) => s.connectedNodeIdLayerB
+  );
+
+  console.log("connectedNodeIdLayerB ###", connectedNodeIdLayerB);
 
   return (
     <div
@@ -29,8 +35,7 @@ export default function LayerBCards() {
               key={index}
               node={node}
               showBadge={node.children.length > 0}
-              // showChildConnection={index === cardLayer_B_FirstItemIndexNumber}
-              showChildConnection={false}
+              showChildConnection={connectedNodeIdLayerB === node.id}
               showParentConnection
               positionIndex={cardLayer_B_FirstItemIndexNumber}
               content={content}

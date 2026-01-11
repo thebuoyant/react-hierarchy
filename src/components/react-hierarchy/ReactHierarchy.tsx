@@ -52,6 +52,17 @@ export default function ReactHierarchy({
   const setCardLayer_B_Data = useCardLayerStore((s) => s.setCardLayer_B_Data);
   const setCardLayer_C_Data = useCardLayerStore((s) => s.setCardLayer_C_Data);
 
+  const setConnectedNodeIdLayerA = useCardLayerStore(
+    (s) => s.setConnectedNodeIdLayerA
+  );
+  const setConnectedNodeIdLayerB = useCardLayerStore(
+    (s) => s.setConnectedNodeIdLayerB
+  );
+  const setConnectedNodeIdLayerC = useCardLayerStore(
+    (s) => s.setConnectedNodeIdLayerC
+  );
+
+  // set data
   useEffect(() => {
     setCardHeight(appConfig.layout.card.cardHeight);
     setCardWidth(appConfig.layout.card.cardWidth);
@@ -79,23 +90,21 @@ export default function ReactHierarchy({
       getFirstFilledNodeChildrenItem(layer_C_children)?.id;
 
     console.log(
-      "firstConnectedChildrenLayer_A_NodeId",
+      "firstConnectedChildrenLayer_A_NodeId >>>>",
       firstConnectedChildrenLayer_A_NodeId
     );
-    console.log(
-      "firstConnectedChildrenLayer_B_NodeId",
-      firstConnectedChildrenLayer_B_NodeId
-    );
-    console.log(
-      "firstConnectedChildrenLayer_C_NodeId",
-      firstConnectedChildrenLayer_C_NodeId
-    );
+    setConnectedNodeIdLayerA(firstConnectedChildrenLayer_A_NodeId || "");
+    setConnectedNodeIdLayerB(firstConnectedChildrenLayer_B_NodeId || "");
+    setConnectedNodeIdLayerC(firstConnectedChildrenLayer_C_NodeId || "");
   }, [
     data,
     setCardLayer_A_Data,
     setCardLayer_B_Data,
     setCardLayer_C_Data,
     setRootNode,
+    setConnectedNodeIdLayerA,
+    setConnectedNodeIdLayerB,
+    setConnectedNodeIdLayerC,
   ]);
 
   const totalWidth =

@@ -136,7 +136,7 @@ export const useCardLayerStore = create<CardLayerState>((set) => ({
   setConnectedNodeIdLayerA: (receivedValue) =>
     set({ connectedNodeIdLayerA: receivedValue }),
   setConnectedNodeIdLayerB: (receivedValue) =>
-    set({ connectedNodeIdLayerA: receivedValue }),
+    set({ connectedNodeIdLayerB: receivedValue }),
   setConnectedNodeIdLayerC: (receivedValue) =>
-    set({ connectedNodeIdLayerA: receivedValue }),
+    set({ connectedNodeIdLayerC: receivedValue }),
 }));

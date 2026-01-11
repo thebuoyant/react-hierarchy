@@ -13,9 +13,14 @@ export default function LayerACards() {
   const cardLayer_A_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.cardLayer_A_FirstItemIndexNumber
   );
+  const connectedNodeIdLayerA = useCardLayerStore(
+    (s) => s.connectedNodeIdLayerA
+  );
 
   // internal calculations
   const numberOfLayerAItems = cardLayer_A_Data.length;
+
+  console.log("connectedNodeIdLayerA ###", connectedNodeIdLayerA);
 
   return (
     <div
@@ -33,8 +38,7 @@ export default function LayerACards() {
               key={index}
               node={node}
               showBadge={node.children.length > 0}
-              // showChildConnection={index === cardLayer_A_FirstItemIndexNumber}
-              showChildConnection={false}
+              showChildConnection={connectedNodeIdLayerA === node.id}
               showParentConnection={
                 numberOfLayerAItems >=
                 APP_CONFIG.default.maxNumberOfCardsPerLayer

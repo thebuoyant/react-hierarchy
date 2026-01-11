@@ -32,12 +32,6 @@ export default function LayerABranch() {
     setCardLayer_B_FirstItemIndexNumber(cardLayer_B_FirstItemIndexNumber + 1);
   };
 
-  console.log("numberOfLayerBItems", numberOfLayerBItems);
-  console.log(
-    "cardLayer_B_FirstItemIndexNumber",
-    cardLayer_B_FirstItemIndexNumber
-  );
-
   return (
     <div className="layer-a-branch">
       {cardLayer_B_FirstItemIndexNumber > 0 &&
