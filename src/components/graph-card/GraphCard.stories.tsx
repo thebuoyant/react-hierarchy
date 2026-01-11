@@ -29,8 +29,8 @@ const meta: Meta<typeof GraphCard> = {
   args: {
     node: mockNode,
     showBadge: true,
-    showChildren: true,
-    showParent: true,
+    showChildConnection: true,
+    showParentConnection: true,
     positionIndex: 0,
     content: (
       <div>
@@ -45,11 +45,11 @@ const meta: Meta<typeof GraphCard> = {
       control: "boolean",
       description: "Badge anzeigen",
     },
-    showChildren: {
+    showChildConnection: {
       control: "boolean",
       description: "Kinder visuell anzeigen",
     },
-    showParent: {
+    showParentConnection: {
       control: "boolean",
       description: "Parent-Bezug anzeigen",
     },

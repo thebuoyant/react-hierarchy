@@ -10,11 +10,11 @@ import { BadgeClickPayload } from "../../types/graph.types";
 export type GraphCardProps = {
   node: HierarchyNode;
   showBadge: boolean;
-  showChildren: boolean;
   onBadgeClick?: (payload: BadgeClickPayload) => void;
   positionIndex: number;
   content: React.ReactNode;
-  showParent: boolean;
+  showChildConnection: boolean;
+  showParentConnection: boolean;
 };
 
 export default function GraphCard({
@@ -37,11 +37,11 @@ export default function GraphCard({
     children: [],
   },
   showBadge = true,
-  showChildren,
+  showChildConnection,
   onBadgeClick,
   positionIndex,
   content = <div>Content</div>,
-  showParent = true,
+  showParentConnection = true,
 }: GraphCardProps) {
   const cardHeight = useLayoutStore((s) => s.cardHeight);
   const cardWidth = useLayoutStore((s) => s.cardWidth);
@@ -63,7 +63,7 @@ export default function GraphCard({
         height: cardHeight,
       }}
     >
-      {showParent && (
+      {showParentConnection && (
         <div
           className="parent-line"
           style={{
@@ -131,13 +131,13 @@ export default function GraphCard({
             nodeId={node.id}
             positionIndex={positionIndex}
             counter={node.children.length}
-            isExpanded={showChildren}
+            isExpanded={showChildConnection}
             onClick={handleBadgeClick}
           />
         </div>
       )}
 
-      {showChildren && (
+      {showChildConnection && (
         <div
           className="children-line"
           style={{

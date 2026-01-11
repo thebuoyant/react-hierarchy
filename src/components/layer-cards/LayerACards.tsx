@@ -33,8 +33,8 @@ export default function LayerACards() {
               key={index}
               node={node}
               showBadge={node.children.length > 0}
-              showChildren={index === cardLayer_A_FirstItemIndexNumber}
-              showParent={
+              showChildConnection={index === cardLayer_A_FirstItemIndexNumber}
+              showParentConnection={
                 numberOfLayerAItems >=
                 APP_CONFIG.default.maxNumberOfCardsPerLayer
               }

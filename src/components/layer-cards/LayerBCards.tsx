@@ -29,8 +29,8 @@ export default function LayerBCards() {
               key={index}
               node={node}
               showBadge={node.children.length > 0}
-              showChildren={index === cardLayer_B_FirstItemIndexNumber}
-              showParent
+              showChildConnection={index === cardLayer_B_FirstItemIndexNumber}
+              showParentConnection
               positionIndex={cardLayer_B_FirstItemIndexNumber}
               content={content}
               onBadgeClick={handleOnBadgeClick}
