@@ -9,6 +9,7 @@ import { useCardLayerStore } from "../../store/cardLayerStore";
 import {
   findFirstNodeWithChildrenById,
   getChildrenOfFirstNodeWithChildren,
+  getFirstFilledNodeChildrenItem,
 } from "../../util/node.util";
 import LayerACards from "../layer-cards/LayerACards";
 import LayerBCards from "../layer-cards/LayerBCards";
@@ -69,9 +70,26 @@ export default function ReactHierarchy({
       getChildrenOfFirstNodeWithChildren(layer_B_children);
     setCardLayer_C_Data(layer_C_children);
 
-    // getFirstFilledNodeChildrenItem(
-    //   nodes: HierarchyNode[]
-    // )
+    const firstConnectedChildrenLayer_A_NodeId = getFirstFilledNodeChildrenItem(
+      [data]
+    )?.id;
+    const firstConnectedChildrenLayer_B_NodeId =
+      getFirstFilledNodeChildrenItem(layer_B_children)?.id;
+    const firstConnectedChildrenLayer_C_NodeId =
+      getFirstFilledNodeChildrenItem(layer_C_children)?.id;
+
+    console.log(
+      "firstConnectedChildrenLayer_A_NodeId",
+      firstConnectedChildrenLayer_A_NodeId
+    );
+    console.log(
+      "firstConnectedChildrenLayer_B_NodeId",
+      firstConnectedChildrenLayer_B_NodeId
+    );
+    console.log(
+      "firstConnectedChildrenLayer_C_NodeId",
+      firstConnectedChildrenLayer_C_NodeId
+    );
   }, [
     data,
     setCardLayer_A_Data,
