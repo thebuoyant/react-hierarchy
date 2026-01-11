@@ -12,6 +12,9 @@ export default function HeaderNav() {
   );
   const cardLayer_Tmp_Data = useCardLayerStore((s) => s.cardLayer_Tmp_Data);
   const setCardLayer_A_Data = useCardLayerStore((s) => s.setCardLayer_A_Data);
+  const setCardLayer_A_FirstItemIndexNumber = useCardLayerStore(
+    (s) => s.setCardLayer_A_FirstItemIndexNumber
+  );
   const cardLayer_B_Data = useCardLayerStore((s) => s.cardLayer_B_Data);
   const cardLayer_B_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.cardLayer_B_FirstItemIndexNumber
@@ -32,6 +35,14 @@ export default function HeaderNav() {
     setCardLayer_B_Data(cardLayer_A_Data);
     setCardLayer_C_Data(cardLayer_B_Data);
     setCardLayer_Tmp_Data([]);
+  };
+
+  const handleClickLeft = () => {
+    setCardLayer_A_FirstItemIndexNumber(cardLayer_A_FirstItemIndexNumber - 1);
+  };
+
+  const handleClickRight = () => {
+    setCardLayer_A_FirstItemIndexNumber(cardLayer_A_FirstItemIndexNumber + 1);
   };
 
   return (

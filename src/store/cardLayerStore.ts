@@ -12,6 +12,7 @@ type CardLayerState = {
   cardLayer_A_FirstItemIndexNumber: number;
   cardLayer_B_FirstItemIndexNumber: number;
   cardLayer_C_FirstItemIndexNumber: number;
+  cardLayer_TMP_FirstItemIndexNumber: number;
 
   cardLayer_A_JustifyContent: "flex-start" | "center" | "flex-end";
   cardLayer_B_JustifyContent: "flex-start" | "center" | "flex-end";
@@ -31,6 +32,7 @@ type CardLayerState = {
   setCardLayer_A_FirstItemIndexNumber: (index: number) => void;
   setCardLayer_B_FirstItemIndexNumber: (index: number) => void;
   setCardLayer_C_FirstItemIndexNumber: (index: number) => void;
+  setCardLayer_TMP_FirstItemIndexNumber: (index: number) => void;
 
   setCardLayer_A_JustifyContent: (
     justifyContent: "flex-start" | "center" | "flex-end"
@@ -75,6 +77,7 @@ export const useCardLayerStore = create<CardLayerState>((set) => ({
   cardLayer_A_FirstItemIndexNumber: 0,
   cardLayer_B_FirstItemIndexNumber: 0,
   cardLayer_C_FirstItemIndexNumber: 0,
+  cardLayer_TMP_FirstItemIndexNumber: 0,
 
   cardLayer_A_JustifyContent: "center",
   cardLayer_B_JustifyContent: "center",
@@ -101,6 +104,8 @@ export const useCardLayerStore = create<CardLayerState>((set) => ({
     set({ cardLayer_B_FirstItemIndexNumber: receivedValue }),
   setCardLayer_C_FirstItemIndexNumber: (receivedValue) =>
     set({ cardLayer_C_FirstItemIndexNumber: receivedValue }),
+  setCardLayer_TMP_FirstItemIndexNumber: (receivedValue) =>
+    set({ cardLayer_TMP_FirstItemIndexNumber: receivedValue }),
 
   setCardLayer_A_JustifyContent: (receivedValue) =>
     set({ cardLayer_A_JustifyContent: receivedValue }),

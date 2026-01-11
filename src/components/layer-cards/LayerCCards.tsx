@@ -23,6 +23,25 @@ export default function LayerCCards() {
     (s) => s.cardLayer_C_FirstItemIndexNumber
   );
 
+  const cardLayer_A_FirstItemIndexNumber = useCardLayerStore(
+    (s) => s.cardLayer_A_FirstItemIndexNumber
+  );
+  const setCardLayer_A_FirstItemIndexNumber = useCardLayerStore(
+    (s) => s.setCardLayer_A_FirstItemIndexNumber
+  );
+  const setCardLayer_TMP_FirstItemIndexNumber = useCardLayerStore(
+    (s) => s.setCardLayer_TMP_FirstItemIndexNumber
+  );
+  const cardLayer_B_FirstItemIndexNumber = useCardLayerStore(
+    (s) => s.cardLayer_B_FirstItemIndexNumber
+  );
+  const setCardLayer_B_FirstItemIndexNumber = useCardLayerStore(
+    (s) => s.setCardLayer_B_FirstItemIndexNumber
+  );
+  const setCardLayer_C_FirstItemIndexNumber = useCardLayerStore(
+    (s) => s.setCardLayer_C_FirstItemIndexNumber
+  );
+
   return (
     <div
       className="layer-a-cards"
@@ -42,6 +61,17 @@ export default function LayerCCards() {
             setCardLayer_A_Data(cardLayer_B_Data);
             setCardLayer_B_Data(cardLayer_C_Data);
             setCardLayer_C_Data(newChildrenForLayerC);
+
+            setCardLayer_TMP_FirstItemIndexNumber(
+              cardLayer_A_FirstItemIndexNumber
+            );
+            setCardLayer_A_FirstItemIndexNumber(
+              cardLayer_B_FirstItemIndexNumber
+            );
+            setCardLayer_B_FirstItemIndexNumber(
+              cardLayer_C_FirstItemIndexNumber
+            );
+            setCardLayer_C_FirstItemIndexNumber(0);
           };
           return (
             <GraphCard
