@@ -1,6 +1,7 @@
 import { APP_CONFIG } from "../../app.config";
 import { useCardLayerStore } from "../../store/cardLayerStore";
 import { useLayoutStore } from "../../store/layoutStore";
+import BranchLine from "../branch-line/BranchLine";
 import NavBadge from "../nav-badge/NavBadge";
 import "./LayerABranch.css";
 
@@ -46,48 +47,10 @@ export default function LayerABranch() {
           </div>
         )}
       <div className="branch-line">
-        <div
-          className="branch-line-item-a"
-          style={{
-            width: branchLineItemWidth,
-            backgroundColor: branchLineItemColor,
-          }}
-        ></div>
-        <div
-          className="branch-line-item-b"
-          style={{
-            width: branchLineItemWidth,
-            backgroundColor: branchLineItemColor,
-          }}
-        ></div>
-        <div
-          className="branch-line-item-c"
-          style={{
-            width: branchLineItemWidth,
-            backgroundColor: branchLineItemColor,
-          }}
-        ></div>
-        <div
-          className="branch-line-item-d"
-          style={{
-            width: branchLineItemWidth,
-            backgroundColor: branchLineItemColor,
-          }}
-        ></div>
-        <div
-          className="branch-line-item-e"
-          style={{
-            width: branchLineItemWidth,
-            backgroundColor: branchLineItemColor,
-          }}
-        ></div>
-        <div
-          className="branch-line-item-f"
-          style={{
-            width: branchLineItemWidth,
-            backgroundColor: branchLineItemColor,
-          }}
-        ></div>
+        <BranchLine
+          numberOfNodes={cardLayer_B_Data.length}
+          indexNumber={cardLayer_B_FirstItemIndexNumber}
+        />
       </div>
       {numberOfLayerBItems -
         cardLayer_B_FirstItemIndexNumber -
