@@ -25,6 +25,7 @@ type CardLayerState = {
   connectedNodeIdLayerA: string;
   connectedNodeIdLayerB: string;
   connectedNodeIdLayerC: string;
+  connectedNodeIdLayerTMP: string;
 
   setRootNode: (root: HierarchyNode) => void;
 
@@ -55,6 +56,7 @@ type CardLayerState = {
   setConnectedNodeIdLayerA: (nodeId: string) => void;
   setConnectedNodeIdLayerB: (nodeId: string) => void;
   setConnectedNodeIdLayerC: (nodeId: string) => void;
+  setConnectedNodeIdLayerTMP: (nodeId: string) => void;
 };
 
 export const useCardLayerStore = create<CardLayerState>((set) => ({
@@ -98,6 +100,7 @@ export const useCardLayerStore = create<CardLayerState>((set) => ({
   connectedNodeIdLayerA: "",
   connectedNodeIdLayerB: "",
   connectedNodeIdLayerC: "",
+  connectedNodeIdLayerTMP: "",
 
   setRootNode: (receivedValue) => set({ rootNode: receivedValue }),
 
@@ -139,4 +142,6 @@ export const useCardLayerStore = create<CardLayerState>((set) => ({
     set({ connectedNodeIdLayerB: receivedValue }),
   setConnectedNodeIdLayerC: (receivedValue) =>
     set({ connectedNodeIdLayerC: receivedValue }),
+  setConnectedNodeIdLayerTMP: (receivedValue) =>
+    set({ connectedNodeIdLayerTMP: receivedValue }),
 }));

@@ -41,6 +41,27 @@ export default function HeaderNav() {
   const setCardLayer_C_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.setCardLayer_C_FirstItemIndexNumber
   );
+  const connectedNodeIdLayerA = useCardLayerStore(
+    (s) => s.connectedNodeIdLayerA
+  );
+  const setConnectedNodeIdLayerA = useCardLayerStore(
+    (s) => s.setConnectedNodeIdLayerA
+  );
+  const connectedNodeIdLayerB = useCardLayerStore(
+    (s) => s.connectedNodeIdLayerB
+  );
+  const setConnectedNodeIdLayerB = useCardLayerStore(
+    (s) => s.setConnectedNodeIdLayerB
+  );
+  const setConnectedNodeIdLayerC = useCardLayerStore(
+    (s) => s.setConnectedNodeIdLayerC
+  );
+  const connectedNodeIdLayerTMP = useCardLayerStore(
+    (s) => s.connectedNodeIdLayerTMP
+  );
+  const setConnectedNodeIdLayerTMP = useCardLayerStore(
+    (s) => s.setConnectedNodeIdLayerTMP
+  );
 
   // internal calculations
   const numberOfLayerAItems = cardLayer_A_Data.length;
@@ -58,6 +79,11 @@ export default function HeaderNav() {
     setCardLayer_B_FirstItemIndexNumber(cardLayer_A_FirstItemIndexNumber);
     setCardLayer_C_FirstItemIndexNumber(cardLayer_B_FirstItemIndexNumber);
     setCardLayer_TMP_FirstItemIndexNumber(0);
+
+    setConnectedNodeIdLayerA(connectedNodeIdLayerTMP);
+    setConnectedNodeIdLayerB(connectedNodeIdLayerA);
+    setConnectedNodeIdLayerC(connectedNodeIdLayerB);
+    setConnectedNodeIdLayerTMP("");
   };
 
   const handleClickLeft = () => {

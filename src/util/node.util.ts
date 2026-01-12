@@ -86,7 +86,7 @@ export function getChildrenOfFirstNodeWithChildren(
  * Internal helper:
  * Searches a subtree for the first node that has children.
  */
-function findFirstNodeWithChildrenInSubtree(
+export function findFirstNodeWithChildrenInSubtree(
   node: HierarchyNode
 ): HierarchyNode | null {
   if (node.children.length > 0) {

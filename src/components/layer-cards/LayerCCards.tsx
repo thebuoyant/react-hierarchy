@@ -1,7 +1,10 @@
 import { APP_CONFIG } from "../../app.config";
 import { useCardLayerStore } from "../../store/cardLayerStore";
 import { HierarchyNode } from "../../types/data.type";
-import { getChildrenByNodeId } from "../../util/node.util";
+import {
+  findFirstNodeWithChildrenInSubtree,
+  getChildrenByNodeId,
+} from "../../util/node.util";
 import GraphCard from "../graph-card/GraphCard";
 import "./LayerCCards.css";
 
@@ -41,6 +44,27 @@ export default function LayerCCards() {
   const setCardLayer_C_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.setCardLayer_C_FirstItemIndexNumber
   );
+  const connectedNodeIdLayerA = useCardLayerStore(
+    (s) => s.connectedNodeIdLayerA
+  );
+  const setConnectedNodeIdLayerA = useCardLayerStore(
+    (s) => s.setConnectedNodeIdLayerA
+  );
+  const connectedNodeIdLayerB = useCardLayerStore(
+    (s) => s.connectedNodeIdLayerB
+  );
+  const setConnectedNodeIdLayerB = useCardLayerStore(
+    (s) => s.setConnectedNodeIdLayerB
+  );
+  const connectedNodeIdLayerC = useCardLayerStore(
+    (s) => s.connectedNodeIdLayerC
+  );
+  const setConnectedNodeIdLayerC = useCardLayerStore(
+    (s) => s.setConnectedNodeIdLayerC
+  );
+  const setConnectedNodeIdLayerTMP = useCardLayerStore(
+    (s) => s.setConnectedNodeIdLayerTMP
+  );
 
   return (
     <div
@@ -56,6 +80,10 @@ export default function LayerCCards() {
               rootNode,
               selectedNodeId
             );
+            const newConnectedNodeId = findFirstNodeWithChildrenInSubtree(
+              newChildrenForLayerC[0] || ({} as HierarchyNode)
+            );
+            console.log("newConnectedNodeId", newConnectedNodeId);
 
             setCardLayer_Tmp_Data(cardLayer_A_Data);
             setCardLayer_A_Data(cardLayer_B_Data);
@@ -72,6 +100,11 @@ export default function LayerCCards() {
               cardLayer_C_FirstItemIndexNumber
             );
             setCardLayer_C_FirstItemIndexNumber(0);
+
+            setConnectedNodeIdLayerTMP(connectedNodeIdLayerA);
+            setConnectedNodeIdLayerA(connectedNodeIdLayerB);
+            setConnectedNodeIdLayerB(connectedNodeIdLayerC);
+            setConnectedNodeIdLayerC(newConnectedNodeId?.id || "");
           };
           return (
             <GraphCard
