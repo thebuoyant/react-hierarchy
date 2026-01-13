@@ -44,11 +44,24 @@ export default function BranchLine({
           return totalWidth;
       }
     }
+    if (numberOfNodes === 3) {
+      return (2 * cardSpace + cardWidth) * 2;
+    }
+
     return totalWidth;
   };
 
   const calculateLineOffset = () => {
     if (numberOfNodes > maxNumberOfNodes) {
+      switch (indexNumber) {
+        case 0: {
+          return cardTotalWidth / 2;
+        }
+        default:
+          return 0;
+      }
+    }
+    if (numberOfNodes === 3) {
       switch (indexNumber) {
         case 0: {
           return cardTotalWidth / 2;

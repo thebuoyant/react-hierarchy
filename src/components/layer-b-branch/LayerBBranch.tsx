@@ -10,12 +10,16 @@ export default function LayerBBranch() {
   const cardSpace = useLayoutStore((s) => s.cardSpace);
 
   // card layer store
+  const cardLayer_B_FirstItemIndexNumber = useCardLayerStore(
+    (s) => s.cardLayer_B_FirstItemIndexNumber
+  );
   const cardLayer_C_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.cardLayer_C_FirstItemIndexNumber
   );
   const setCardLayer_C_FirstItemIndexNumber = useCardLayerStore(
     (s) => s.setCardLayer_C_FirstItemIndexNumber
   );
+  const cardLayer_B_Data = useCardLayerStore((s) => s.cardLayer_B_Data);
   const cardLayer_C_Data = useCardLayerStore((s) => s.cardLayer_C_Data);
 
   // internal calculations
@@ -47,8 +51,8 @@ export default function LayerBBranch() {
         )}
       <div className="branch-line">
         <BranchLine
-          numberOfNodes={cardLayer_C_Data.length}
-          indexNumber={cardLayer_C_FirstItemIndexNumber}
+          numberOfNodes={cardLayer_B_Data.length}
+          indexNumber={cardLayer_B_FirstItemIndexNumber}
         />
       </div>
       {numberOfLayerCItems -
