@@ -33,9 +33,9 @@ export default function BranchLine({
   const renderBranchLine = () => {
     switch (branchForLayer) {
       case "a":
-        console.log("positionIndex", positionIndexNumber);
-        console.log("numberOfNodes", numberOfNodes);
-        const calculateLineColorSectionA = () => {
+        // console.log("positionIndex", positionIndexNumber);
+        // console.log("numberOfNodes", numberOfNodes);
+        const calculateLineColorSectionAA = () => {
           if (positionIndexNumber === 0 && numberOfNodes >= 3) {
             return "transparent";
           }
@@ -48,7 +48,7 @@ export default function BranchLine({
             return "transparent";
           }
         };
-        const calculateLineColorSectionB = () => {
+        const calculateLineColorSectionAB = () => {
           if (positionIndexNumber === 0 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           }
@@ -61,7 +61,7 @@ export default function BranchLine({
             return "transparent";
           }
         };
-        const calculateLineColorSectionC = () => {
+        const calculateLineColorSectionAC = () => {
           if (positionIndexNumber === 0 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           }
@@ -74,7 +74,7 @@ export default function BranchLine({
             return "transparent";
           }
         };
-        const calculateLineColorSectionD = () => {
+        const calculateLineColorSectionAD = () => {
           if (positionIndexNumber === 0 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           }
@@ -87,7 +87,7 @@ export default function BranchLine({
             return "transparent";
           }
         };
-        const calculateLineColorSectionE = () => {
+        const calculateLineColorSectionAE = () => {
           if (positionIndexNumber === 0 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           }
@@ -100,7 +100,7 @@ export default function BranchLine({
             return "transparent";
           }
         };
-        const calculateLineColorSectionF = () => {
+        const calculateLineColorSectionAF = () => {
           if (positionIndexNumber === 0 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           }
@@ -116,58 +116,175 @@ export default function BranchLine({
               className="branch-section-a"
               style={{
                 width: cardTotalWidth / 2,
-                backgroundColor: calculateLineColorSectionA(),
+                backgroundColor: calculateLineColorSectionAA(),
               }}
             ></div>
             <div
               className="branch-section-b"
               style={{
                 width: cardTotalWidth / 2,
-                backgroundColor: calculateLineColorSectionB(),
+                backgroundColor: calculateLineColorSectionAB(),
               }}
             ></div>
             <div
               className="branch-section-c"
               style={{
                 width: cardTotalWidth / 2,
-                backgroundColor: calculateLineColorSectionC(),
+                backgroundColor: calculateLineColorSectionAC(),
               }}
             ></div>
             <div
               className="branch-section-d"
               style={{
                 width: cardTotalWidth / 2,
-                backgroundColor: calculateLineColorSectionD(),
+                backgroundColor: calculateLineColorSectionAD(),
               }}
             ></div>
             <div
               className="branch-section-e"
               style={{
                 width: cardTotalWidth / 2,
-                backgroundColor: calculateLineColorSectionE(),
+                backgroundColor: calculateLineColorSectionAE(),
               }}
             ></div>
             <div
               className="branch-section-f"
               style={{
                 width: cardTotalWidth / 2,
-                backgroundColor: calculateLineColorSectionF(),
+                backgroundColor: calculateLineColorSectionAF(),
               }}
             ></div>
           </>
         );
+      case "b":
+        // console.log("positionIndex", positionIndexNumber);
+        // console.log("numberOfNodes", numberOfNodes);
+        const calculateLineColorSectionBA = () => {
+          if (positionIndexNumber === 0 && numberOfNodes >= 3) {
+            return "transparent";
+          }
+          if (positionIndexNumber === 1 && numberOfNodes > 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          }
+          if (positionIndexNumber === 2 && numberOfNodes > 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          } else {
+            return "transparent";
+          }
+        };
+        const calculateLineColorSectionBB = () => {
+          if (positionIndexNumber === 0 && numberOfNodes >= 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          }
+          if (positionIndexNumber === 1 && numberOfNodes > 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          }
+          if (positionIndexNumber === 2 && numberOfNodes > 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          } else {
+            return "transparent";
+          }
+        };
+        const calculateLineColorSectionBC = () => {
+          if (positionIndexNumber === 0 && numberOfNodes >= 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          }
+          if (positionIndexNumber === 1 && numberOfNodes > 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          }
+          if (positionIndexNumber === 2 && numberOfNodes > 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          } else {
+            return "transparent";
+          }
+        };
+        const calculateLineColorSectionBD = () => {
+          if (positionIndexNumber === 0 && numberOfNodes >= 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          }
+          if (positionIndexNumber === 1 && numberOfNodes > 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          }
+          if (positionIndexNumber === 2 && numberOfNodes > 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          } else {
+            return "transparent";
+          }
+        };
+        const calculateLineColorSectionBE = () => {
+          if (positionIndexNumber === 0 && numberOfNodes >= 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          }
+          if (positionIndexNumber === 1 && numberOfNodes > 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          }
+          if (positionIndexNumber === 2 && numberOfNodes > 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          } else {
+            return "transparent";
+          }
+        };
+        const calculateLineColorSectionBF = () => {
+          if (positionIndexNumber === 0 && numberOfNodes >= 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          }
+          if (positionIndexNumber === 1 && numberOfNodes > 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          } else {
+            return "transparent";
+          }
+        };
+        return (
+          <>
+            <div
+              className="branch-section-a"
+              style={{
+                width: cardTotalWidth / 2,
+                backgroundColor: calculateLineColorSectionBA(),
+              }}
+            ></div>
+            <div
+              className="branch-section-b"
+              style={{
+                width: cardTotalWidth / 2,
+                backgroundColor: calculateLineColorSectionBB(),
+              }}
+            ></div>
+            <div
+              className="branch-section-c"
+              style={{
+                width: cardTotalWidth / 2,
+                backgroundColor: calculateLineColorSectionBC(),
+              }}
+            ></div>
+            <div
+              className="branch-section-d"
+              style={{
+                width: cardTotalWidth / 2,
+                backgroundColor: calculateLineColorSectionBD(),
+              }}
+            ></div>
+            <div
+              className="branch-section-e"
+              style={{
+                width: cardTotalWidth / 2,
+                backgroundColor: calculateLineColorSectionBE(),
+              }}
+            ></div>
+            <div
+              className="branch-section-f"
+              style={{
+                width: cardTotalWidth / 2,
+                backgroundColor: calculateLineColorSectionBF(),
+              }}
+            ></div>
+          </>
+        );
+
       default:
         return <div></div>;
     }
   };
 
   return renderBranchLine();
-  // <div
-  // // style={{
-  // //   width: calculateLineWidth(),
-  // //   backgroundColor: branchLineItemColor,
-  // //   position: "relative",
-  // //   left: calculateLineOffset(),
-  // // }}
-  // ></div>
 }
