@@ -22,6 +22,9 @@ export default function LayerBCards() {
     (s) => s.setConnectedNodeIdLayerB
   );
   const setCardLayer_C_Data = useCardLayerStore((s) => s.setCardLayer_C_Data);
+  const setCardLayer_B_FirstItemIndexNumber = useCardLayerStore(
+    (s) => s.setCardLayer_B_FirstItemIndexNumber
+  );
 
   return (
     <div
@@ -40,6 +43,7 @@ export default function LayerBCards() {
 
             setConnectedNodeIdLayerB(selectedNodeId);
             setCardLayer_C_Data(nodesForLayerC || []);
+            setCardLayer_B_FirstItemIndexNumber(index);
           };
           return (
             <GraphCard

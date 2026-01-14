@@ -47,6 +47,13 @@ export default function BranchLine({
     if (numberOfNodes === 3) {
       return (2 * cardSpace + cardWidth) * 2;
     }
+    if (numberOfNodes === 2) {
+      return 2 * cardSpace + cardWidth;
+    }
+
+    if (numberOfNodes === 1) {
+      return 0;
+    }
 
     return totalWidth;
   };
@@ -70,6 +77,19 @@ export default function BranchLine({
           return 0;
       }
     }
+    if (numberOfNodes === 2) {
+      switch (indexNumber) {
+        case 0: {
+          return cardTotalWidth;
+        }
+        default:
+          return 0;
+      }
+    }
+    if (numberOfNodes === 1) {
+      return 0;
+    }
+
     return 0;
   };
 
