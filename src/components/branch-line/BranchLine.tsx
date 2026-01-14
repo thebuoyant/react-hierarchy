@@ -110,7 +110,7 @@ export default function BranchLine({
         console.log("positionIndex", positionIndexNumber);
         console.log("numberOfNodes", numberOfNodes);
         const calculateLineColorSectionA = () => {
-          if (positionIndexNumber === 0 && numberOfNodes > 3) {
+          if (positionIndexNumber === 0 && numberOfNodes >= 3) {
             return "transparent";
           } else if (
             (positionIndexNumber === 1 || positionIndexNumber === 2) &&
@@ -122,7 +122,7 @@ export default function BranchLine({
           }
         };
         const calculateLineColorSectionB = () => {
-          if (positionIndexNumber === 0 && numberOfNodes > 3) {
+          if (positionIndexNumber === 0 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           } else if (
             (positionIndexNumber === 1 || positionIndexNumber === 2) &&
@@ -134,6 +134,30 @@ export default function BranchLine({
           }
         };
         const calculateLineColorSectionC = () => {
+          if (positionIndexNumber === 0 && numberOfNodes >= 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          } else if (
+            (positionIndexNumber === 1 || positionIndexNumber === 2) &&
+            numberOfNodes > 3
+          ) {
+            return APP_CONFIG.layout.branch.lineColor;
+          } else {
+            return "transparent";
+          }
+        };
+        const calculateLineColorSectionD = () => {
+          if (positionIndexNumber === 0 && numberOfNodes >= 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          } else if (
+            (positionIndexNumber === 1 || positionIndexNumber === 2) &&
+            numberOfNodes > 3
+          ) {
+            return APP_CONFIG.layout.branch.lineColor;
+          } else {
+            return "transparent";
+          }
+        };
+        const calculateLineColorSectionE = () => {
           if (positionIndexNumber === 0 && numberOfNodes > 3) {
             return APP_CONFIG.layout.branch.lineColor;
           } else if (
@@ -170,11 +194,17 @@ export default function BranchLine({
             ></div>
             <div
               className="branch-section-d"
-              style={{ width: cardTotalWidth / 2 }}
+              style={{
+                width: cardTotalWidth / 2,
+                backgroundColor: calculateLineColorSectionD(),
+              }}
             ></div>
             <div
               className="branch-section-e"
-              style={{ width: cardTotalWidth / 2 }}
+              style={{
+                width: cardTotalWidth / 2,
+                backgroundColor: calculateLineColorSectionE(),
+              }}
             ></div>
             <div
               className="branch-section-f"
