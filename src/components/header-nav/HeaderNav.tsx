@@ -1,6 +1,7 @@
 import { APP_CONFIG } from "../../app.config";
 import { useCardLayerStore } from "../../store/cardLayerStore";
 import { useLayoutStore } from "../../store/layoutStore";
+import BranchLine from "../branch-line/BranchLine";
 import GraphBadge from "../graph-badge/GraphBadge";
 import NavBadge from "../nav-badge/NavBadge";
 import "./HeaderNav.css";
@@ -109,13 +110,11 @@ export default function HeaderNav() {
         )}
       {numberOfLayerAItems > 1 && (
         <div className="branch-line">
-          <div
-            className="branch-line-item-header"
-            style={{
-              width: branchLineItemWidth * numberOfLayerAItems,
-              backgroundColor: branchLineItemColor,
-            }}
-          ></div>
+          <BranchLine
+            numberOfNodes={cardLayer_A_Data.length}
+            positionIndexNumber={cardLayer_A_FirstItemIndexNumber}
+            branchForLayer="a"
+          />
         </div>
       )}
       {numberOfLayerAItems >= APP_CONFIG.default.maxNumberOfCardsPerLayer && (

@@ -52,7 +52,8 @@ export default function LayerBBranch() {
       <div className="branch-line">
         <BranchLine
           numberOfNodes={cardLayer_B_Data.length}
-          indexNumber={cardLayer_B_FirstItemIndexNumber}
+          positionIndexNumber={cardLayer_B_FirstItemIndexNumber}
+          branchForLayer="c"
         />
       </div>
       {numberOfLayerCItems -
