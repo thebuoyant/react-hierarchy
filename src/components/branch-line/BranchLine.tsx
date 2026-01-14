@@ -118,10 +118,32 @@ export default function BranchLine({
           ) {
             return APP_CONFIG.layout.branch.lineColor;
           } else {
-            console.log("else");
             return "transparent";
           }
-          return "transparent";
+        };
+        const calculateLineColorSectionB = () => {
+          if (positionIndexNumber === 0 && numberOfNodes > 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          } else if (
+            (positionIndexNumber === 1 || positionIndexNumber === 2) &&
+            numberOfNodes > 3
+          ) {
+            return APP_CONFIG.layout.branch.lineColor;
+          } else {
+            return "transparent";
+          }
+        };
+        const calculateLineColorSectionC = () => {
+          if (positionIndexNumber === 0 && numberOfNodes > 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          } else if (
+            (positionIndexNumber === 1 || positionIndexNumber === 2) &&
+            numberOfNodes > 3
+          ) {
+            return APP_CONFIG.layout.branch.lineColor;
+          } else {
+            return "transparent";
+          }
         };
         return (
           <>
@@ -134,11 +156,17 @@ export default function BranchLine({
             ></div>
             <div
               className="branch-section-b"
-              style={{ width: cardTotalWidth / 2 }}
+              style={{
+                width: cardTotalWidth / 2,
+                backgroundColor: calculateLineColorSectionB(),
+              }}
             ></div>
             <div
               className="branch-section-c"
-              style={{ width: cardTotalWidth / 2 }}
+              style={{
+                width: cardTotalWidth / 2,
+                backgroundColor: calculateLineColorSectionC(),
+              }}
             ></div>
             <div
               className="branch-section-d"
