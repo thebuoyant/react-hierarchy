@@ -1,9 +1,5 @@
-import { Chip } from "@mui/material";
-import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { APP_CONFIG } from "../../app.config";
 import { useLayoutStore } from "../../store/layoutStore";
-import { useEffect } from "react";
 
 export type BranchLineProps = {
   numberOfNodes: number;
@@ -20,10 +16,6 @@ export default function BranchLine({
   const cardWidth = useLayoutStore((s) => s.cardWidth);
   const cardSpace = useLayoutStore((s) => s.cardSpace);
 
-  // local state
-
-  const branchLineItemColor = APP_CONFIG.layout.branch.lineColor;
-
   const maxNumberOfNodes = APP_CONFIG.default.maxNumberOfCardsPerLayer;
   const totalWidth = (2 * cardSpace + cardWidth) * maxNumberOfNodes;
   const branchLineWidth = numberOfNodes * (2 * cardSpace + cardWidth);
@@ -37,72 +29,6 @@ export default function BranchLine({
   // console.log("cardTotalWidth", cardTotalWidth);
   // console.log("indexNumber", indexNumber);
   // console.log("------------------------------------------");
-
-  // const calculateLineWidth = () => {
-  //   if (numberOfNodes > maxNumberOfNodes) {
-  //     switch (positionIndexNumber) {
-  //       case 0: {
-  //         return totalWidth - cardTotalWidth / 2;
-  //       }
-  //       case 2: {
-  //         return totalWidth - cardTotalWidth / 2;
-  //       }
-  //       default:
-  //         return totalWidth;
-  //     }
-  //   }
-  //   if (numberOfNodes === 3) {
-  //     return (2 * cardSpace + cardWidth) * 2;
-  //   }
-  //   if (numberOfNodes === 2) {
-  //     return 2 * cardSpace + cardWidth;
-  //   }
-
-  //   if (numberOfNodes === 1) {
-  //     return 0;
-  //   }
-
-  //   return totalWidth;
-  // };
-
-  // const calculateLineOffset = () => {
-  //   if (numberOfNodes > maxNumberOfNodes) {
-  //     switch (positionIndexNumber) {
-  //       case 0: {
-  //         return cardTotalWidth / 2;
-  //       }
-  //       default:
-  //         return 0;
-  //     }
-  //   }
-  //   if (numberOfNodes === 3) {
-  //     switch (positionIndexNumber) {
-  //       case 0: {
-  //         return cardTotalWidth / 2;
-  //       }
-  //       default:
-  //         return 0;
-  //     }
-  //   }
-  //   if (numberOfNodes === 2) {
-  //     switch (positionIndexNumber) {
-  //       case 0: {
-  //         return cardTotalWidth;
-  //       }
-  //       default:
-  //         return 0;
-  //     }
-  //   }
-  //   if (numberOfNodes === 1) {
-  //     return 0;
-  //   }
-
-  //   return 0;
-  // };
-
-  useEffect(() => {
-    console.log("render");
-  }, [numberOfNodes, positionIndexNumber, branchForLayer]);
 
   const renderBranchLine = () => {
     switch (branchForLayer) {
@@ -169,6 +95,18 @@ export default function BranchLine({
             return "transparent";
           }
         };
+        const calculateLineColorSectionF = () => {
+          if (positionIndexNumber === 0 && numberOfNodes > 3) {
+            return "transparent";
+          } else if (
+            (positionIndexNumber === 1 || positionIndexNumber === 2) &&
+            numberOfNodes > 3
+          ) {
+            return "transparent";
+          } else {
+            return "transparent";
+          }
+        };
         return (
           <>
             <div
@@ -208,7 +146,10 @@ export default function BranchLine({
             ></div>
             <div
               className="branch-section-f"
-              style={{ width: cardTotalWidth / 2 }}
+              style={{
+                width: cardTotalWidth / 2,
+                backgroundColor: calculateLineColorSectionF(),
+              }}
             ></div>
           </>
         );
