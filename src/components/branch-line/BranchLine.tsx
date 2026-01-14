@@ -39,10 +39,10 @@ export default function BranchLine({
           if (positionIndexNumber === 0 && numberOfNodes >= 3) {
             return "transparent";
           }
-          if (positionIndexNumber === 1 && numberOfNodes > 3) {
+          if (positionIndexNumber === 1 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           }
-          if (positionIndexNumber === 2 && numberOfNodes > 3) {
+          if (positionIndexNumber === 2 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           } else {
             return "transparent";
@@ -52,10 +52,10 @@ export default function BranchLine({
           if (positionIndexNumber === 0 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           }
-          if (positionIndexNumber === 1 && numberOfNodes > 3) {
+          if (positionIndexNumber === 1 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           }
-          if (positionIndexNumber === 2 && numberOfNodes > 3) {
+          if (positionIndexNumber === 2 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           } else {
             return "transparent";
@@ -65,10 +65,10 @@ export default function BranchLine({
           if (positionIndexNumber === 0 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           }
-          if (positionIndexNumber === 1 && numberOfNodes > 3) {
+          if (positionIndexNumber === 1 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           }
-          if (positionIndexNumber === 2 && numberOfNodes > 3) {
+          if (positionIndexNumber === 2 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           } else {
             return "transparent";
@@ -78,10 +78,10 @@ export default function BranchLine({
           if (positionIndexNumber === 0 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           }
-          if (positionIndexNumber === 1 && numberOfNodes > 3) {
+          if (positionIndexNumber === 1 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           }
-          if (positionIndexNumber === 2 && numberOfNodes > 3) {
+          if (positionIndexNumber === 2 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           } else {
             return "transparent";
@@ -91,10 +91,10 @@ export default function BranchLine({
           if (positionIndexNumber === 0 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           }
-          if (positionIndexNumber === 1 && numberOfNodes > 3) {
+          if (positionIndexNumber === 1 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           }
-          if (positionIndexNumber === 2 && numberOfNodes > 3) {
+          if (positionIndexNumber === 2 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           } else {
             return "transparent";
@@ -104,7 +104,7 @@ export default function BranchLine({
           if (positionIndexNumber === 0 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           }
-          if (positionIndexNumber === 1 && numberOfNodes > 3) {
+          if (positionIndexNumber === 1 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           } else {
             return "transparent";
@@ -163,10 +163,10 @@ export default function BranchLine({
           if (positionIndexNumber === 0 && numberOfNodes >= 3) {
             return "transparent";
           }
-          if (positionIndexNumber === 1 && numberOfNodes > 3) {
+          if (positionIndexNumber === 1 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           }
-          if (positionIndexNumber === 2 && numberOfNodes > 3) {
+          if (positionIndexNumber === 2 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           } else {
             return "transparent";
@@ -176,10 +176,10 @@ export default function BranchLine({
           if (positionIndexNumber === 0 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           }
-          if (positionIndexNumber === 1 && numberOfNodes > 3) {
+          if (positionIndexNumber === 1 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           }
-          if (positionIndexNumber === 2 && numberOfNodes > 3) {
+          if (positionIndexNumber === 2 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           } else {
             return "transparent";
@@ -189,10 +189,10 @@ export default function BranchLine({
           if (positionIndexNumber === 0 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           }
-          if (positionIndexNumber === 1 && numberOfNodes > 3) {
+          if (positionIndexNumber === 1 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           }
-          if (positionIndexNumber === 2 && numberOfNodes > 3) {
+          if (positionIndexNumber === 2 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           } else {
             return "transparent";
@@ -202,10 +202,10 @@ export default function BranchLine({
           if (positionIndexNumber === 0 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           }
-          if (positionIndexNumber === 1 && numberOfNodes > 3) {
+          if (positionIndexNumber === 1 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           }
-          if (positionIndexNumber === 2 && numberOfNodes > 3) {
+          if (positionIndexNumber === 2 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           } else {
             return "transparent";
@@ -215,10 +215,10 @@ export default function BranchLine({
           if (positionIndexNumber === 0 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           }
-          if (positionIndexNumber === 1 && numberOfNodes > 3) {
+          if (positionIndexNumber === 1 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           }
-          if (positionIndexNumber === 2 && numberOfNodes > 3) {
+          if (positionIndexNumber === 2 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           } else {
             return "transparent";
@@ -228,7 +228,7 @@ export default function BranchLine({
           if (positionIndexNumber === 0 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           }
-          if (positionIndexNumber === 1 && numberOfNodes > 3) {
+          if (positionIndexNumber === 1 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
           } else {
             return "transparent";
@@ -276,6 +276,130 @@ export default function BranchLine({
               style={{
                 width: cardTotalWidth / 2,
                 backgroundColor: calculateLineColorSectionBF(),
+              }}
+            ></div>
+          </>
+        );
+      case "c":
+        // console.log("positionIndex", positionIndexNumber);
+        // console.log("numberOfNodes", numberOfNodes);
+        const calculateLineColorSectionCA = () => {
+          if (positionIndexNumber === 0 && numberOfNodes >= 3) {
+            return "transparent";
+          }
+          if (positionIndexNumber === 1 && numberOfNodes >= 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          }
+          if (positionIndexNumber === 2 && numberOfNodes >= 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          } else {
+            return "transparent";
+          }
+        };
+        const calculateLineColorSectionCB = () => {
+          if (positionIndexNumber === 0 && numberOfNodes >= 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          }
+          if (positionIndexNumber === 1 && numberOfNodes >= 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          }
+          if (positionIndexNumber === 2 && numberOfNodes >= 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          } else {
+            return "transparent";
+          }
+        };
+        const calculateLineColorSectionCC = () => {
+          if (positionIndexNumber === 0 && numberOfNodes >= 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          }
+          if (positionIndexNumber === 1 && numberOfNodes >= 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          }
+          if (positionIndexNumber === 2 && numberOfNodes >= 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          } else {
+            return "transparent";
+          }
+        };
+        const calculateLineColorSectionCD = () => {
+          if (positionIndexNumber === 0 && numberOfNodes >= 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          }
+          if (positionIndexNumber === 1 && numberOfNodes >= 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          }
+          if (positionIndexNumber === 2 && numberOfNodes >= 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          } else {
+            return "transparent";
+          }
+        };
+        const calculateLineColorSectionCE = () => {
+          if (positionIndexNumber === 0 && numberOfNodes >= 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          }
+          if (positionIndexNumber === 1 && numberOfNodes >= 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          }
+          if (positionIndexNumber === 2 && numberOfNodes >= 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          } else {
+            return "transparent";
+          }
+        };
+        const calculateLineColorSectionCF = () => {
+          if (positionIndexNumber === 0 && numberOfNodes >= 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          }
+          if (positionIndexNumber === 1 && numberOfNodes >= 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          } else {
+            return "transparent";
+          }
+        };
+        return (
+          <>
+            <div
+              className="branch-section-a"
+              style={{
+                width: cardTotalWidth / 2,
+                backgroundColor: calculateLineColorSectionCA(),
+              }}
+            ></div>
+            <div
+              className="branch-section-b"
+              style={{
+                width: cardTotalWidth / 2,
+                backgroundColor: calculateLineColorSectionCB(),
+              }}
+            ></div>
+            <div
+              className="branch-section-c"
+              style={{
+                width: cardTotalWidth / 2,
+                backgroundColor: calculateLineColorSectionCC(),
+              }}
+            ></div>
+            <div
+              className="branch-section-d"
+              style={{
+                width: cardTotalWidth / 2,
+                backgroundColor: calculateLineColorSectionCD(),
+              }}
+            ></div>
+            <div
+              className="branch-section-e"
+              style={{
+                width: cardTotalWidth / 2,
+                backgroundColor: calculateLineColorSectionCE(),
+              }}
+            ></div>
+            <div
+              className="branch-section-f"
+              style={{
+                width: cardTotalWidth / 2,
+                backgroundColor: calculateLineColorSectionCF(),
               }}
             ></div>
           </>
