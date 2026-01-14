@@ -38,10 +38,11 @@ export default function BranchLine({
         const calculateLineColorSectionA = () => {
           if (positionIndexNumber === 0 && numberOfNodes >= 3) {
             return "transparent";
-          } else if (
-            (positionIndexNumber === 1 || positionIndexNumber === 2) &&
-            numberOfNodes > 3
-          ) {
+          }
+          if (positionIndexNumber === 1 && numberOfNodes > 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          }
+          if (positionIndexNumber === 2 && numberOfNodes > 3) {
             return APP_CONFIG.layout.branch.lineColor;
           } else {
             return "transparent";
@@ -50,10 +51,11 @@ export default function BranchLine({
         const calculateLineColorSectionB = () => {
           if (positionIndexNumber === 0 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
-          } else if (
-            (positionIndexNumber === 1 || positionIndexNumber === 2) &&
-            numberOfNodes > 3
-          ) {
+          }
+          if (positionIndexNumber === 1 && numberOfNodes > 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          }
+          if (positionIndexNumber === 2 && numberOfNodes > 3) {
             return APP_CONFIG.layout.branch.lineColor;
           } else {
             return "transparent";
@@ -62,10 +64,11 @@ export default function BranchLine({
         const calculateLineColorSectionC = () => {
           if (positionIndexNumber === 0 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
-          } else if (
-            (positionIndexNumber === 1 || positionIndexNumber === 2) &&
-            numberOfNodes > 3
-          ) {
+          }
+          if (positionIndexNumber === 1 && numberOfNodes > 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          }
+          if (positionIndexNumber === 2 && numberOfNodes > 3) {
             return APP_CONFIG.layout.branch.lineColor;
           } else {
             return "transparent";
@@ -74,35 +77,35 @@ export default function BranchLine({
         const calculateLineColorSectionD = () => {
           if (positionIndexNumber === 0 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
-          } else if (
-            (positionIndexNumber === 1 || positionIndexNumber === 2) &&
-            numberOfNodes > 3
-          ) {
+          }
+          if (positionIndexNumber === 1 && numberOfNodes > 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          }
+          if (positionIndexNumber === 2 && numberOfNodes > 3) {
             return APP_CONFIG.layout.branch.lineColor;
           } else {
             return "transparent";
           }
         };
         const calculateLineColorSectionE = () => {
-          if (positionIndexNumber === 0 && numberOfNodes > 3) {
+          if (positionIndexNumber === 0 && numberOfNodes >= 3) {
             return APP_CONFIG.layout.branch.lineColor;
-          } else if (
-            (positionIndexNumber === 1 || positionIndexNumber === 2) &&
-            numberOfNodes > 3
-          ) {
+          }
+          if (positionIndexNumber === 1 && numberOfNodes > 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          }
+          if (positionIndexNumber === 2 && numberOfNodes > 3) {
             return APP_CONFIG.layout.branch.lineColor;
           } else {
             return "transparent";
           }
         };
         const calculateLineColorSectionF = () => {
-          if (positionIndexNumber === 0 && numberOfNodes > 3) {
-            return "transparent";
-          } else if (
-            (positionIndexNumber === 1 || positionIndexNumber === 2) &&
-            numberOfNodes > 3
-          ) {
-            return "transparent";
+          if (positionIndexNumber === 0 && numberOfNodes >= 3) {
+            return APP_CONFIG.layout.branch.lineColor;
+          }
+          if (positionIndexNumber === 1 && numberOfNodes > 3) {
+            return APP_CONFIG.layout.branch.lineColor;
           } else {
             return "transparent";
           }
